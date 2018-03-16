@@ -1,0 +1,13 @@
+.imageContainer {
+	width: 288px;
+	height: 288px;
+	position: relative;
+	background-color: #fbfbfb;
+	border: 1px solid #b8b8b8;
+}
+
+#myImage {
+	width: 288px;
+	height: 288px;
+	display: block;
+}

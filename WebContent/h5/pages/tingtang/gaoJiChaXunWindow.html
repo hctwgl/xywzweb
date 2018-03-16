@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	<script type="text/javascript" src="../../resource/layer/layer.js"></script>
+	<script type="text/javascript">
+	/*
+	$(document).ready(function () {
+		$("#cardId").bind('blur',function(){
+			var cardId = $("#cardId").val();
+			var reg = /^[0-9]*$/;
+			if(cardId != ''){
+				if(reg.test(cardId) == false){
+					mesUtil.alert('请输入数字!');
+					$("#cardId").val('');
+				}			
+			}
+		});
+		
+		$("#shenfenzhenghao").bind('blur',function(){
+			var shenfenzhenghao = $("#shenfenzhenghao").val();
+			var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+			if(shenfenzhenghao != ''){
+				if(reg.test(shenfenzhenghao) === false){  
+					mesUtil.alert("请输入正确的身份证");  
+					$("#shenfenzhenghao").val('');
+			    }  
+			}
+		});
+		
+		$("#phone").bind('blur',function(){
+			var cellPhone = $("#phone").val();
+			var reg = /^((13|15|18|14|17)[0-9]{9})$/;
+			if(cellPhone != ''){
+				if(reg.test(cellPhone) == false){
+					mesUtil.alert('请输入正确的查询号码!');
+					$("#phone").val('');
+				}
+			}
+		});	
+		
+	});
+	*/
+	
+	</script>
+</head>
+<body>
+<div class="ycTList" style="height: 220px;" id="fundDuibi">
+
+<div class="xinxi">
+			<p>卡号：</p>
+			<input style="width: 50%;" name="cardId" id="cardId" type="text"/>
+</div>
+<div class="xinxi">
+			<p>姓名：</p>
+			<input style="width: 50%;" name="name" id="name" type="text" />
+</div>
+<div class="xinxi">
+			<p>身份证号：</p>
+			<input style="width: 50%;" name="shenfenzhenghao" id="shenfenzhenghao" type="text" />
+</div>
+<div class="xinxi">
+			<p>手机号：</p>
+			<input style="width: 50%;" name="phone" id="phone" type="text" />
+</div>
+</div>
+
+</body>
+</html>

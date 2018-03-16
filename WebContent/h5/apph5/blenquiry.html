@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>请选择一个医院查询病历</title>	
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">	
+	<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/h5/js/underscore-min.js"></script>
+	<script type="text/javascript" src="/h5/js/dropload.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/h5/css/apph5.css?$!module.module('webmobile').build">
+	<link rel="stylesheet" type="text/css" href="/h5/css/dropload.min.css">
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style>
+	
+.enquiry .enquiry_content a{
+	display:table;
+	width:4rem;
+	float:left;
+}
+	</style>
+</head>
+<body style="background:#fff;">
+	<div class="wrap_bg"></div>
+	<div class="wrap">
+		<div class="enquiry">
+			<div class="select">
+				<div class="select_a"><i>选择地区</i></div>
+				<div class="option">
+					
+				</div>
+			</div>
+			<div class="enquiry_content">
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			window.limit = 12;
+			window.skip = 0;
+			$.ajax({
+				url:"/search/getprovince",
+				dataType : "json",
+				type:"GET",
+				success:function(data){
+					var li="";
+					$.each(data,function(index,data){ 
+						li+='<li dataid="'+data.code+'">'+data.name+'</li>'
+					})
+					$('.option').append(li);
+				}
+			});
+			showdl('');
+			function showdl(dataid){
+				$.ajax({
+					url:"/search/gethospital",
+					dataType : "json",
+					data:"limit="+window.limit+"&skip="+window.skip+"&code="+dataid+"&types=1",
+					type:"GET",
+					success:function(datas){
+						var dl="";
+						console.log(dataid);
+						$.each(datas,function(index,data){ 
+							dl+="<a href='http://fake.jiahao.me?type=1&siteid="+data.id+"' onclick=\"if(app=='undefined'){return true;}else{app.queryCase('"+data.id+"');return false;}\"><div class='enquiry_content_list'><div class='enquiry_content_img' style='background: url("+data.icon+") no-repeat center;background-size: cover;'></div><p>"+data.name+"</p></div></a>";
+						})
+						$('.enquiry_content').empty();
+						$('.enquiry_content').append(dl);
+						for(var i=0;i<$('.enquiry_content a').length;i++){
+							if(i%3==2){
+								$('.enquiry_content a').eq(i).find(".enquiry_content_list").addClass("marrig");
+							}
+						}
+						var num=($(".enquiry_content").width()-$(".enquiry_content_list").width()*3)/2;
+						$(".enquiry_content_list").css("marginRight",num-1);
+						$(".enquiry_content_list.marrig").css("marginRight",0);
+						$(".enquiry_content").css("minHeight",$(window).height()-$(".enquiry .select").outerHeight(true)-parseFloat($(".enquiry").css("paddingTop")));
+					}
+				})
+			}
+			$(".select .select_a").click(function(){
+				var id=$(this).find("i").attr("dataid");
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(".select .option").hide();
+					$(".wrap_bg").hide();
+				}else{
+					$(this).addClass("active");
+					$(".wrap_bg").show();
+      				$('.select .option li[dataid='+id+']').addClass("active").siblings().removeClass("active");
+      				$(".select .option").show();
+      			}
+      		})
+			$(".wrap_bg").click(function(){
+				$(".select .option").hide();
+				$(".wrap_bg").hide();
+				$(".select").find(".select_a").removeClass("active");
+			})
+			$(".select .option").on("click","li",function(){
+				var str=$(this).html();
+				var dataid=$(this).attr("dataid");
+				$(this).addClass("active").siblings().removeClass("active");
+				window.skip=0;
+				$(this).parents(".select").find(".select_a i").html(str);
+				$(this).parents(".select").find(".select_a i").attr("dataid",dataid);
+				$(this).parents(".select").find(".select_a").removeClass("active");
+				$(this).parents(".select").find(".option").hide();
+				$(".wrap_bg").hide();
+				showdl(dataid);
+			})
+			$('.enquiry_content').dropload({
+		        scrollArea : window,
+		        loadDownFn : function(me){
+		        	window.skip=window.skip+window.limit;
+		        	var dataid=$(".select").eq(0).find(".option li.active").attr("dataid");
+		        	if(dataid==undefined){
+		        		dataid="";
+		        	};
+		            $.ajax({
+		                url:"/search/gethospital",
+						dataType : "json",
+						data:"limit="+window.limit+"&skip="+window.skip+"&code="+dataid+"&types=1",
+						type:"GET",
+						success:function(datas){
+							var dl="";
+							$.each(datas,function(index,data){ 
+								dl+="<a href='http://fake.jiahao.me?type=1&siteid="+data.id+"' onclick=\"if(app=='undefined'){return true;}else{app.queryCase('"+data.id+"');return false;}\"><div class='enquiry_content_list'><div class='enquiry_content_img' style='background: url("+data.icon+") no-repeat center;background-size: cover;'></div><p>"+data.name+"</p></div></a>";
+							})
+							$('.enquiry_content').append(dl);
+							for(var i=0;i<$('.enquiry_content a').length;i++){
+								if(i%3==2){
+									$('.enquiry_content a').eq(i).find(".enquiry_content_list").addClass("marrig");
+								}
+							}
+							var num=($(".enquiry_content").width()-$(".enquiry_content_list").width()*3)/2;
+							$(".enquiry_content_list").css("marginRight",num-1);
+							$(".enquiry_content_list.marrig").css("marginRight",0);
+							$(".enquiry_content").css("minHeight",$(window).height()-$(".enquiry .select").outerHeight(true)-parseFloat($(".enquiry").css("paddingTop")));
+		                    me.resetload();
+		                },
+		                error: function(xhr, type){
+		                    alert('Ajax error!');
+		                    me.resetload();
+		                }
+		            });
+		        }
+		    });
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>名医榜</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/h5/js/underscore-min.js"></script>
+<script type="text/javascript" src="/h5/js/dropload.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/h5/css/apph5.css?$!module.module('webmobile').build">
+<link rel="stylesheet" type="text/css" href="/h5/css/dropload.min.css">
+<script type="text/javascript">
+	/*屏幕比例值*/
+	function sizeHtml() {
+		var size = window.innerWidth / 16;
+		size = size > 40 ? 40 : size;
+		document.getElementsByTagName("html")[0].style.fontSize = size + "px";
+	}
+	sizeHtml();
+	window.onresize = function() {
+		sizeHtml();
+	}
+</script>
+<style type="text/css">
+.bespeak_list dd{
+	padding-top:.5rem;
+	height:3.5rem;
+}
+.bespeak_list dd h4 {
+	padding-top: 0;
+	height:1rem;
+	line-height:1rem;
+}
+
+.bespeak_list dd p {
+	padding-top: 0;
+	height:1rem;
+	line-height:1rem;
+	color:#333;
+}
+.bespeak_list dd p.hospital{
+	color:#333;
+}
+</style>
+</head>
+<body style="background: #fff;">
+	<div class="wrap_bg"></div>
+	<div class="wrap">
+		<div class="enquiry">
+			<div class="selection">
+				<div class="select">
+					<div class="select_a">
+						<i dataid="ssss">选择地区</i>
+					</div>
+					<div class="option"></div>
+				</div>
+				<div class="select">
+					<div class="select_a">
+						<i dataid="ssss">选择医院</i>
+					</div>
+					<div class="option"></div>
+				</div>
+			</div>
+			<div class="enquiry_content"></div>
+		</div>
+	</div>
+	<div class="wrap_alert"
+		style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: none;">
+		<div class="alert_txt"
+			style="padding: .5rem 1rem; background: #000; position: absolute; left: 50%; top: 50%; color: #fff; font-size: .8rem; margin-left: -3.4rem; margin-top: -0.975rem; border-radius: .5rem;">
+			请先选择地区</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			window.limit = 5;
+			window.skip = 0;
+			var num = ($(".enquiry_content").width() - $(
+					".enquiry_content_list").width() * 3) / 2;
+			$(".enquiry_content_list").css("marginRight", num - 1);
+			$(".enquiry_content_list.marrig").css("marginRight", 0);
+			$(".option").width($(".selection").width());
+			$.ajax({
+				url : "/search/getprovince",
+				dataType : "json",
+				type : "GET",
+				success : function(data) {
+					var li = "";
+					$.each(data, function(dataidindex, data) {
+						li += '<li dataid="'+data.code+'">' + data.name
+								+ '</li>';
+					})
+					$('.select').eq(0).find('.option').append(li);
+				}
+			});
+			showdl('', '');
+			function showdl(area, siteid) {
+				$.ajax({
+					url : "/search/getdoctor",
+					dataType : "json",
+					data : "limit=" + window.limit + "&skip=" + window.skip
+							+ "&code=" + area + "&siteid=" + siteid,
+					type : "GET",
+					success : function(dataq) {
+						console.log(dataq.length);
+						console.log(dataq);
+						ajaxs(dataq);
+					}
+				})
+			}
+			function ajaxs(dataq) {
+				var dl = "";
+				$.each(dataq,function(index, data) {
+									dl += "<a href='http://fake.jiahao.me?type=9&doctorid="
+											+ data.id
+											+ "' onclick=\"if(app=='undefined'){return true;}else{if(typeof(app.expertById)=='function'){app.expert('"+data.id+"');}else{app.expert('"
+											+ data.icon
+											+ "','"
+											+ data.name
+											+ "','"
+											+ encodeURIComponent(data.techtitle+"\n"+data.hospital)
+											+ "','"
+											+ encodeURIComponent(data.skillfield)
+											+ "','"
+											+ encodeURIComponent(data.introduction)
+											+ "');}return false;}\" ><dl class='bespeak_list'><dt style='background: url("
+											+ data.icon
+											+ ") no-repeat center;background-size: cover;'></dt><dd><h4 style='padding-top:0;'>"
+											+ data.name
+											+ "<em>"
+											+ data.techtitle
+											+ "</em></h4><p class='hospital'>"
+											+ data.hospital
+											+ "</p><p>"
+											+ data.skillfield
+											+ "</p></dd></dl></a>";
+								})
+				$('.enquiry_content').empty();
+				$('.enquiry_content').append(dl);
+				var dlwid = $(".enquiry").width();
+				var dtwid = $(".bespeak_list dt").outerWidth(true);
+				$(".bespeak_list dd").width(dlwid - dtwid - 1);
+				$(".enquiry_content").css("minHeight",$(window).height()- $(".enquiry .select").outerHeight(true)- parseFloat($(".enquiry").css("paddingTop")));
+			}
+			/*选择菜单*/
+			function choosemenu(_this) {
+				var id = _this.find("i").attr("dataid");
+				if (_this.hasClass("active")) {
+					_this.removeClass("active");
+					_this.parent().find(".option").hide();
+					$(".wrap_bg").hide();
+				} else {
+					_this.addClass("active");
+					_this.parent().siblings().find(".select_a").removeClass("active");
+					$(".wrap_bg").show();
+					_this.parent().find('.option li[dataid=' + id + ']').addClass("active").siblings().removeClass("active");
+					_this.parent().find(".option").show();
+					_this.parent().siblings().find(".option").hide();
+				}
+			}
+			/*选择下拉菜单*/
+			$(".select").eq(0).find(".select_a").click(function() {
+				choosemenu($(this));
+			})
+			$(".select").eq(1).find(".select_a").click(function() {
+				if ($(".select").eq(0).find(".option li").hasClass("active")) {
+					choosemenu($(this));
+				} else {
+					$(".select").eq(0).find(".select_a").removeClass("active");
+					$(".select").eq(0).find(".option").hide();
+					$(".wrap_bg").hide();
+					$(".wrap_alert").fadeIn(1000);
+					setTimeout(function() {
+						$(".wrap_alert").fadeOut(1000);
+					}, 1000)
+				}
+			})
+			$(".wrap_bg").click(function() {
+				$(".select .option").hide();
+				$(".wrap_bg").hide();
+				$(".select").find(".select_a").removeClass("active");
+			})
+			$(".select").eq(0).find(".option").on("click","li",function() {
+						var str = $(this).html();
+						var area = $(this).attr("dataid");
+						$(this).addClass("active").siblings().removeClass("active");
+						$(this).parents(".select").find(".select_a i").html(str);
+						$(this).parents(".select").find(".select_a i").attr("dataid", area);
+						$(this).parents(".select").find(".select_a").removeClass("active");
+						$(this).parents(".select").find(".option").hide();
+						$(".select").eq(1).find(".select_a").html("<i dataid='ssss'>选择医院</i></div>");
+						$('.select').eq(1).find('.option').empty();
+						$(".wrap_bg").hide();
+						window.skip = 0;
+						$.ajax({
+							url : "/search/gethospital",
+							dataType : "json",
+							data : "skip=0&limit=100000&docexists=0&code="+ area,
+							type : "GET",
+							success : function(datas) {
+								var li = "";
+								$.each(datas, function(index, data) {
+									li += '<li dataid="'+data.id+'">'
+											+ data.name + '</li>'
+								})
+								$('.select').eq(1).find('.option').append(li);
+							}
+						});
+						showdl(area, '');
+					})
+			$(".select").eq(1).find(".option").on("click","li",function() {
+						var str = $(this).html();
+						var siteid = $(this).attr("dataid");
+						var area = $(".select").eq(0).find(".select_a i").attr("dataid");
+						window.skip = 0;
+						$(this).addClass("active").siblings().removeClass("active");
+						$(this).parents(".select").find(".select_a i").html(str);
+						$(this).parents(".select").find(".select_a i").attr("dataid", area);
+						$(this).parents(".select").find(".select_a").removeClass("active");
+						$(this).parents(".select").find(".option").hide();
+						$(".wrap_bg").hide();
+						showdl(area, siteid);
+					});
+			$('.enquiry_content').dropload({
+								scrollArea : window,
+								loadDownFn : function(me) {
+									window.skip = window.skip + window.limit;
+									var area = $(".select").eq(0).find(".option li.active").attr("dataid");
+									var siteid = $(".select").eq(1).find(".option li.active").attr("dataid");
+									if (area == undefined) {
+										area = "";
+									}
+									;
+									if (siteid == undefined) {
+										siteid = "";
+									}
+									;
+									$.ajax({
+												url : "/search/getdoctor",
+												dataType : "json",
+												data : "limit=" + window.limit
+														+ "&skip="
+														+ window.skip
+														+ "&code=" + area
+														+ "&siteid=" + siteid,
+												type : "GET",
+												success : function(dataq) {
+													var dl = "";
+													$.each(dataq,function(index,data) {
+																		dl += "<a href='http://fake.jiahao.me?type=9&doctorid="
+																				+ data.id
+																				+ "' onclick=\"if(app=='undefined'){return true;}else{if(typeof(app.expertById)=='function'){app.expert('"+data.id+"');}else{app.expert('"
+																				+ data.icon
+																				+ "','"
+																				+ data.name
+																				+ "','"
+																				+ encodeURIComponent(data.techtitle+"\n"+data.hospital)
+																				+ "','"
+																				+ encodeURIComponent(data.skillfield)
+																				+ "','"
+																				+ encodeURIComponent(data.introduction)
+																				+ "');}return false;}\" ><dl class='bespeak_list'><dt style='background: url("
+																				+ data.icon
+																				+ ") no-repeat center;background-size: cover;'></dt><dd><h4 style='padding-top:0;'>"
+																				+ data.name
+																				+ "<em>"
+																				+ data.techtitle
+																				+ "</em></h4><p class='hospital'>"
+																				+ data.hospital
+																				+ "</p><p>"
+																				+ data.skillfield
+																				+ "</p></dd></dl></a>";
+																	})
+													$('.enquiry_content').append(dl);
+													var dlwid = $(".enquiry").width();
+													var dtwid = $(".bespeak_list dt").outerWidth(true);
+													$(".bespeak_list dd").width(dlwid- dtwid- 1);
+													$(".enquiry_content").css("minHeight",$(window).height()- $(".enquiry .select").outerHeight(true)- parseFloat($(".enquiry").css("paddingTop")));
+													me.resetload();
+												},
+												error : function(xhr, type) {
+													alert('Ajax error!');
+													me.resetload();
+												}
+											});
+								}
+							});
+		})
+	</script>
+</body>
+</html>

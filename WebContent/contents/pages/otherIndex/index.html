@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://localhost:8080/xywzweb/h5/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+		function mytest(){
+			alert(111);
+			var json={};
+			$.ajax({
+				url:"http://localhost:8080/xywzweb/TestAction!add.action",
+				data:json,
+				dataType : "json",
+				type:"GET",
+				success:function(data){
+						alert(123);
+				}
+			})
+		}
+		mytest();
+</script>
+</head>
+<body>
+	this is my index.html
+</body>
+</html>

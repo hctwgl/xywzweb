@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>下载趣孕</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+		function is_weixn(){  
+		    var ua = navigator.userAgent.toLowerCase();  
+		    if(ua.match(/MicroMessenger/i)=="micromessenger") { 
+		    	document.getElementById("alert").style.display="block";
+		        return true;  
+		    } else {  
+		    	document.getElementById("alert").style.display="none";
+		    	window.location.href="/h5/QuYun_1.0_jiahao.apk"; 
+		        return false;  
+		    }  
+		} 
+		window.onload=function(){
+			document.getElementById("download").onclick=function(){
+				is_weixn();
+			}
+			document.getElementById("alert").onclick=function(){
+				document.getElementById("alert").style.display="none";
+			}
+		}
+	</script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body, html {
+	    margin: 0;
+	    padding: 0;
+	    height: 100%;
+	    color: #A9B1B3;
+	    font-size: .6rem;
+	    -webkit-font-smoothing: antialiased;
+		}
+		.pattern {
+		    position: absolute;
+		    top: 0;
+		    z-index: 3;
+		    width: 18%;
+		    -webkit-transition: all .5s;
+		    transition: all .5s;
+		}
+		.pattern img {
+		    width: 100%;
+		    -webkit-transition: all 1s;
+		    transition: all 1s;
+		    pointer-events: none;
+		}
+		.pattern.left {
+		    left: 0;
+		}
+		.pattern.right {
+		    right: 0;
+		}
+		.table-container {
+		    display: table;
+		    width: 100%;
+		    height: 100%;
+		}
+		.cell-container {
+		    display: table-cell;
+		    height: 100%;
+		    vertical-align: middle;
+		    text-align: center;
+		}
+		.app-brief {
+		    text-align: center;
+		}
+		.icon-container {
+			position: relative;
+		    margin: 0 auto;
+		    width: 100%;
+		    height: auto;
+		    text-align: center;
+		}
+		.icon-container .icon {
+		    top: 0;
+		    left: 0;
+		    width:5.5rem;
+		    height:5.5rem;
+		    border-radius: 17.54%;
+		    background-color: #fff;
+		    position: static;
+		    display: inline-block;
+		    z-index: 2;
+		}
+		.icon-container .icon img{
+			display:block;
+			width:100%;
+		    border-radius:1.5rem;
+		}
+		.name {
+		    text-align: center;
+		    font-size: 24px;
+		    position: relative;
+		    width: 100%;
+		    color: #505556;
+		    font-weight: 400;
+			margin:.8rem auto;
+		}
+		.icon-warp{
+			font-size:1rem;
+			width:100%;
+			text-align:center;
+		}
+		#actions{
+			padding-left: 4rem;
+    	padding-right: 4rem;
+		}
+		#actions a{
+			    width: 100%;
+    height: 2rem;
+    display: block;
+    font-size: 1rem;
+    border: 1px solid #A9B1B3;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 1.5rem;
+    margin-top: 1.7rem;
+    color: #868C8E;
+		}
+		.border{
+			padding:0 3rem;
+			height:1px;
+		}
+		.border i{
+			width:100%;
+			height:1px;
+			display:block;
+			background:#DAE2E3;
+		}
+		.alert{
+			position:fixed;
+			width:100%;
+			height:100%;
+			z-index:99;
+			display:none;
+		}
+		.alert_bg{
+			position:absolute;
+			left:0;
+			top:0;
+			background:#000;
+			opacity:0.6;
+			width:100%;
+			height:100%;
+			z-index:9;
+		}
+		.alert_cont{
+			position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 10rem;
+    color: #fff;
+    z-index: 99;
+    background-image: url(/h5/images/return.png);
+    background-repeat: no-repeat;
+    background-position: right 2rem;
+    font-size: .75rem;
+    line-height: 1.5rem;
+    padding-top: 2rem;
+    background-size: 4rem;
+		}
+		.alert_cont p{
+			padding-left:1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="alert" id="alert">
+		<div class="alert_bg"></div>
+		<div class="alert_cont">
+			<p>点击右上角菜单</p>
+			<p>在默认浏览器中打开并安装应用</p>
+		</div>
+	</div>
+	<span class="pattern left">
+		<img src="/h5/images/left.png"></span>
+	<span class="pattern right">
+		<img src="/h5/images/right.png"></span>
+	<div class="table-container">
+		<div class="cell-container">
+			<div class="app-brief">
+				<div class="icon-container wrapper">
+	              <span class="icon">
+	                <img src="/h5/images/quyunicon.png" itemprop="image">
+	              </span>
+	              <h1 class="name wrapper">
+		              <span class="icon-warp">
+		                趣孕
+		              </span>
+		          </h1>
+		          <div class="border">
+		          	<i></i>
+		          </div>
+		          <div id="actions" class="actions type-ios">
+	                <a id="download">下载安装</a>
+	              </div>
+           		</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

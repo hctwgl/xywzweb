@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>科普文章</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/h5/js/underscore-min.js"></script>
+<!-- <script src="/h5/js/jquery.mobile-1.3.2.min.js"></script> -->
+<script type="text/javascript" src="/h5/js/dropload.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/h5/css/apph5.css?$!module.module('webmobile').build">
+<link rel="stylesheet" type="text/css" href="/h5/css/dropload.min.css">
+<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+</head>
+<body style="background: #fff;">
+	<div class="wrap_bg"></div>
+	<div class="wrap">
+		<div class="enquiry_navs">
+			<div class="enquiry_nav"></div>
+		</div>
+		<div class="enquiry_cont_all">
+			<div class="enquiry_cont"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+		$(function() {
+			var screenwid = "";
+			var u = navigator.userAgent;
+			if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+				var url = window.location.href;
+				var index = url.indexOf("=");
+				var dpi = window.devicePixelRatio;
+				if (index > 0) {
+					screenwid = parseInt(url.substring(index + 1)) / dpi;
+				} else {
+					screenwid = $(window).width();
+				}
+				//return true;  
+			} else if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+				screenwid = $(window).width();
+				//return true;  
+			}
+			window.limit = 5;
+			window.processing = 0;
+			window.exists = [];
+			$.ajax({
+						url : "/article/gettype",
+						dataType : "json",
+						type : "GET",
+						success : function(data) {
+							var li = "";
+							var div = "";
+							$
+									.each(
+											data,
+											function(index, data) {
+												li += '<li code="'+data.code+'"><a href="javascript:;">'
+														+ data.name
+														+ '</a></li>';
+												div += '<div class="enquiry_cont_table" code='+data.code+'></div>';
+											})
+							$('.enquiry_nav').append(li);
+							$('.enquiry_nav li').eq(0).addClass("active");
+							loada();
+							$('.enquiry_cont').append(div);
+							loaddiv();
+							var code = $('.enquiry_nav li').eq(0).attr("code");
+							showHtml(code, 0);
+						}
+					});
+
+			function showHtml(code, skip) {
+				$
+						.ajax({
+							url : "/article/getarticles",
+							dataType : "json",
+							async : false,
+							type : "GET",
+							data : "limit=" + window.limit + "&skip=" + skip
+									+ "&code=" + code,
+							success : function(data) {
+								var a = "";
+								$
+										.each(
+												data,
+												function(index, data) {
+													if (window.exists
+															.indexOf(data._id) >= 0) {
+
+													} else {
+														window.exists
+																.push(data._id);
+														a += '<a href="'+data.url+'" onclick="location.href=\''+data.url+'\'"><dl><dt style="background:url('
+																+ data.icon
+																+ '?size1=150x120) no-repeat center;background-size:cover;"></dt><dd>'
+																+ data.title
+																+ '</dd></dl></a>';
+													}
+												})
+								$('.enquiry_cont_table[code=' + code + "]")
+										.append(a);
+								$('.enquiry_cont_table[code=' + code + "]")
+										.show().siblings().hide();
+								$('.enquiry_cont_table[code=' + code + "]")
+										.attr("datadisplay", "block");
+								$('.enquiry_cont_table[code=' + code + "]")
+										.siblings().attr("datadisplay", "none");
+								loaddiv();
+								var dochei = $(window).height()
+										- $(".enquiry_nav").height();
+								var len = $(
+										'.enquiry_cont_table[code=' + code
+												+ "]").find("a").length;
+								var heia = $(
+										'.enquiry_cont_table[code=' + code
+												+ "]").find("a").height();
+								if (dochei > len * heia) {
+									//$('.enquiry_cont_table[code='+code+"]").parents(".enquiry_cont_all").height(dochei);
+								} else {
+									//$('.enquiry_cont_table[code='+code+"]").parents(".enquiry_cont_all").height(len*heia);
+								}
+								window.processing = 0;
+							}
+						});
+			}
+			function loaddiv() {
+				$(".enquiry_cont_all").width(screenwid);
+				$(".enquiry_cont_all").css("minHeight",
+						$(window).height() - $(".enquiry_navs").height());
+				$(".ui-page").css("minHeight",
+						$(window).height() - $(".enquiry_navs").height());
+				//$(".enquiry_cont").width($(".enquiry_cont_table").length*$(window).width());
+				$(".enquiry_cont_table").width(screenwid);
+
+				var dtwids = $(".enquiry_cont_table dt").outerWidth(true);
+				var dl = $(".enquiry_cont_table").outerWidth(true);
+				var dls = parseFloat($(".enquiry_cont_table dl").css(
+						"paddingLeft"));
+				var dt = parseInt($(".enquiry_cont_table dl dt").outerWidth(
+						true));
+				$(".enquiry_cont_table dl dd").width(screenwid - dt-(dls*3));
+			}
+			function loada() {
+				var len = $(".enquiry_nav li").length;
+				$(".enquiry_nav li").width(screenwid / 4);
+				$(".enquiry_navs").width(screenwid);
+				$(".enquiry_nav").width(len * $(".enquiry_nav li").width());
+			}
+
+			$(".enquiry_nav")
+					.on(
+							"click",
+							"li",
+							function() {
+								$(this).addClass("active");
+								$(this).siblings().removeClass("active");
+								var ind = $(this).index();
+								/*$(".enquiry_cont").animate({"marginLeft":-$(".enquiry_cont_table").width()*ind},500);*/
+								var dataId = $(this).attr("code");
+								if ($('.enquiry_cont_table[code=' + dataId
+										+ "] a").length > 0) {
+									$(
+											'.enquiry_cont_table[code='
+													+ dataId + "]").show()
+											.siblings().hide();
+								} else {
+									showHtml(dataId, 0);
+								}
+							})
+			$(".enquiry_cont_all")
+					.dropload(
+							{
+								scrollArea : window,
+								loadDownFn : function(me) {
+									if (window.processing == 0) {
+										var skip = $(
+												".enquiry_cont_table[datadisplay=block]")
+												.find("a").length;
+										var code = $(".enquiry_nav li.active")
+												.attr("code");
+										showHtml(code, skip);
+									}
+									me.resetload();
+								},
+								error : function(xhr, type) {
+									alert('Ajax error!');
+									me.resetload();
+								}
+							});
+
+			/*$(".wrap").on("scroll",".enquiry_navs",function(){
+				$(".enquiry_nav").css("marginLeft",0);
+			})*/
+			/*$(".wrap").on("swiperight",".enquiry_navs",function(){
+				var marle=parseFloat($(".enquiry_nav").css("marginLeft"));
+				var win=$(".enquiry_nav li").width();
+				var i=$(".enquiry_nav li.active").index();
+				if(marle==0){
+					$(".enquiry_nav").css("marginLeft",0);
+				}else{
+					$(".enquiry_nav").css("marginLeft",marle+win);
+				}
+				var ahei=$(".enquiry_cont_table a").height();
+				var lens=$(".enquiry_cont_table").eq(i-1).find("a").length;
+				$(".enquiry_cont_table").eq(i-1).height(ahei*lens);
+				$(".enquiry_cont").height(ahei*lens);
+				$(".enquiry_cont_all").height(ahei*lens);		
+			})
+			$(".wrap").on("swipeleft",".enquiry_navs",function(){
+				var marle=parseFloat($(".enquiry_nav").css("marginLeft"));
+				var win=$(".enquiry_nav li").width();
+				var wins=$(".enquiry_nav").width();
+				var len=$(".enquiry_nav li").length;
+				var i=$(".enquiry_nav li.active").index();
+				if(marle<=-win*(len-4)){
+					$(".enquiry_nav").css("marginLeft",-win*(len-4));
+				}else{
+					$(".enquiry_nav").css("marginLeft",marle-win);
+				}
+				var ahei=$(".enquiry_cont_table a").height();
+				var lens=$(".enquiry_cont_table").eq(i-1).find("a").length;
+				$(".enquiry_cont_table").eq(i-1).height(ahei*lens);
+				$(".enquiry_cont").height(ahei*lens);
+				$(".enquiry_cont_all").height(ahei*lens);		
+			})*/
+			/*$(".wrap").on("swipeleft",".enquiry_cont_all",function(){
+				var scrollLeft = $(this).scrollLeft();
+				var len=$(".enquiry_nav li").length;
+				var win=$(".enquiry_nav li").width();
+				var i=$(".enquiry_nav li.active").index();
+				var code=$(".enquiry_nav li").eq(i+1).attr('code');
+				if(i>=len-1){
+					$(".enquiry_nav li").eq(i-1).addClass("active");
+					$(".enquiry_nav li").eq(i-1).siblings().removeClass("active");
+					if(i==len-1){
+						$(".enquiry_nav li").eq(i).addClass("active");
+						$(".enquiry_nav li").eq(i).siblings().removeClass("active");
+					}
+					$(".enquiry_cont").animate({"marginLeft":-$(".enquiry_cont_table").width()*(len-1)},500);
+					var ahei=$(".enquiry_cont_table a").height();
+					var lens=$(".enquiry_cont_table").eq(i).find("a").length;
+					$(".enquiry_cont_table").eq(i).height(ahei*lens);
+					$(".enquiry_cont").height(ahei*lens);
+					$(".enquiry_cont_all").height(ahei*lens);		
+					$(".enquiry_nav").css("marginLeft",-$(".enquiry_nav li").width()*(len-4));			
+				}else{
+					$(".enquiry_nav li").eq(i+1).addClass("active");
+					$(".enquiry_nav li").eq(i+1).siblings().removeClass("active");
+					var ahei=$(".enquiry_cont_table a").height();
+					var lens=$(".enquiry_cont_table").eq(i+1).find("a").length;
+					$(".enquiry_cont_table").eq(i+1).height(ahei*lens);
+					$(".enquiry_cont").height(ahei*lens);
+					$(".enquiry_cont_all").height(ahei*lens);
+					$(".enquiry_cont").animate({"marginLeft":-$(".enquiry_cont_table").width()*(i+1)},500);
+					if(i>=3){
+						$(".enquiry_nav").css("marginLeft",-$(".enquiry_nav li").width()*(i-2));
+					}else{
+					$(".enquiry_nav").css("marginLeft",0);
+					}
+				}
+			})
+			$(".wrap").on("swiperight",".enquiry_cont_all",function(){
+				var scrollLeft = $(this).scrollLeft();
+				var len=$(".enquiry_nav li").length;
+				var win=$(".enquiry_nav li").width();
+				var i=$(".enquiry_nav li.active").index();
+
+				var code=$(".enquiry_nav li").eq(i-1).attr('code');
+				if(i<=0){
+					$(".enquiry_nav li").eq(0).addClass("active");
+						$(".enquiry_nav li").eq(0).siblings().removeClass("active");
+						$(".enquiry_cont").animate({"marginLeft":-$(".enquiry_cont_table").width()*0},500);
+
+					var ahei=$(".enquiry_cont_table a").height();
+					var lens=$(".enquiry_cont_table").eq(0).find("a").length;
+					$(".enquiry_cont_table").eq(0).height(ahei*lens);
+					$(".enquiry_cont").height(ahei*lens);
+					$(".enquiry_cont_all").height(ahei*lens);
+					$(".enquiry_nav").css("marginLeft",0);
+				}else{
+					$(".enquiry_nav li").eq(i-1).addClass("active");
+					$(".enquiry_nav li").eq(i-1).siblings().removeClass("active");
+					$(".enquiry_cont").animate({"marginLeft":-$(".enquiry_cont_table").width()*(i-1)},500);
+
+					var ahei=$(".enquiry_cont_table a").height();
+					var lens=$(".enquiry_cont_table").eq(i-1).find("a").length;
+					$(".enquiry_cont_table").eq(i-1).height(ahei*lens);
+					$(".enquiry_co
+			    }nt").height(ahei*lens);
+					$(".enquiry_cont_all").height(ahei*lens);
+					if(i<=4){
+						$(".enquiry_nav").css("marginLeft",0);
+					}else{
+						$(".enquiry_nav").css("marginLeft",-$(".enquiry_nav li").width()*(i-3));
+					}
+				}
+			})*/
+			var dtwids = $(".enquiry_cont_table dt").outerWidth(true);
+			var dl = $(".enquiry_cont_table").outerWidth(true);
+			var dls = parseFloat($(".enquiry_cont_table dl").css("paddingLeft"));
+			var dt = parseInt($(".enquiry_cont_table dl dt").outerWidth(true));
+			$(".enquiry_cont_table dl dd").width(dl - (dls * 2) - dt - 4);
+		})
+	</script>
+</body>
+</html>

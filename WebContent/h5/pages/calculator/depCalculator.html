@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="Components.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcDeposit.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		getrate();
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('./financialTool.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	function getrate(){
+		var rateId = document.getElementById("tbSaveTime").value;
+	    	var rateType="2";
+	    	$.ajax({
+	    		type : "GET",
+	    		url : basePath + '/ocrmSaveRateQuery.json?rateId='+rateId+'&rateType='+rateType,
+	    		cache: false, 
+	    		dataType: 'json',
+	    		async: false, 
+	    		success : function(response) {debugger;
+	    			var array = response.json.data[0];
+	    				if(null != array){
+	    					document.getElementById("tbYearRate").value=NBround(array.RATE_VALUE,2);
+	    					var floatRatio=0.1;
+	    					if (document.getElementById("floatRatio").value != null) {
+	    						floatRatio=parseFloat(document.getElementById("floatRatio").value)/100;
+	    					}
+	    					document.getElementById("zxYearRate").value = NBround(array.RATE_VALUE*(1+floatRatio),2);
+	    				}else{
+	    					document.getElementById("tbYearRate").value = 0;
+	    				}	
+	    	}});
+	     
+	  }
+	 //判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {
+		if (!checkNumAndFloat(document.getElementById("tbInitSaveSum").value)) {
+			alert("请在初期金额输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("floatRatio").value)) {
+			alert("请在浮动比例输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("zxYearRate").value)) {
+			alert("请在执行年利率输入非负数");
+			return false;
+		}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    CalcDeposit();
+	    document.getElementById("tbInitSaveSum").value = document.getElementById("tbInitSaveSum").value*1;
+		document.getElementById("floatRatio").value = document.getElementById("floatRatio").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("tbInitSaveSum").value = null;
+		document.getElementById("floatRatio").value = '10';
+		return true;
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财工具</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>存款计算器</h1>
+	   <div class="xinxi" style="font-size:16px">
+					<p>存款方式：</p>
+					<input type="text" id="rbDepositWay" disabled="disabled" style="width:405px" value="整存整取" />
+					</input>
+		</div>
+		<div class="xinxi" style="font-size:16px">
+			<p>计算选项：</p>
+			<input type="text" id="" disabled="disabled" style="width:405px" value="计算到期本息总额" />
+		</div>
+		<!--  <div class="xinxi">
+			<p><span>*</span>初始存入日期：</p>
+			<input name="beginDate" id="beginDateID" type="text" class="txtnum" 
+				onblur='ChkCZDate(beginDateID);' />
+			<IMG style='cursor:hand' align="AbsMiddle" onclick='javascript:Cal_dropdown(beginDateID)'>
+		</div>-->
+	    <div class="xinxi" style="font-size:16px">
+					<p><span>*</span>储蓄存期(月)：</p>					
+					<select id="tbSaveTime" onchange="getrate()" style="width:405px">
+						<option>3</option>
+						<option>6</option>
+						<option>12</option>
+						<option>24</option>
+						<option>36</option>
+						<option>60</option>
+					</select>
+				</div>
+		 <div class="xinxi" style="font-size:16px">
+				<p>基准年利率(%)：</p>
+				<input name="tbYearRate" id="tbYearRate" type="number" value="2.82" disabled readonly class="txtnum" />
+		</div>
+		<div class="xinxi" style="font-size:16px">
+			<p><span>*</span>浮动比例(%)：</p>
+			<input name="floatRatio" id="floatRatio" value="10" onblur="getrate()" type="number" class="txtnum" onkeyup="javascript:ratioCheck('floatRatio')" onafterpaste="javascript:ratioCheck('floatRatio')" />
+		</div>
+		<div class="xinxi" style="font-size:16px">
+			<p>执行年利率(%)：</p>
+			<input name="zxYearRate" id="zxYearRate" disabled readonly tabindex="5" value="0" tabindex="5" type="number" class="txtnum" />
+		</div>
+	     <div class="xinxi" style="font-size:16px">
+			<p>
+				<span>*</span>初期存入金额(元)：</p>
+			<input name="tbInitSaveSum" id="tbInitSaveSum" tabindex="6" type="number" class="txtnum" onkeyup="javascript:lengthCheck('tbInitSaveSum')" onafterpaste="javascript:lengthCheck('tbInitSaveSum')" />
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()" />
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()" />
+		</div>
+	  <h1>计算结果</h1>
+      <div class="xinxi" style="font-size:16px">
+			<p>到期本息总额(元)：</p>
+			<input name="tbTermEndSum" id="tbTermEndSum" value="计算得出" disabled readonly type="text" />
+		</div>
+      <div class="xinxi" style="font-size:16px">
+			<p>扣除利息税金额(元)：</p>
+			<input name="tbInterestTaxSum" id="tbInterestTaxSum" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>理财工具</h1>
+	       <div class="jsqBox">
+	          <a href="depCalculator.html" class="jsqMenu jm1">存款利息计算器</a>
+	          <a href="financialTool.html" class="jsqMenu jm2" >贷款计算器</a>
+	          <a href="jijinshengou.html" class="jsqMenu jm3">基金申购计算器</a>
+	          <a href="jijinshuhui.html" class="jsqMenu jm4">基金赎回计算器</a>
+	          <a href="licairengou.html" class="jsqMenu jm5">理财认购计算器</a>
+	          <a href="waihuiduihuan.html" class="jsqMenu jm6">汇率计算器</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

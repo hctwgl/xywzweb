@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>填写报名信息</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="/h5/js/jquery-1.7.2.min.js?$!module.module('webmobile').build"></script>
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	.clear{
+		clear:both;
+		font-size:1px;
+		height:0;
+		visibility:hidden;
+		line-height:0;
+	}
+	input{
+		outline: none;
+	}
+	input:focus{
+		outline: none;
+	}
+	.wrap form>span{
+		padding:0 .625rem;
+		height:3.1rem;
+		display:block;
+	}
+	.wrap form>span a{
+		background:#fff;
+		width:100%;
+		height:2.05rem;
+		text-align:center;
+		line-height:2.05rem;
+		display:block;
+		border-radius:.3rem;
+		margin:0 auto;
+		margin-top:.525rem;
+		font-size:.8rem;
+		color:#FFF;
+		background:#FFA3A3;
+	}
+	.wrap form>span .enroll_btn{
+		background:#ff6666;
+	}
+	.wrap{
+		padding:.5rem;
+	}
+	.mobile_enroll{
+		padding:.35rem .5rem;
+		border:1px dashed #FF6666;
+		color:#FF6666;
+		font-size:.65rem;
+		border-radius:.5rem;
+		line-height:.9rem;
+		margin-bottom:1.05rem;
+	}
+	.wrap form>div{
+		padding:0 .625rem;
+	}
+	.wrap form h3{
+		padding:0 .625rem;
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		margin-left:-.3rem;
+		/* padding-bottom:.9rem; */
+		padding-top: .5rem;
+	}
+	.wrap form h3:first-child{
+		padding-top:0;
+	}
+	.wrap form h4{
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		padding-bottom:.5rem;
+	}
+	.wrap form h4 i{
+		color:#585858;
+		font-style:normal;
+	}
+	.wrap form h4.title{
+		line-height:1.2rem;
+	}
+	.wrap form div{
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		padding-bottom:.5rem;
+		position:relative;
+	}
+	.wrap form>div{
+		padding-top:.5rem;
+		margin-top:.5rem;
+	    border-radius:.3rem;
+	    border:1px dashed transparent;
+	}
+	.wrap form>div.active{
+		border:1px dashed #f00;
+	}
+	.wrap form div>div{
+		padding-bottom:0;
+		display:table;
+		width:100%;
+	}
+	.wrap form div input[type=radio]{
+		margin-right:.3rem;
+	}
+	.wrap form div i{
+		font-style:normal;
+	}
+	.wrap form div>span,.wrap form div>span>span{
+		height:1.5rem;
+		border:1px solid #323232;
+		border-radius:.3rem;
+		display:block;
+		padding-left:.5rem;
+		padding-right:.5rem;
+	}
+	.wrap form div.iphone span:first-child{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.stature{
+    	padding-right: 1.525rem;
+	}
+	.wrap form div input[type=text]{
+		height:1.5rem;
+		border:none;
+		width:100%;
+		font-size:.8rem;
+		color:#505050;
+	}
+	.wrap form div.iphone span:last-child{
+		padding:0;
+		border-color: transparent;
+	}
+	.wrap form div.iphone span:last-child input[type=text]{
+		width:7rem;
+		float:left;
+		border:1px solid #323232;
+		border-radius:.3rem;
+		padding:0 .5rem;
+	}
+	.wrap form div.iphone span:last-child a.active{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #FF6666;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		background:#FF6666;
+		border-radius:.3rem;
+		text-align:center;
+	}
+	.wrap form div.iphone span:last-child a{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #cecece;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		border-radius:.3rem;
+		text-align:center;
+		background:#cecece;
+	}
+	.wrap form div span.city{
+		padding:0;
+		border:1px solid transparent;
+	}
+	.wrap form div.radios input{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.city span{
+		width:6rem;
+		float:right;
+		padding:0;
+		padding-left:.5rem;
+	}
+	.wrap form div span.city span:first-child{
+		float:left;
+	}
+	.wrap form div span.city span input[type=text]{
+		border-radius:.3rem;
+		width:5rem;
+	}
+	.wrap form div em{
+		position: absolute;
+	    right: 1px;
+	    top: 1px;
+	    height: 1.5rem;
+	    width: 1.5rem;
+	    text-align: center;
+	    display: block;
+	    line-height: 1.5rem;
+	    font-style: normal;
+	}
+	.wrap form>div div div{
+		display: block;
+    	float: left;
+    	font-weight:normal;
+    	width:50%;
+    	margin-bottom:.5rem;
+    	height:.8rem;
+	}
+	.wrap form>div div.radio div{
+		margin-bottom:0;
+	}
+	.wrap form>div div div span{
+		width:.7rem;
+		height:.7rem;
+		display:block;
+		background:url(/h5/images/radio.png) no-repeat center;
+		background-size:contain;
+		float:left;
+		margin-right:.25rem;
+		padding:0;
+		border:none;
+		border-radius: 0;
+	}
+	.wrap form>div div div span.active{
+		background:url(/h5/images/radios.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div span{
+		background:url(/h5/images/checkbox.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div.active span{  
+		background:url(/h5/images/checkboxs.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div div i{
+		float:left;
+	}
+	.wrap form>div div div label {
+	    float: left;
+	    font-style: normal;
+	}
+	.wrap form p{
+		font-size: .6rem;
+	    color: #FF6666;
+	    padding-top: .5rem;
+	}
+	.bombbox{
+		position:fixed;
+		width:100%;
+		height:100%;
+		left:0;
+		top:0;
+		z-index:3;
+		display:none;
+	}
+	.bombboxbg{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background:#000;
+		opacity:0;
+		z-index:5;
+	}
+	.bombbox_content{
+		position:absolute;
+		left:50%;
+		top:50%;
+		z-index:9;
+		color:#fff;
+		background:#000;
+		text-align:center;
+		line-height:1rem;
+		padding:.5rem;
+		font-size:.8rem;
+		border-radius:.3rem;
+	}
+	.wrap form .hosphospital h4{
+		line-height:1.1rem;
+	}
+	.wrap form>div.hosphospital div div{
+		width:100%;
+	}
+	/* .wrap form>div.hosphospital div div:last-child{
+		height:1.8rem;
+	} */
+	.wrap form>div.hosphospital>div input[type=text]{
+		  border: 1px solid #323232;
+    	border-radius: .3rem;
+    	width: 90%;
+    	padding-left:12px;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		/*http://test.jiahao.me/h5/apph5/ivf.html?mobile=18701388320&openid=gfdssdr&version=0.9.1*/
+		var url=window.location.search;
+		var index=url.indexOf("=");
+		var indexcont=url.indexOf("&");
+		var indexlastcont=url.lastIndexOf("&");
+		var indexlast=url.indexOf("nid");
+		var mobile=url.substring(index+1,indexcont);
+		var openid=url.substring(url.lastIndexOf("=")+1,url.length);
+		if(url.indexOf("version")>0){
+			openid=url.substr(indexlast+4,indexlastcont-(indexlast+4))
+		}				
+		$(".wrap form>div div.choice div").click(function(){
+			$(this).find("span").addClass("active");
+			$(this).find("span").attr("dataval","val");
+			$(this).siblings().find("span").removeClass("active");
+			$(this).siblings().find("span").attr("dataval","");
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		$(".wrap form>div div.checkbox div").click(function()  {
+			if($(this).hasClass("selects")){
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).siblings().removeClass("active");
+					$(this).siblings().find("span").attr("dataval","");
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+			}else{
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+				$(this).parent().find("div.selects").removeClass("active");
+				$(this).parent().find("div.selects span").attr("dataval","");
+			}
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		$("input[type=text]").blur(function(){
+			var val=$(this).val();
+			if(val!=""){
+				$(this).parent().attr("dataval","val");
+				$(this).parents("div.active").find("p").remove();
+				$(this).parents("div.active").removeClass("active");
+			}else{
+				$(this).parent().attr("dataval","");
+			}
+			
+		});
+		$(".wrap form>span").on("click",".enroll_btn",function(){
+			var json={};
+			var arrs=[];
+			var numarr=[];
+			$("#enroll_btn").removeClass("enroll_btn");
+			$("#enroll_btn").html("提交中...");
+			for(var i=0;i<$(".wrap form>div").length;i++){
+				$(".wrap form>div").eq(i).attr("id",i);
+				var jsons={};
+				var arr=[];
+				var val="";
+				var vals="";
+				var name="";
+				var inp=$(".wrap form>div").eq(i).find("span[dataval=val] input");
+				if($(".wrap form>div").eq(i).find("span").children().length>=1){
+					if(i==6){
+						val=inp.eq(0).val();
+						vals=inp.eq(1).val();
+						name=inp.eq(0).attr("name");
+						if(val!=undefined && vals!=undefined){
+							arr.push(val);
+							arr.push(vals);
+						}
+					}else if(inp.attr("datanum")=="number"){
+						val=inp.val();
+						var regMob = /^\d+$/;
+						if(regMob.test(val)){
+							arr.push(val);
+						}else{
+							inp.val("");
+						}
+						name=inp.attr("name");
+					}else if(inp.attr("datanum")=="double"){
+						val=inp.val();
+						var regMob = /^([0-9])+(\.[0-9]+)?$/;
+						if(regMob.test(val)){
+							arr.push(val);
+						}else{
+							inp.val("");
+						}
+						name=inp.attr("name");	
+					}else{
+						val=inp.val();
+						if(val!=undefined){
+							arr.push(val);
+						}
+						name=inp.attr("name");
+					}
+					jsons.name=name;
+					jsons.value=arr;
+					arrs[i]=jsons;
+				}else{
+					var len=$(".wrap form>div").eq(i).find("span[dataval=val]").length;
+					if(i==5){
+						name="wanttubehospital";
+						vals=$(".wrap form>div").eq(i).find("div input[type=text]").val();
+						if(vals !="undefined" && vals!=""){
+							arr.push(vals);
+						}	
+						for(var j=0;j<=len;j++){
+								val=$(".wrap form>div").eq(i).find("span[dataval=val]").eq(j).parent().find("i").html();
+							if(val!=undefined){
+								arr.push(val);
+							}
+						}
+						
+					}else{
+						name=$(".wrap form>div").eq(i).find("span[dataval=val]").attr("name");
+						for(var j=0;j<=len;j++){
+							val=$(".wrap form>div").eq(i).find("span[dataval=val]").eq(j).parent().index()+1;
+							if(val>0){
+								arr.push(val);
+							}	
+						}
+					}
+					jsons.name=name;
+					jsons.value=arr;
+					arrs[i]=jsons;
+				}
+				if(arr.length<=0){
+					numarr.push(i);
+				}
+			}
+			json.list=JSON.stringify(arrs);
+			json.mobile=mobile;
+			json.openid=openid;
+			//alert(JSON.stringify(json));
+			if(numarr.length>0){
+				var num=numarr[0];
+				$("#enroll_btn").attr("href","#"+num);
+				for(var i=0;i<numarr.length;i++){
+					var html="<p>此题为必填题</p>";
+					$(".wrap form>div").eq(numarr[i]).find("p").remove();
+					$(".wrap form>div").eq(numarr[i]).append(html);
+					$(".wrap form>div").eq(numarr[i]).addClass("active");
+				}
+				//console.log(json)
+				$("#enroll_btn").addClass("enroll_btn");
+				$("#enroll_btn").html("提交");
+			}else{
+				$.ajax({
+					url:"/activity/submit",
+					data:json,
+					dataType : "json",
+					type:"POST",
+					success:function(data){
+						$("#enroll_btn").attr("href","javascript:;");
+						if(data.state==200){
+							var str="提交成功"; 
+							var iphone=$(".iphone span").eq(0).find("input").val();
+							var code=$(".iphone span").eq(1).find("input").val();
+							goapps(iphone,code,mobile,openid,data.id);
+						}else if(data.state==400){
+							var str="验证码输入有误";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}else if(data.state==409){
+							var str="该手机号码已经参加了活动";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}else{
+							var str="提交失败";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}
+					}
+				})
+				//console.log(json);
+			}		 
+	
+		})
+						
+		function goapps(iphone,code,mobile,openid,id){
+			var u = navigator.userAgent;
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+					if(mobile==""&&openid==""){
+						app.loginByVCode(iphone,code);
+					}	
+					window.location.href="/h5/apph5/result.html?iphone="+iphone+"&id="+id;
+		     return true;  
+			} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+		    	if(mobile==""&&openid==""){
+						toApp.login(iphone,code);
+					}	
+					window.location.href="/h5/apph5/result.html?iphone="+iphone+"&id="+id;
+		     return false;  
+		         }  
+		}
+		$(".iphone span").on("click","a.active",function(){
+			var regMob = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+			var iphone=$.trim($(".gaincode").val());
+			var json ={};
+			json.iphone = iphone;
+			if(regMob.test(iphone)){
+				$.ajax({
+					url:"/activity/verification",
+					data:json,
+					dataType : "json",
+					type:"POST",
+					success:function(data){
+						if(data.state==200){
+							var str="验证码发送成功";
+							Hide(str);
+							$(".iphone span a").removeClass("active");
+							var str=$("#gaincode").html();
+							var num=60;
+							var timer=setInterval(function(){
+								num--;
+								$("#gaincode").html(num+"s");
+								if(num==0){
+									clearInterval(timer);
+									$(".iphone span a").addClass("active");
+									$("#gaincode").html(str);
+								}
+							},1000)
+						}else if(data.state==409){
+							var str="该手机号码已经参加了活动";
+							Hide(str);
+						}else{
+							var str="验证码发送失败";
+							Hide(str);
+						}
+					}
+				})
+			}else{
+				var str="请输入正确手机号码";
+				Hide(str);
+			}
+		})
+		function Hide(str){
+			$(".bombbox_content p").html(str);
+			$(".bombbox").show();
+			var height=$(".bombbox_content").height();
+			var width=$(".bombbox_content").width();
+			$(".bombbox_content").css({"marginTop":-(height/2)+"px","marginLeft":-(width/2)+"px"})
+			setTimeout(function(){$(".bombbox").hide()},1500)
+		}
+	})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="mobile_enroll">
+			<p>填写报名信息约耗时1分钟，报名成功后，我们将随机赠予您价值10～10000元不等的礼品，100%有礼。</p>
+		</div>
+		<form>
+			<div>
+				<h4>1、您的姓名</h4>
+				<div class="radio">
+					<span class="name"><input name="name" type="text" /></span>
+				</div>
+			</div>
+			<div>
+				<h4>2、您的学历</h4>
+				<div class=" choice">
+					<div><span name="degree"></span><i>高中及以下</i></div>
+					<div><span name="degree"></span><i>大学</i></div>
+					<div><span name="degree"></span><i>研究生及以上</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>3、家庭月收入</h4>
+				<div class="radios choice">
+					<div><span name="monthincome"></span><i>1万以下</i></div>
+					<div><span name="monthincome"></span><i>1万~1.5万</i></div>
+					<div><span name="monthincome"></span><i>1.5万~2万</i></div>
+					<div><span name="monthincome"></span><i>2万~3万</i></div>
+					<div><span name="monthincome"></span><i>3万以上</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>4、是否做过试管婴儿</h4>
+				<div class="radio choice">
+					<div><span name="reproduction"></span><i>有</i></div>
+					<div><span name="reproduction"></span><i>无</i></div>
+				</div>
+			</div>
+			<div class="hosphospital">
+				<h4>5、您去过下面哪家医院做过试管婴儿</h4>
+				<div class="radios choice">
+					<div><span name="beentubehospital"></span><i>&nbsp上海市第一妇婴保健院</i></div>
+					<div><span name="beentubehospital"></span><i>&nbsp河北医科大学第二医院</i></div>
+					<div><span name="beentubehospital"></span><i>&nbsp沈阳菁华医院</i></div>
+					<div><span name="beentubehospital"></span><i>&nbsp以上医院都没去过</i></div>
+				</div>
+			</div>
+			<div class="hosphospital">
+				<h4>6、做试管婴儿,您最想去的医院是?</h4>
+				<div class="radios choice">
+					<div><span name="wanttubehospital"></span><i>&nbsp上海市第一妇婴保健院</i></div>
+					<div><span name="wanttubehospital"></span><i>&nbsp河北医科大学第二医院</i></div>
+					<div><span name="wanttubehospital"></span><i>&nbsp沈阳菁华医院</i></div>
+					<input type="text" placeholder="其它医院请在这里输入"/>
+				</div>
+			</div>
+			<div>
+				<h4>7、手机号(只可填写数字)</h4>
+				<div class="iphone"> 
+					<span><input name="iphone" class="gaincode" type="text" /></span>
+					<span><input type="text" /><a id="gaincode" class="active" href="JavaScript:;">获取验证码</a></span>
+				</div>
+			</div>
+			<span>
+				<a class="enroll_btn" id="enroll_btn" href="javascript:;">
+					提交
+				</a>
+			</span>
+		</form>
+		<div class="bombbox">
+			<div class="bombboxbg"></div>
+			<div class="bombbox_content">
+				<p>验证码发送成功</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

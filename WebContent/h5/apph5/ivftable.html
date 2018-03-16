@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我要自测</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="/h5/js/jquery-1.7.2.min.js?$!module.module('webmobile').build"></script>
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	.clear{
+		clear:both;
+		font-size:1px;
+		height:0;
+		visibility:hidden;
+		line-height:0;
+	}
+	input{
+		outline: none;
+	}
+	input:focus{
+		outline: none;
+	}
+	.wrap form>span{
+		padding:0 .625rem;
+		height:3.1rem;
+		display:block;
+	}
+	.wrap form>span a{
+		background:#fff;
+		width:100%;
+		height:2.05rem;
+		text-align:center;
+		line-height:2.05rem;
+		display:block;
+		border-radius:.3rem;
+		margin:0 auto;
+		margin-top:.525rem;
+		font-size:.8rem;
+		color:#FFF;
+		background:#FFA3A3;
+	}
+	.wrap form>span .enroll_btn{
+		background:#ff6666;
+	}
+	.wrap{
+		padding:.5rem;
+	}
+	.mobile_enroll{
+		padding:.35rem .5rem;
+		border:1px dashed #FF6666;
+		color:#FF6666;
+		font-size:.65rem;
+		border-radius:.5rem;
+		line-height:.9rem;
+		margin-bottom:1.05rem;
+	}
+	.wrap form>div{
+		padding:0 .625rem;
+	}
+	.wrap form h3{
+		padding:0 .625rem;
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		margin-left:-.3rem;
+		/* padding-bottom:.9rem; */
+		padding-top: .5rem;
+	}
+	.wrap form h3:first-child{
+		padding-top:0;
+	}
+	.wrap form h4{
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		padding-bottom:.5rem;
+	}
+	.wrap form h4 i{
+		color:#585858;
+		font-style:normal;
+	}
+	.wrap form h4.title{
+		line-height:1.2rem;
+	}
+	.wrap form div{
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		padding-bottom:.5rem;
+		position:relative;
+	}
+	.wrap form>div{
+		padding-top:.5rem;
+		margin-top:.5rem;
+	    border-radius:.3rem;
+	    border:1px dashed transparent;
+	}
+	.wrap form>div.active{
+		border:1px dashed #f00;
+	}
+	.wrap form div>div{
+		padding-bottom:0;
+		display:table;
+		width:100%;
+	}
+	.wrap form div input[type=radio]{
+		margin-right:.3rem;
+	}
+	.wrap form div i{
+		font-style:normal;
+	}
+	.wrap form div>span,.wrap form div>span>span{
+		height:1.5rem;
+		border:1px solid #323232;
+		border-radius:.3rem;
+		display:block;
+		padding-left:.5rem;
+		padding-right:.5rem;
+	}
+	.wrap form div.iphone span:first-child{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.stature{
+    	padding-right: 1.525rem;
+	}
+	.wrap form div input[type=text]{
+		height:1.5rem;
+		border:none;
+		width:100%;
+		font-size:.8rem;
+		color:#505050;
+	}
+	.wrap form div.iphone span:last-child{
+		padding:0;
+		border-color: transparent;
+	}
+	.wrap form div.iphone span:last-child input[type=text]{
+		width:7rem;
+		float:left;
+		border:1px solid #323232;
+		border-radius:.3rem;
+		padding:0 .5rem;
+	}
+	.wrap form div.iphone span:last-child a.active{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #FF6666;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		background:#FF6666;
+		border-radius:.3rem;
+		text-align:center;
+	}
+	.wrap form div.iphone span:last-child a{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #cecece;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		border-radius:.3rem;
+		text-align:center;
+		background:#cecece;
+	}
+	.wrap form div span.city{
+		padding:0;
+		border:1px solid transparent;
+	}
+	.wrap form div.radios input{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.city span{
+		width:6rem;
+		float:right;
+		padding:0;
+		padding-left:.5rem;
+	}
+	.wrap form div span.city span:first-child{
+		float:left;
+	}
+	.wrap form div span.city span input[type=text]{
+		border-radius:.3rem;
+		width:5rem;
+	}
+	.wrap form div em{
+		position: absolute;
+	    right: 1px;
+	    top: 1px;
+	    height: 1.5rem;
+	    width: 1.5rem;
+	    text-align: center;
+	    display: block;
+	    line-height: 1.5rem;
+	    font-style: normal;
+	}
+	.wrap form>div div div{
+		display: block;
+    	float: left;
+    	font-weight:normal;
+    	width:50%;
+    	margin-bottom:.5rem;
+    	height:.8rem;
+	}
+	.wrap form>div div.radio div{
+		margin-bottom:0;
+	}
+	.wrap form>div div div span{
+		width:.7rem;
+		height:.7rem;
+		display:block;
+		background:url(/h5/images/radio.png) no-repeat center;
+		background-size:contain;
+		float:left;
+		margin-right:.25rem;
+		padding:0;
+		border:none;
+		border-radius: 0;
+	}
+	.wrap form>div div div span.active{
+		background:url(/h5/images/radios.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div span{
+		background:url(/h5/images/checkbox.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div.active span{  
+		background:url(/h5/images/checkboxs.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div div i{
+		float:left;
+	}
+	.wrap form p{
+		font-size: .6rem;
+	    color: #FF6666;
+	    padding-top: .5rem;
+	}
+	.bombbox{
+		position:fixed;
+		width:100%;
+		height:100%;
+		left:0;
+		top:0;
+		z-index:3;
+		display:none;
+	}
+	.bombboxbg{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background:#000;
+		opacity:0;
+		z-index:5;
+	}
+	.bombbox_content{
+		position:absolute;
+		left:50%;
+		top:50%;
+		z-index:9;
+		color:#fff;
+		background:#000;
+		text-align:center;
+		line-height:1rem;
+		padding:.5rem;
+		font-size:.8rem;
+		border-radius:.3rem;
+	}
+	.wrap form .hosphospital h4{
+		line-height:1.1rem;
+	}
+	.wrap form>div.hosphospital div div{
+		width:100%;
+	}
+	.wrap form>div.hosphospital div div:last-child{
+		height:1.8rem;
+	}
+	.wrap form>div.hosphospital>div input[type=text]{
+		  border: 1px solid #323232;
+    	border-radius: .3rem;
+    	width: 90%;
+    	padding-left:12px;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		/*http://test.jiahao.me/h5/apph5/ivf.html?mobile=18701388320&openid=gfdssdr&version=0.9.1*/
+		var url = window.location.search;
+		var num=url.indexOf("=");
+		var id=url.substring(num+1);
+		$(".wrap form>div div.choice div").click(function(){
+			$(this).find("span").addClass("active");
+			$(this).find("span").attr("dataval","val");
+			$(this).siblings().find("span").removeClass("active");
+			$(this).siblings().find("span").attr("dataval","");
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		$(".wrap form>div div.checkbox div").click(function()  {
+			if($(this).hasClass("selects")){
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).siblings().removeClass("active");
+					$(this).siblings().find("span").attr("dataval","");
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+			}else{
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+				$(this).parent().find("div.selects").removeClass("active");
+				$(this).parent().find("div.selects span").attr("dataval","");
+			}
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		$("input[type=text]").blur(function(){
+			var val=$(this).val();
+			if(val!=""){
+				$(this).parent().attr("dataval","val");
+				$(this).parents("div.active").find("p").remove();
+				$(this).parents("div.active").removeClass("active");
+			}else{
+				$(this).parent().attr("dataval","");
+			}
+			
+		});
+		$(".wrap form>span").on("click",".enroll_btn",function(){
+			var json={};
+			var arrs=[];
+			var numarr=[];
+			$("#enroll_btn").removeClass("enroll_btn");
+			$("#enroll_btn").html("提交中...");
+			for(var i=0;i<$(".wrap form>div").length;i++){
+				$(".wrap form>div").eq(i).attr("id",i);
+				var jsons={};
+				var arr=[];
+				var val="";
+				var vals="";
+				var name="";
+				var inp=$(".wrap form>div").eq(i).find("span[dataval=val] input");
+				if($(".wrap form>div").eq(i).find("span").children().length>=1){
+					if(i==2){
+						val=inp.eq(0).val();
+						vals=inp.eq(1).val();
+						name=inp.eq(0).attr("name");
+						if(val!=undefined && vals!=undefined){
+							arr.push(val);
+							arr.push(vals);
+						}
+					}else if(inp.attr("datanum")=="number"){
+						val=inp.val();
+						var regMob = /^\d+$/;
+						if(regMob.test(val)){
+							arr.push(val);
+						}else{
+							inp.val("");
+						}
+						name=inp.attr("name");
+					}else if(inp.attr("datanum")=="double"){
+						val=inp.val();
+						var regMob = /^([0-9])+(\.[0-9]+)?$/;
+						if(regMob.test(val)){
+							arr.push(val);
+						}else{
+							inp.val("");
+						}
+						name=inp.attr("name");	
+					}else{
+						val=inp.val();
+						if(val!=undefined){
+							arr.push(val);
+						}
+						name=inp.attr("name");
+					}
+					jsons.name=name;
+					jsons.value=arr;
+					arrs[i]=jsons;
+				}else{
+					var len=$(".wrap form>div").eq(i).find("span[dataval=val]").length;
+					/*if(i==14){
+						name="wanttubehospital";
+						vals=$(".wrap form>div").eq(i).find("div input[type=text]").val();
+						if(vals !="undefined" && vals!=""){
+							arr.push(vals);
+						}	
+						for(var j=0;j<=len;j++){
+								val=$(".wrap form>div").eq(i).find("span[dataval=val]").eq(j).parent().find("i").html();
+							if(val!=undefined){
+								arr.push(val);
+							}
+						}
+						
+					}else{*/
+						name=$(".wrap form>div").eq(i).find("span[dataval=val]").attr("name");
+						for(var j=0;j<=len;j++){
+							val=$(".wrap form>div").eq(i).find("span[dataval=val]").eq(j).parent().index()+1;
+							if(val>0){
+								arr.push(val);
+							}	
+						}
+					/*}*/
+					jsons.name=name;
+					jsons.value=arr;
+					arrs[i]=jsons;
+				}
+				if(arr.length<=0){
+					numarr.push(i);
+				}
+			}
+			json.list=JSON.stringify(arrs);
+			json.id=id;
+			//json.openid=openid;
+			//alert(JSON.stringify(json));
+			if(numarr.length>0){
+				var num=numarr[0];
+				$("#enroll_btn").attr("href","#"+num);
+				for(var i=0;i<numarr.length;i++){
+					var html="<p>此题为必填题</p>";
+					$(".wrap form>div").eq(numarr[i]).find("p").remove();
+					$(".wrap form>div").eq(numarr[i]).append(html);
+					$(".wrap form>div").eq(numarr[i]).addClass("active");
+				}
+				//console.log(json)
+				$("#enroll_btn").addClass("enroll_btn");
+				$("#enroll_btn").html("提交");
+			}else{
+				$.ajax({
+					url:"/activity/submittest",
+					data:json,
+					dataType : "json",
+					type:"POST",
+					success:function(data){
+						$("#enroll_btn").attr("href","javascript:;");
+						if(data.state==200){
+							var str="提交成功"; 
+							goapps(id);
+						}else if(data.state==409){
+							var str="该手机号码已经参加了活动";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}else{
+							var str="提交失败";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}
+					}
+				})
+				//console.log(json);
+			}		 
+	
+		})
+						
+		function goapps(id){
+				window.location.href="/h5/apph5/ivfresult.html?id="+id;
+		}
+		function Hide(str){
+			$(".bombbox_content p").html(str);
+			$(".bombbox").show();
+			var height=$(".bombbox_content").height();
+			var width=$(".bombbox_content").width();
+			$(".bombbox_content").css({"marginTop":-(height/2)+"px","marginLeft":-(width/2)+"px"})
+			setTimeout(function(){$(".bombbox").hide()},1500)
+		}
+	})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="mobile_enroll">
+			<p>测试约耗时2分钟，测试后，您会得到免费做试管的概率和试管婴儿相关医学建议。</p>
+		</div>
+		<form>
+			<h3>【您的基本情况】</h3>
+			<div>
+				<h4>1、您的性别</h4>
+				<div class="radio choice">
+					<div><span name="sex"></span><i>男</i></div>
+					<div><span name="sex"></span><i>女</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>2、出生年份(只可填写数字)</h4>
+				<div>
+					<span style="position:relative;"><input datanum="number" name="birthday" type="text" /><i style="position: absolute;right: .5rem;top: .4rem;">年</i></span>
+				</div>
+			</div>
+			<div>
+				<h4>3、现居城市</h4>
+				<div>
+					<span class="city">
+						<span>
+							<input name="city" type="text" /><i>省</i>
+						</span>
+						<span>
+							<input type="text" /><i>市</i>
+						</span>
+					</span>
+				</div>
+			</div>
+			<div>
+				<h4>4、您的身高(只可填写数字)</h4>
+				<div>
+					<span class="stature"><input datanum="number" name="height" type="text" /><em>cm</em></span>
+				</div>
+			</div>
+			<div>
+				<h4>5、您的体重(只可填写数字)</h4>
+				<div>
+					<span class="stature"><input datanum="number" name="weight" type="text" /><em>kg</em></span>
+				</div>
+			</div>
+			<div>
+				<h4>6、您的职业</h4>
+				<div class="radios choice">
+					<div><span name="jobs"></span><i>公务员</i></div>
+					<div><span name="jobs"></span><i>事业单位</i></div>
+					<div><span name="jobs"></span><i>企业</i></div>
+					<div><span name="jobs"></span><i>自由职业</i></div>
+					<div><span name="jobs"></span><i>其他</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>7、准备怀孕年数(只可填写数字)</h4>
+				<div>
+					<span><input name="prepareyear" type="text"  datanum="double"/></span>
+				</div>
+			</div>
+			<div>
+				<h4>8、过敏史</h4>
+				<div class="radio choice">
+					<div><span name="allergies"></span><i>有</i></div>
+					<div><span name="allergies"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>9、慢性病(可多选)</h4>
+				<div class="occupation checkbox">
+					<div><span name="chronic"></span><i>高血压</i></div>
+					<div><span name="chronic"></span><i>心脏病</i></div>
+					<div><span name="chronic"></span><i>糖尿病</i></div>
+					<div><span name="chronic"></span><i>其他</i></div>
+					<div class="selects"><span name="chronic"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>10、手术史(可多选)</h4>
+				<div class="occupation checkbox">
+					<div><span name="surgeries"></span><i>妇科手术</i></div>
+					<div><span name="surgeries"></span><i>阑尾手术</i></div>
+					<div><span name="surgeries"></span><i>盆腔手术</i></div>
+					<div><span name="surgeries"></span><i>其他</i></div>
+					<div class="selects"><span name="surgeries"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4 class="title endocrine">11、内分泌疾病<i>(如甲状腺疾病、垂体疾病、肾病、多囊卵巢综合症等)</i></h4>
+				<div class="radio choice">
+					<div><span name="endocrinediseases"></span><i>有</i></div>
+					<div><span name="endocrinediseases"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4 class="title gynaecology">12、妇科疾病<i>(如子宫内膜异位症、腺肌症、子宫肌瘤、子宫内膜息肉、盆腔炎等)</i></h4>
+				<div class="radio choice">
+					<div><span name="gynecopathy"></span><i>有</i></div>
+					<div><span name="gynecopathy"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4 class="endocrine">13、是否长期服药</h4>
+				<div class="radio choice">
+					<div><span name="longmedication"></span><i>有</i></div>
+					<div><span name="longmedication"></span><i>无</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>14、是否分居</h4>
+				<div class="radio choice">
+					<div><span name="separation"></span><i>是</i></div>
+					<div><span name="separation"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>15、性生活是否规律</h4>
+				<div class="radio choice">
+					<div><span name="sexdisorder"></span><i>不规律</i></div>
+					<div><span name="sexdisorder"></span><i>规律</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>16、性生活次数</h4>
+				<div class="radios choice">
+					<div><span name="sexcount"></span><i>0~3次/月</i></div>
+					<div><span name="sexcount"></span><i>4~7次/月</i></div>
+					<div><span name="sexcount"></span><i>8~12次/月</i></div>
+					<div><span name="sexcount"></span><i>13~16次/月</i></div>
+					<div><span name="sexcount"></span><i>大于17次/月</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>17、性交时是否疼痛</h4>
+				<div class="radio choice">
+					<div><span name="sexpain"></span><i>是</i></div>
+					<div><span name="sexpain"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>18、是否采取避孕措施</h4>
+				<div class="radio choice">
+					<div><span name="contraception"></span><i>是</i></div>
+					<div><span name="contraception"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>19、是否怀孕过</h4>
+				<div class="radio choice">
+					<div><span name="beenpregnant"></span><i>是</i></div>
+					<div><span name="beenpregnant"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>20、生育个数(只可填写数字)</h4>
+				<div>
+					<span><input datanum="number" name="birthcount" type="text"/></span>
+				</div>
+			</div>
+			<div>
+				<h4>21、流产次数(只可填写数字)</h4>
+				<div>
+					<span><input datanum="number" name="abortioncount" type="text"/></span>
+				</div>
+			</div>
+			<div>
+				<h4>22、流产类型</h4>
+				<div class="checkbox">
+					<div><span name="abortiontype"></span><i>药流</i></div>
+					<div><span name="abortiontype"></span><i>人流</i></div>
+					<div><span name="abortiontype"></span><i>自然流产</i></div>
+					<div class="selects"><span name="abortiontype"></span><i>无流产</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>23、初潮年龄</h4>
+				<div class="radio choice">
+					<div><span name="firstmenstrual"></span><i>10~16</i></div>
+					<div><span name="firstmenstrual"></span><i>大于17</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>24、月经是否规律</h4>
+				<div class="radio choice">
+					<div><span name="menstrualdisorder"></span><i>是</i></div>
+					<div><span name="menstrualdisorder"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>25、月经周期（天）</h4>
+				<div class=" choice">
+					<div><span name="menstrualcycle"></span><i>小于25</i></div>
+					<div><span name="menstrualcycle"></span><i>25~35</i></div>
+					<div><span name="menstrualcycle"></span><i>大于35</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>26、月经天数(只可填写数字)</h4>
+				<div>
+					<span><input datanum="number" name="menstrualday" type="text"></span>
+				</div>
+			</div>
+			<div>
+				<h4>27、是否痛经</h4>
+				<div class="radio choice">
+					<div><span name="menstrualpain"></span><i>是</i></div>
+					<div><span name="menstrualpain"></span><i>否</i></div>
+				</div>
+			</div>
+			<div>
+				<h4>28、月经量</h4>
+				<div class=" choice">
+					<div><span name="menstrualamount"></span><i>多</i></div>
+					<div><span name="menstrualamount"></span><i>正常</i></div>
+					<div><span name="menstrualamount"></span><i>少</i></div>
+				</div>
+			</div>
+			<span>
+				<a class="enroll_btn" id="enroll_btn" href="javascript:;">
+					提交
+				</a>
+			</span>
+		</form>
+		<div class="bombbox">
+			<div class="bombboxbg"></div>
+			<div class="bombbox_content">
+				<p>验证码发送成功</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+			.pd8 {
+				padding: 0.7rem;
+			}
+			
+			@media only screen and (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			@media (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			.am-nav-pills>li+li {
+				margin-left: 0px !important;
+			}
+			
+			.am-topbar,
+			.am-topbar a {
+				color: #ddd;
+			}
+			
+			.am-nav>li>a:focus,
+			.am-nav>li>a:hover {
+				background-color: #4f627e;
+			}
+			
+			.headerbg {
+				border-color: #50627f !important;
+			}
+			
+			body {
+				font-size: 1.4em;
+			}
+			
+			.admin-sidebar-list li a {
+				padding-left: 15px;
+			}
+			
+
+			
+			.headermenu span {
+				display: block;
+				padding-bottom: 8px;
+			}
+			
+			.menuactive a {
+				background-color: #f7f7f7 !important;
+				color: #fb9337 !important;
+			}
+			
+			@media only screen and (min-width: 640px) {
+				.fixed2 {
+					top: 50px !important;
+					z-index: 1 !important;
+				}
+				.admin-main {
+					padding-top: 70px !important;
+				}
+			}
+			
+			iframe {
+				position: absolute;
+				bottom: 50;
+			}
+			
+			iframe {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+			}
+			
+			#iframe {
+				margin-top: 0;
+			}
+			
+			#iframe-wrap {
+				height: 100%;
+				overflow: visible;
+				position: relative;
+				z-index: 50;
+			}
+			.am-offcanvas-bar{
+				overflow-y: hidden;
+			}
+			.fixed-layout .admin-content, .fixed-layout .admin-sidebar{
+				overflow-y: auto;
+			}
+			.fixed2{
+				
+			}
+.breadcrumb {
+  
+  
+  list-style: none;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 85%;
+}
+.breadcrumb .Tabcurrent {
+	background-color: #FFFFFF;
+}
+.breadcrumb{
+	padding-left: 3em !important;
+}
+ol{
+	margin-top: 0.5em;
+	margin-bottom: 0em !important;
+}
+
+.breadcrumb > li {
+	padding: 0.4em 1.6em;
+  display: inline-block;
+  border-top: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+  position: relative;
+  margin-right: 5px;
+}
+.breadcrumb > li [class*="am-icon-"]:before {
+  color: #999999;
+  margin-right: 5px;
+}
+
+.breadcrumb > .am-active {
+  color: #999999;
+}
+.breadcrumb-slash > li + li:before {
+  content: "/\00a0";
+}			
+.close--circle {
+    position: absolute;
+    z-index: 91;
+    top: -9px;
+    right: -9px;
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(153,153,153,0.6);
+    border-radius: 10px;
+}
+.layui-layer-content{
+	height: 100%;
+}

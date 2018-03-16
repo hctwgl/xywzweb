@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcDeposit.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="Components.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcLoan.js"></script>
+	<script type="text/javascript" src="../common/common.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		setUI();
+		setRightMenu();
+		callPeople();
+		waychg(false);
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() {
+			goPage('../../index.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	function AutoShowRate()
+	{
+		if(document.getElementById("edTimes").value > 0)
+		{
+			var year =0;
+			var rateId ="";
+			if(document.getElementById("edTimes").value>6){
+				year = document.getElementById("edTimes").value/12;
+			}else{
+				rateId="6";
+			}				
+			document.getElementById("edRate").value='';
+			if(year>0 && year<=1){
+				rateId="12";
+			}
+			else if(year>1 && year<=3){
+				rateId="36";
+			} 
+			else if(year>3 && year<=5){
+				rateId="60";
+			} 
+			else if(year>5){
+				rateId="99";
+			} 
+	    	var rateType="3";
+	    	$.ajax({
+	    		type : "GET",
+	    		url : basePath + '/ocrmSaveRateQuery.json?rateId='+rateId+'&rateType='+rateType,
+	    		cache: false, 
+	    		dataType: 'json',
+	    		async: false, 
+	    		success : function(response) {
+	    			var array = response.json.data;
+	    			if(null != array[0]){
+	    				document.getElementById("edRate").value=NBround(array[0].RATE_VALUE,2);
+    					var floatRatio=0.1;
+    					if(document.getElementById("floatRatio").value != null){
+    						floatRatio=parseFloat(document.getElementById("floatRatio").value)/100;
+	    				}
+    					document.getElementById("zxRate").value = NBround(array[0].RATE_VALUE*(1+floatRatio),2);
+    				}else{
+    					document.getElementById("tbYearRate").value = 0;
+    				}
+	    	}});
+
+		}
+	}
+	//判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	function CheckData()
+	{
+		if (!checkNumAndFloat(document.getElementById("edLastSum").value)) {
+			alert("请在贷款金额输入非负数");
+			return false;
+		}
+		if (!checkNumber(document.getElementById("edTimes").value)) {
+			alert("请在贷款期限输入正整数");
+			return false;
+		}
+		if (this.document.getElementById("rbPayFreq_1").checked) //每季度，	贷款期限要是3的倍数
+			if ( parseInt(this.document.getElementById("edTimes").value) % 3!=0)
+			{
+				alert("当偿还频率为每季度时，贷款期限要是3的倍数");
+				return false;
+			}
+		return true;					
+	}
+	function reset(){
+		document.getElementById("edLastSum").value = null;
+		document.getElementById("edTimes").value = null;
+		document.getElementById("floatRatio").value = '10';
+		return true;
+	}
+	function waychg(flag)
+	{
+		if(this.document.getElementById("ddlPayWay").value == 1)	
+		{
+			this.document.getElementById("rbPayFreq_0").disabled = false;
+			this.document.getElementById("rbPayFreq_1").disabled = false;
+			this.document.getElementById("rbPayFreq_2").disabled = true;
+			if(this.document.getElementById("rbPayFreq_2").checked)
+				this.document.getElementById("rbPayFreq_0").checked = true;
+		}
+		if(this.document.getElementById("ddlPayWay").value==2)	
+		{
+			this.document.getElementById("rbPayFreq_0").disabled = false;
+			this.document.getElementById("rbPayFreq_1").disabled = false;
+			this.document.getElementById("rbPayFreq_2").disabled = true;
+			if(this.document.getElementById("rbPayFreq_2").checked)
+				this.document.getElementById("rbPayFreq_0").checked = true;
+		}
+		if(this.document.getElementById("ddlPayWay").value==3)	
+		{
+			this.document.getElementById("rbPayFreq_0").disabled = true;
+			this.document.getElementById("rbPayFreq_1").disabled = true;
+			this.document.getElementById("rbPayFreq_2").disabled = false;
+			this.document.getElementById("rbPayFreq_2").checked = true;
+		}
+	}
+	function SetTableColor(table)
+	{
+		for(i=0;i<=table.rows.length-1;i++)
+		{
+			if(i==0)
+			{
+				table.rows(i).className="head";
+				continue;
+			}
+			if (i%2)
+				table.rows(i).className="odd";
+			else
+				table.rows(i).className="even";
+		}
+	}
+	function calcu()
+	{
+	  if (CheckData()==false) return false;
+	  //计算之前把td值清空
+	  GetPlayList();
+	  document.getElementById("edLastSum").value = document.getElementById("edLastSum").value*1;
+		document.getElementById("edTimes").value = document.getElementById("edTimes").value*1;
+		document.getElementById("floatRatio").value = document.getElementById("floatRatio").value*1;
+	  
+ 	 	return false;
+	}
+	function change() {
+		 waychg(true);
+	}
+	</script>
+	
+</head>
+
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财工具</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="topLine">
+		<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>贷款计算器</h1>
+	   <div class="xinxi col2">
+					<p>贷款类型：</p>
+					<select id="edType" style="width:280px">
+						<option value="楼宇按揭" selected>楼宇按揭</option>
+						<option value="汽车消费贷款">汽车消费贷款</option>
+						<option value="个人消费贷款">个人消费贷款</option>
+					</select>
+		</div>
+		<div class="xinxi col2">
+					<p>
+						<span>*</span>贷款金额(元)：</p>
+					<input name="edLastSum" id="edLastSum" type="number" style="width:250px" onkeyup="javascript:lengthCheck('edLastSum')" onafterpaste="javascript:lengthCheck('edLastSum')" />
+		</div>
+		<div class="xinxi col2">
+					<p>
+						<span>*</span>贷款期限(月)：</p>
+					<input name="edTimes" id="edTimes" type="number" onblur="AutoShowRate();" style="width:255px" onkeyup="javascript:monthCheck('edTimes')" onafterpaste="javascript:monthCheck('edTimes')" />
+		</div>
+		<div class="xinxi col2">
+					<p>基准年利率(%)：</p>
+					<input name="edRate" id="edRate" value="0" disabled readonly type="text" style="width:250px" />
+		</div>
+		<div class="xinxi col2">
+					<p><span>*</span>浮动比例(%)：</p>
+					<input name="floatRatio" id="floatRatio" value="10" onblur="AutoShowRate();" type="number" style="width:255px" onkeyup="javascript:ratioCheck('floatRatio')" onafterpaste="javascript:ratioCheck('floatRatio')" />
+		</div>
+		<div class="xinxi col2">
+					<p>执行年利率(%)：</p>
+					<input name="zxRate" id="zxRate" disabled readonly type="text" style="width:250px" />
+		</div>
+		<div class="xinxi col2 col2">
+					<p>还款方式：</p>
+					<select id="ddlPayWay" style="width:280px" name="ddlPayWay" onchange="change();">
+						<option value="1" selected>等额本息还款</option>
+						<option value="2">等额本金还款</option>
+						<option value="3">一次性还本付息</option>
+					</select>
+		</div>
+		<div class="xinxi col2">
+			<p>偿还频率：</p>
+			<div class="xxGroup">
+				<td><input id="rbPayFreq_0" type="radio" CHECKED value="1" name="rbPayFreq" tabIndex="6"><label for="rbPayFreq_0">每月</label></td>
+				<td><input id="rbPayFreq_1" type="radio" value="3" name="rbPayFreq"><label for="rbPayFreq_1">每季</label></td>
+				<td><input id="rbPayFreq_2" type="radio" value="4" name="rbPayFreq"><label for="rbPayFreq_2">一次性</label></td>
+				<td id="showPayFreq" class="tdhidden"></td>
+			</div>
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()"/>
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()"/>
+		</div>
+	   
+	  <h1>计算结果</h1>
+	  <table class="tbRate" id="Table3" dataSrc="#xmldso">
+		  	<thead>
+			  	<tr>
+				  	<th>期次</th>
+				  	<th>还款时间</th>
+				  	<th class="am">偿还利息</th>
+				  	<th class="am">偿还本金</th>
+				  	<th class="am">偿还本息</th>
+				  	<th class="am">剩余本金</th>
+			  	</tr>
+			 </thead>
+			 <tbody id="tbody">
+				<!--  <tr>
+					<td align="left"><span dataFld="Times"></span></td>
+					<td align="left"><span dataFld="Year"></span></td>
+					<td align="right"><span dataFld="RateSum"></span></td>
+					<td align="right"><span dataFld="Corpus"></span></td>
+					<td align="right"><span dataFld="CorpusRate"></span></td>
+					<td align="right"><span dataFld="LeavCorpus"></span></td>
+				</tr> -->
+			</tbody>
+	 	</table>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>理财工具</h1>
+	       <div class="jsqBox">
+	          <a href="depCalculator.html" class="jsqMenu jm1">存款利息计算器</a>
+	          <a href="financialTool.html" class="jsqMenu jm2" >贷款计算器</a>
+	          <a href="jijinshengou.html" class="jsqMenu jm3">基金申购计算器</a>
+	          <a href="jijinshuhui.html" class="jsqMenu jm4">基金赎回计算器</a>
+	          <a href="licairengou.html" class="jsqMenu jm5">理财认购计算器</a>
+	          <a href="waihuiduihuan.html" class="jsqMenu jm6">汇率计算器</a>
+	       </div>
+	       
+	  </div>
+	</div>
+</body>
+</html>

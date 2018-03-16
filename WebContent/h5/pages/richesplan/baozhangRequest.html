@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="../calculator/CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../calculator/Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../calculator/a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../calculator/Components.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="baozhangRequest.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		setUI();
+		if (document.getElementById("ddlIncomeType").value == '1') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden21']").hide();
+		} else if (document.getElementById("ddlIncomeType").value == '2') {
+			$("div[name='hidden11']").show();
+			$("div[name='hidden21']").hide();
+		} else if (document.getElementById("ddlIncomeType").value == '3') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden21']").show();
+		}
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	function fangshi() {debugger;
+		if (document.getElementById("ddlIncomeType").value == '1') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden21']").hide();
+		} else if (document.getElementById("ddlIncomeType").value == '2') {
+			$("div[name='hidden11']").show();
+			$("div[name='hidden21']").hide();
+		} else if (document.getElementById("ddlIncomeType").value == '3') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden21']").show();
+		}
+	}
+	//判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {
+		if (!checkNumber(document.getElementById("age").value)) {
+			alert("请在年龄输入正数");
+			return false;
+		}
+		if (!checkNumber(document.getElementById("tuixiuAge").value)) {
+			alert("请在退休年龄输入正数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("yearIncome").value)) {
+			alert("请在年收入输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("yearOut").value)) {
+			alert("请在年支出输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("yiyoubaozhang").value)) {
+			alert("请在已有保障输入非负数");
+			return false;
+		}
+		if (document.getElementById("age").value >= document.getElementById("tuixiuAge").value) {
+			alert("退休年龄必须大于目前年龄");
+			return false;
+		}
+		if (document.getElementById("ddlIncomeType").value == '1') {
+			
+		} else if (document.getElementById("ddlIncomeType").value == '2') {
+			if (!checkNumAndFloat(document.getElementById("tonghuopengzhangRatio").value)) {
+				alert("请在预计年通货膨胀率输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("incomeAddRatio").value)) {
+				alert("请在收入增长率输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("touzihuibaoRatio").value)) {
+				alert("请在投资回报率输入非负数");
+				return false;
+			}
+		} else if (document.getElementById("ddlIncomeType").value == '3') {
+			if (!checkNumAndFloat(document.getElementById("zinvEducation").value)) {
+				alert("请在子女教育金现值输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("jiashulifeque").value)) {
+				alert("请在家属生活费用年缺口输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("dangqianfuzhai").value)) {
+				alert("请在当前负债输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("weilaiOneOut").value)) {
+				alert("请在未来一次性支出(丧葬费)输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("shouxianJin").value)) {
+				alert("请在寿险现金价值输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("liudongZichan").value)) {
+				alert("请在流动资产输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("touzixingZichan").value)) {
+				alert("请在投资性资产输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("jinjibeiyong").value)) {
+				alert("请在紧急备用金(三个月的支出)输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("lifeFeiRatio").value)) {
+				alert("请在生活费用成长率输入非负数");
+				return false;
+			}
+			if (!checkNumAndFloat(document.getElementById("baoxianjinRatio").value)) {
+				alert("请在取得保险金后的报酬率输入非负数");
+				return false;
+			}
+		}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    jisuan();
+	    document.getElementById("age").value = document.getElementById("age").value*1;
+		document.getElementById("tuixiuAge").value = document.getElementById("tuixiuAge").value*1;
+		document.getElementById("yearIncome").value = document.getElementById("yearIncome").value*1;
+		document.getElementById("yearOut").value = document.getElementById("yearOut").value*1;
+		document.getElementById("yiyoubaozhang").value = document.getElementById("yiyoubaozhang").value*1;
+		document.getElementById("tonghuopengzhangRatio").value = document.getElementById("tonghuopengzhangRatio").value*1;
+		document.getElementById("incomeAddRatio").value = document.getElementById("incomeAddRatio").value*1;
+		document.getElementById("touzihuibaoRatio").value = document.getElementById("touzihuibaoRatio").value*1;
+		document.getElementById("zinvEducation").value = document.getElementById("zinvEducation").value*1;
+		document.getElementById("jiashutuixiu").value = document.getElementById("jiashutuixiu").value*1;
+		document.getElementById("jiashulifeque").value = document.getElementById("jiashulifeque").value*1;
+		document.getElementById("dangqianfuzhai").value = document.getElementById("dangqianfuzhai").value*1;
+		document.getElementById("weilaiOneOut").value = document.getElementById("weilaiOneOut").value*1;
+		document.getElementById("shouxianJin").value = document.getElementById("shouxianJin").value*1;
+		document.getElementById("liudongZichan").value = document.getElementById("liudongZichan").value*1;
+		document.getElementById("touzixingZichan").value = document.getElementById("touzixingZichan").value*1;
+		document.getElementById("jinjibeiyong").value = document.getElementById("jinjibeiyong").value*1;
+		document.getElementById("lifeFeiRatio").value = document.getElementById("lifeFeiRatio").value*1;
+		document.getElementById("baoxianjinRatio").value = document.getElementById("baoxianjinRatio").value*1;
+		document.getElementById("kebianxian").value = document.getElementById("kebianxian").value*1;
+		document.getElementById("jiashulifexian").value = document.getElementById("jiashulifexian").value*1;
+		document.getElementById("needEnsure").value = document.getElementById("needEnsure").value*1;
+		document.getElementById("ensureInsufficient").value = document.getElementById("ensureInsufficient").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("age").value = null;
+		document.getElementById("tuixiuAge").value = null;
+		document.getElementById("yearIncome").value = null;
+		document.getElementById("yearOut").value = null;
+		document.getElementById("yiyoubaozhang").value = null;
+		document.getElementById("tonghuopengzhangRatio").value = null;
+		document.getElementById("incomeAddRatio").value = null;
+		document.getElementById("touzihuibaoRatio").value = null;
+		document.getElementById("zinvEducation").value = null;
+		document.getElementById("jiashutuixiu").value = null;
+		document.getElementById("jiashulifeque").value = null;
+		document.getElementById("dangqianfuzhai").value = null;
+		document.getElementById("weilaiOneOut").value = null;
+		document.getElementById("shouxianJin").value = null;
+		document.getElementById("liudongZichan").value = null;
+		document.getElementById("touzixingZichan").value = null;
+		document.getElementById("jinjibeiyong").value = null;
+		document.getElementById("lifeFeiRatio").value = null;
+		document.getElementById("baoxianjinRatio").value = null;
+		document.getElementById("kebianxian").value = null;
+		document.getElementById("jiashulifexian").value = null;
+		document.getElementById("needEnsure").value = null;
+		document.getElementById("ensureInsufficient").value = null;
+		return true;
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>财富规划</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>保障需求规划</h1>
+	   <div class="xinxi col2" style="font-size:16px;">
+				<p><span>*</span>年龄(岁)：</p>
+				<input name="age" id="age" type="number" onkeyup="javascript:yearCheck('age')" onafterpaste="javascript:yearCheck('age')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;">
+					<p>
+						<span>*</span>退休年龄(岁)：</p>
+					<input name="tuixiuAge" id="tuixiuAge" type="number" style="width:250px" onkeyup="javascript:yearCheck('tuixiuAge')" onafterpaste="javascript:yearCheck('tuixiuAge')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;">
+					<p>
+						<span>*</span>年收入(元)：</p>
+					<input name="yearIncome" id="yearIncome" type="number" onkeyup="javascript:lengthCheck('yearIncome')" onafterpaste="javascript:lengthCheck('yearIncome')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;">
+					<p><span>*</span>年支出(元)：</p>
+					<input name="yearOut" id="yearOut" type="number" style="width:250px" onkeyup="javascript:lengthCheck('yearOut')" onafterpaste="javascript:lengthCheck('yearOut')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;">
+					<p><span>*</span>已有保障(元)：</p>
+					<input name="yiyoubaozhang" id="yiyoubaozhang" type="number" onkeyup="javascript:lengthCheck('yiyoubaozhang')" onafterpaste="javascript:lengthCheck('yiyoubaozhang')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden11">
+					<p><span>*</span>预计年通货膨胀率(%)：</p>
+					<input name="tonghuopengzhangRatio" id="tonghuopengzhangRatio" type="number" style="width:250px" onkeyup="javascript:ratioCheck('tonghuopengzhangRatio')" onafterpaste="javascript:ratioCheck('tonghuopengzhangRatio')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden11">
+					<p><span>*</span>收入增长率(%)：</p>
+					<input name="incomeAddRatio" id="incomeAddRatio" type="number" onkeyup="javascript:ratioCheck('incomeAddRatio')" onafterpaste="javascript:ratioCheck('incomeAddRatio')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden11">
+					<p><span>*</span>投资回报率(%)：</p>
+					<input name="touzihuibaoRatio" id="touzihuibaoRatio" type="number" style="width:250px" onkeyup="javascript:ratioCheck('touzihuibaoRatio')" onafterpaste="javascript:ratioCheck('touzihuibaoRatio')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>子女教育金现值(元)：</p>
+					<input name="" id="zinvEducation" type="number" style="width:250px" onkeyup="javascript:lengthCheck('zinvEducation')" onafterpaste="javascript:lengthCheck('zinvEducation')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>家属退休金缺口现值(元)：</p>
+					<input name="" id="jiashutuixiu" type="number" onkeyup="javascript:lengthCheck('jiashutuixiu')" onafterpaste="javascript:lengthCheck('jiashutuixiu')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>家属生活费用年缺口(元)：</p>
+					<input name="" id="jiashulifeque" type="number" style="width:250px" onkeyup="javascript:lengthCheck('jiashulifeque')" onafterpaste="javascript:lengthCheck('jiashulifeque')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>当前负债(元)：</p>
+					<input name="" id="dangqianfuzhai" type="number" onkeyup="javascript:lengthCheck('dangqianfuzhai')" onafterpaste="javascript:lengthCheck('dangqianfuzhai')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>未来一次性支出(丧葬费)(元)：</p>
+					<input name="" id="weilaiOneOut" type="number" style="width:250px" onkeyup="javascript:lengthCheck('weilaiOneOut')" onafterpaste="javascript:lengthCheck('weilaiOneOut')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>寿险现金价值(元)：</p>
+					<input name="" id="shouxianJin" type="number" onkeyup="javascript:lengthCheck('shouxianJin')" onafterpaste="javascript:lengthCheck('shouxianJin')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>流动资产(元)：</p>
+					<input name="" id="liudongZichan" type="number" style="width:250px" onkeyup="javascript:lengthCheck('liudongZichan')" onafterpaste="javascript:lengthCheck('liudongZichan')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>投资性资产(元)：</p>
+					<input name="" id="touzixingZichan" type="number" onkeyup="javascript:lengthCheck('touzixingZichan')" onafterpaste="javascript:lengthCheck('touzixingZichan')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>
+						<span>*</span>紧急备用金(三个月支出)(元)：</p>
+					<input name="" id="jinjibeiyong" type="number" style="width:250px" onkeyup="javascript:lengthCheck('jinjibeiyong')" onafterpaste="javascript:lengthCheck('jinjibeiyong')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p><span>*</span>生活费用成长率(%)：</p>
+					<input name="" id="lifeFeiRatio" type="number" onkeyup="javascript:ratioCheck('lifeFeiRatio')" onafterpaste="javascript:ratioCheck('lifeFeiRatio')" />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p><span>*</span>取得保险金后的报酬率(%)：</p>
+					<input name="" id="baoxianjinRatio" type="number" style="width:250px" onkeyup="javascript:ratioCheck('baoxianjinRatio')" onafterpaste="javascript:ratioCheck('baoxianjinRatio')" />
+		</div>
+		<div class="xinxi col2" name="hidden21" style="font-size:16px;">
+					<p>可变现公允价值(不含寿险现金)(元)：</p>
+					<input name="" id="kebianxian" type="text" disabled readonly />
+		</div>
+		<div class="xinxi col2" style="font-size:16px;" name="hidden21">
+					<p>家属生活费用现值(元)：</p>
+					<input name="" id="jiashulifexian" type="text" disabled readonly style="width:250px" />
+		</div>
+		<div class="xinxi col2 col2" style="font-size:16px;">
+			<p>试算方式：</p>
+			<select id="ddlIncomeType" onchange="fangshi();" style="width:269px">
+				<option selected="selected" value="1">年收入倍数法</option>
+				<option value="2">生命价值法</option>
+				<option value="3">家属需要法</option>
+			</select>
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()"/>
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()"/>
+		</div>
+		
+	  <h1>计算结果</h1>
+	  <div class="xinxi" style="font-size:16px;">
+			<p>保障需求(元)：</p>
+			<input name="needEnsure" id="needEnsure" value="计算得出" disabled readonly type="text" />
+		</div>
+	  <div class="xinxi" style="font-size:16px;">
+			<p>保障不足额(元)：</p>
+			<input name="ensureInsufficient" id="ensureInsufficient" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>财富规划</h1>
+	       <div class="jsqBox">
+	          <a href="retireRequest.html" class="jsqMenu jm1">退休需求规划</a>
+	          <a href="teachFundRequest.html" class="jsqMenu jm2" >教育基金需求规划</a>
+	          <a href="baozhangRequest.html" class="jsqMenu jm3">保障需求规划</a>
+	          <a href="investmentPlan.html" class="jsqMenu jm4">投资规划</a>
+	       </div>
+	       
+	  </div>
+	</div>
+</body>
+</html>

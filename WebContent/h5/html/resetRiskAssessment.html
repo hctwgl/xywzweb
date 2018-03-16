@@ -1,0 +1,158 @@
+<!-- 
+   功能描述：风险评估详情
+   作者 ：wuxl2@yuchengtech.com
+   时间 ：20140507
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>风险评估详情</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../../common/includes.js"></script>
+		<script type="text/javascript" charset="utf-8" src="resetRiskAssessment.js"></script>
+		<script type="text/javascript">
+			var _custId_=""
+			var _custType_="";
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			$.ui.animateHeaders  = false;
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			
+			$(document).ready(function() {
+                 document.addEventListener('deviceready', onDeviceready, false);
+            });
+			
+			$.ui.ready(function() {
+				//先加载hearder
+				mobileApp.showHearder("headerui","风险评估",3);
+				var riskQuery = PageBarFactory.get(config);
+				riskQuery.queryFun();
+			});
+			
+			function onDeviceready() {
+            	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+            	}
+                $.ui.launch();
+            }
+		</script>
+</head>
+<body>
+	<div id="afui" class="ycskin">
+		<header id="headerui">
+		</header>
+			<div id="content">
+				<div id="riskAssessmentDetailPanel" class="panel" data-header="headerui" data-footer='none' data-load="none" data-unload="none" data-tab="none">
+					<div class="padBox">
+						<div class="pbCon">
+							<h1>理财风险评估问卷</h1>
+							<p style="text-indent: 0;">您好！</p>
+							<p>为了更好地了解您的风险偏好与风险承受能力，我们设计了以下问题，请您在决定购买本行的理财产品前，认真填写此问卷。本行客户经理
+							将根据您的风险类型，为您推荐最适宜的投资理财产品。
+							<p>我们向您保证本问卷信息将得到严格保密，请您放心填写。</p>
+						</div>					
+						<div class="pbCon">
+							<div class="radlcTitle">1、您的年龄？</div>
+							<div class="radlcRow"><input id="aaaa-1" type="radio" name="test1" value="1"><label for="aaaa-1">A.55岁以上</label></div>
+							<div class="radlcRow"><input id="bbbb-1" type="radio" name="test1" value="1"><label for="bbbb-1">B.45-55岁</label></div>
+							<div class="radlcRow"><input id="cccc-1" type="radio" name="test1" value="1"><label for="cccc-1">C.30-45岁</label></div>
+							<div class="radlcRow"><input id="dddd-1" type="radio" name="test1" value="1"><label for="dddd-1">D.30岁以下</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">2.您的投资经验可以被概括为？</div>
+							<div class="radlcRow"><input id="aaaa-3" type="radio" name="test3" value="1"><label for="aaaa-3">A.无:除银行活期和定期储蓄存款外，基本没有其他投资经验</label></div>
+							<div class="radlcRow"><input id="bbbb-3" type="radio" name="test3" value="1"><label for="bbbb-3">B.有限：有过购买国债，货币型基金等保本型金融产品投资经验</label></div>
+							<div class="radlcRow"><input id="cccc-3" type="radio" name="test3" value="1"><label for="cccc-3">C.一般：具有一定的证券投资经验，需要进一步的指导</label></div>
+							<div class="radlcRow"><input id="dddd-3" type="radio" name="test3" value="1"><label for="dddd-3">D.丰富：是一位积极和有经验的证券投资者，并倾向于自己作出投资决定</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">3.您的投资年限？</div>
+							<div class="radlcRow"><input id="aaaa-2" type="radio" name="test2" value="1"><label for="aaaa-2">A.1年以内</label></div>
+							<div class="radlcRow"><input id="bbbb-2" type="radio" name="test2" value="1"><label for="bbbb-2">B.1-5年</label></div>
+							<div class="radlcRow"><input id="cccc-2" type="radio" name="test2" value="1"><label for="cccc-2">C.5-10年</label></div>
+							<div class="radlcRow"><input id="dddd-2" type="radio" name="test2" value="1"><label for="dddd-2">D.10年以上</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">4、如您有机会通过承担额外风险（包括本金可能受到损失）来明显增加潜在回报，那么您：</div>
+							<div class="radlcRow"><input id="aaaa-7" type="radio" name="test7" value="1"><label for="aaaa-7">A、不愿意承担任何额外风险</label></div>
+							<div class="radlcRow"><input id="bbbb-7" type="radio" name="test7" value="1"><label for="bbbb-7">B、愿意动用部分资金承担较小的额外风险</label></div>
+							<div class="radlcRow"><input id="cccc-7" type="radio" name="test7" value="1"><label for="cccc-7">C、愿意动用部分资金承担较大的额外风险</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">5.您曾经或正在做的投资产品（若有多项限选风险最大的一项）？</div>
+							<div class="radlcRow"><input id="aaaa-4" type="radio" name="test4" value="1"><label for="aaaa-4">A.无</label></div>
+							<div class="radlcRow"><input id="bbbb-4" type="radio" name="test4" value="1"><label for="bbbb-4">B.债券.基金</label></div>
+							<div class="radlcRow"><input id="cccc-4" type="radio" name="test4" value="1"><label for="cccc-4">C.股票</label></div>
+							<div class="radlcRow"><input id="dddd-4" type="radio" name="test4" value="1"><label for="dddd-4">D.期货.权证</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">6.今后5年内您的预期收入？</div>
+							<div class="radlcRow"><input id="aaaa-5" type="radio" name="test5" value="1"><label for="aaaa-5">A.预期收入将不断减少</label></div>
+							<div class="radlcRow"><input id="bbbb-5" type="radio" name="test5" value="1"><label for="bbbb-5">B.预期收入将保持稳定</label></div>
+							<div class="radlcRow"><input id="cccc-5" type="radio" name="test5" value="1"><label for="cccc-5">C.预期收入将逐渐增加</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">7.以下哪一种类型最好地描述了您的投资目标以及您对市场波动的适应度？</div>
+							<div class="radlcRow"><input id="aaaa-6" type="radio" name="test6" value="1"><label for="aaaa-6">A.无风险：我希望本金绝对安全，我对于短期市场波动感到不适应，愿意得到无风险收益</label></div>
+							<div class="radlcRow"><input id="bbbb-6" type="radio" name="test6" value="1"><label for="bbbb-6">B.低风险：我希望本金绝对安全，能接受2年内较小的波动，愿意尝试得到一定程度上大于定期存款的回报并承担部分收益减少的风险</label></div>
+							<div class="radlcRow"><input id="cccc-6" type="radio" name="test6" value="1"><label for="cccc-6">C.中风险：我倾向于平衡的方式，偏好投资于兼具成长性及收益性的产品。我能接受负面波动，从而在2年或2年以上的投资期内获得远高于活期账户.定期存款的收益</label></div>
+							<div class="radlcRow"><input id="dddd-6" type="radio" name="test6" value="1"><label for="dddd-6">D.高风险：我希望我的投资增长，并尽可能地获得最高回报，我可以接受短期负面波动，愿意承担全部收益包括本金可能损失的风险</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">8、您本次准备投资的资金，占您的总资产（除自用和经营性财产外）？</div>
+							<div class="radlcRow"><input id="aaaa-8" type="radio" name="test8" value="1"><label for="aaaa-8">A、小于10％</label></div>
+							<div class="radlcRow"><input id="bbbb-8" type="radio" name="test8" value="1"><label for="bbbb-8">B、10％～30％</label></div>
+							<div class="radlcRow"><input id="cccc-8" type="radio" name="test8" value="1"><label for="cccc-8">C、30％～50％</label></div>
+							<div class="radlcRow"><input id="dddd-8" type="radio" name="test8" value="1"><label for="dddd-8">D、大于50％</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">9、您是否有过投资失败的经历，如有遭受的损失是多少？</div>
+							<div class="radlcRow"><input id="aaaa-9" type="radio" name="test9" value="1"><label for="aaaa-9">A、最大本金亏损5%以内</label></div>
+							<div class="radlcRow"><input id="bbbb-9" type="radio" name="test9" value="1"><label for="bbbb-9">B、能最大本金亏损5%-20%</label></div>
+							<div class="radlcRow"><input id="cccc-9" type="radio" name="test9" value="1"><label for="cccc-9">C、最大本金亏损20%-50%</label></div>
+							<div class="radlcRow"><input id="dddd-9" type="radio" name="test9" value="1"><label for="dddd-9">D、最大本金亏损50%以上</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle">10、您接受的最高教育程度是？</div>
+							<div class="radlcRow"><input id="aaaa-10" type="radio" name="test10" value="1"><label for="aaaa-10">A、高中及以下</label></div>
+							<div class="radlcRow"><input id="bbbb-10" type="radio" name="test10" value="1"><label for="bbbb-10">B、专科</label></div>
+							<div class="radlcRow"><input id="cccc-10" type="radio" name="test10" value="1"><label for="cccc-10">C、本科</label></div>
+							<div class="radlcRow"><input id="dddd-10" type="radio" name="test10" value="1"><label for="dddd-10">D、硕士及以上</label></div>
+						</div>
+						<div class="pbCon">
+							<div class="radlcTitle" style="line-height: 50px;">请在这里签名：<a style="position: absolute;right:10px;top:4px;" class="txtBt" data-icon="&#xe967" id="clearId">清除</a></div>
+							<iframe style="height:250px;width:100%" id="resetRiskframe" name="resetRiskframe" src="signature.html"></iframe>
+						</div>
+					</div>
+					<div class="fuBox">
+						<a class="txtBt" onclick="cancelRisk();" data-icon="&#xe967">取消</a>
+						<a class="txtBt" onclick="" data-icon="&#xe984">重置</a>
+			        	<a class="txtBt" onclick="saveRisk();" id="sbumit" data-icon="&#xea10">提交</a>
+					</div>
+				</div>
+			</div>
+	</div>
+	<script>
+	$(function(){
+	    var clear = document.getElementById("clearId");  
+	    clear.addEventListener("click", function() {  
+	    	var _c= $(window.frames["resetRiskframe"].document).find("#signatureCanvas");
+	    	var context=_c[0].getContext('2d');
+	    	context.clearRect(0,0,_c.width(),_c.height());
+	    });  
+	});
+	</script>
+</body>
+</html>

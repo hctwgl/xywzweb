@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础体温图例</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript">
+	/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	.mobile_temperature{
+		padding:.5rem;
+	}
+	.mobile_temperature h2{
+		font-size:1rem;   
+		font-weight: normal;
+		margin-top:.75rem;
+		margin-bottom:.5rem;
+	}
+	.mobile_temperature h3{
+		font-size:.8rem;
+		color: #fa5d9c;    
+		font-weight: normal;
+		margin-top:1rem;
+		margin-bottom:.5rem;
+	}
+	.mobile_temperature h3:first-child{
+		margin-top:0;
+	}
+	.mobile_temperature p{
+		font-size:.6rem;
+		line-height:1rem;
+		color:#aaa;
+	}
+	.mobile_temperature span{
+		width:100%;
+		display:block;
+		height:8.875rem;
+		margin:0 auto;
+		margin-bottom:.6rem;
+		margin-top:.1rem;
+	}
+	.mobile_temperature span img{
+		display:block;
+		height:8.875rem;
+	}
+	</style>
+</head>
+<body>
+	<div class="mobile_temperature">
+		<h3>什么是基础体温</h3>
+		<p>人体在较长时间（6小时）的睡眠后醒来，尚未进行任何活动之前所测量到的体温称之为基础体温。</p>
+		<h3>基础体温原理</h3>
+		<p>正常育龄妇女的基础体温与月经周期一样，呈周期性变化，这种体温变化与排卵有关。</p>
+		<h2>常见体温图例</h2>
+		<h3>正常排卵体温：</h3>
+		<span class="yesovulation">
+			<img src="/h5/images/yesovulation.png"></span>
+		<p>
+			正常月经周期内，基础体温曲线呈现标准的高低温两相变化。从月经开始-排卵日，低温期14天；排卵后持续高温14天，其中第14天为排卵日。在第14天的排卵日同房是最佳受孕时机，就是低温转高温的时候。
+		</p>
+		<h3>已经怀孕体温：</h3>
+		<span class="pregnant">
+			<img src="/h5/images/pregnant.png"></span>
+		<p>
+			在一个月经周期内，如果基础体温升高后，持续高温16天以上，那就意味着您可能有了一个小宝宝啦。赶快到医院进一步确认这个好消息，做好准备工作哦！
+		</p>
+		<h3>早期流产体温：</h3>
+		<span class="abortion">
+			<img src="/h5/images/abortion.png"></span>
+		<p>
+			一个月经周期内，基础体温升高后，持续高温一段时间(一般是20天)后突然下降，有可能是早期流产的迹象。如发现有这样的基础体温，应及早到医院就诊，查明原因。
+		</p>
+		<h3>没有排卵体温：</h3>
+		<span class="noovulation">
+			<img src="/h5/images/noovulation.png"></span>
+		<p>
+			持续低温，没有高温期，没有形成高低温双相变化，如果是测量发现有如图示的姐妹需要到医院就诊，检查是什么原因造成没有排卵，以便对症下药，及早治愈。
+		</p>
+	</div>
+</body>
+</html>

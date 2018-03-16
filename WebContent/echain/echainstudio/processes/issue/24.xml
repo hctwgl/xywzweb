@@ -1,0 +1,1679 @@
+<?xml version="1.0" encoding="GBK"?>
+<wfs>
+   <wf id="24" status="A" orgid="0" name="绿色金融审批流程" sysid="echaindefault">
+      <property name="readersafterend" value="0"></property>
+      <property name="wfmainformid" value="demo_crdcard"></property>
+      <property name="overdueext" value=""></property>
+      <property name="wftimelimitnotification" value="1"></property>
+      <property name="wfadmin" value="U.system"></property>
+      <property name="orgid" value="0"></property>
+      <property name="wfmainformname" value="信用卡申请单"></property>
+      <property name="wftimelimitrepeattimes" value="4"></property>
+      <property name="ver" value="V1.0"></property>
+      <property name="delafterend" value="0"></property>
+      <property name="wfreaders" value=""></property>
+      <property name="wftimelimitefficient" value="d3"></property>
+      <property name="wfsort" value="${ALL}"></property>
+      <property name="wfchange" value="1"></property>
+      <property name="wfsign" value="cfpflow_001"></property>
+      <property name="wfdurationtime" value="d5"></property>
+      <property name="wfreturnback" value="1"></property>
+      <property name="wfappid" value="train"></property>
+      <property name="wfver" value="V0001"></property>
+      <property name="appextclass" value="com.yucheng.emp.base.workflow.AppExtClass"></property>
+      <property name="wfcreatetime" value="2011-12-21 14:36:45"></property>
+      <property name="wfjump" value="1"></property>
+      <property name="wfin" value=""></property>
+      <property name="wfdescription" value="绿色金融审批流程"></property>
+      <property name="wfurge" value="1"></property>
+      <property name="wfagent" value="1"></property>
+      <property name="wfwake" value="1"></property>
+      <property name="wfinitiators" value="0"></property>
+      <property name="overduetreat" value="0"></property>
+      <property name="wfout" value=""></property>
+      <property name="wftype" value="0"></property>
+      <property name="wftimelimitrepeat" value="h6"></property>
+      <property name="wfcondition" value=""></property>
+      <property name="depid" value=""></property>
+      <property name="wfhangup" value="1"></property>
+      <property name="wfstatus" value="A"></property>
+      <property name="wfrecall" value="1"></property>
+      <property name="wfname" value="绿色金融审批流程"></property>
+      <property name="wfagain" value="1"></property>
+      <property name="sysid" value="echaindefault"></property>
+      <property name="wfid" value="24"></property>
+      <property name="wfappname" value="范例演示"></property>
+      <property name="author" value="system"></property>
+      <variable></variable>
+      <flowappext></flowappext>
+      <node id="24_a13" type="A" name="一级分行绿色金融业务 主管部门审批">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="一级分行绿色金融业务 主管部门审批"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a13"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_39">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_39"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e2"></property>
+            <property name="nodeid" value="24_a13"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_56">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_56"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e18"></property>
+            <property name="nodeid" value="24_a13"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a6" type="A" name="一级分行绿色金融业务受理员受理">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="一级分行绿色金融业务受理员受理"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a6"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_35">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_35"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="有一级分行权限"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a11"></property>
+            <property name="nodeid" value="24_a6"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_36">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_36"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="无一级分行权限"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a10"></property>
+            <property name="nodeid" value="24_a6"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_e19" type="E" name="否决">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value=""></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="E"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="否决"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="结束节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_e19"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a3" type="A" name="客户经理">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="1"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="1"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="客户经理"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a3"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_27">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_27"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a4"></property>
+            <property name="nodeid" value="24_a3"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a16" type="A" name="总行可持续金融中心总经理审批">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="总行可持续金融中心总经理审批"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a16"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_59">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_59"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e19"></property>
+            <property name="nodeid" value="24_a16"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_43">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_43"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e2"></property>
+            <property name="nodeid" value="24_a16"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a9" type="A" name="二级分行绿色金融业务 主管部门审批">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="二级分行绿色金融业务 主管部门审批"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a9"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_50">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_50"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e17"></property>
+            <property name="nodeid" value="24_a9"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_34">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_34"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e2"></property>
+            <property name="nodeid" value="24_a9"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a12" type="A" name="一级分行绿色金融产品经理 所在处（科）室审核">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="一级分行绿色金融产品经理 所在处（科）室审核"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a12"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_38">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_38"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a13"></property>
+            <property name="nodeid" value="24_a12"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_54">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_54"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e18"></property>
+            <property name="nodeid" value="24_a12"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_e18" type="E" name="否决">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value=""></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="E"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="否决"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="结束节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_e18"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a5" type="A" name="二级分行绿色金融业务负责人审核">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="二级分行绿色金融业务负责人审核"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a5"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_31">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_31"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="无二级分行权限"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a6"></property>
+            <property name="nodeid" value="24_a5"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_30">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_30"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="有二级分行权限"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a8"></property>
+            <property name="nodeid" value="24_a5"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a15" type="A" name="总行可持续金融中心相关处室审核">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="总行可持续金融中心相关处室审核"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a15"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_42">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_42"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a16"></property>
+            <property name="nodeid" value="24_a15"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_58">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_58"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e19"></property>
+            <property name="nodeid" value="24_a15"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a4" type="A" name="支行行长审核">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="1"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="支行行长审核"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a4"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_29">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_29"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="有二级分行"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a5"></property>
+            <property name="nodeid" value="24_a4"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_28">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_28"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value="无二级分行"></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a6"></property>
+            <property name="nodeid" value="24_a4"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a8" type="A" name="二级分行绿色金融产品经理审查">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="2"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="1"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="二级分行绿色金融产品经理审查"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a8"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_44">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_44"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a9"></property>
+            <property name="nodeid" value="24_a8"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_48">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_48"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e17"></property>
+            <property name="nodeid" value="24_a8"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_32">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_32"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a7"></property>
+            <property name="nodeid" value="24_a8"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_s1" type="S" name="开始">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value=""></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="S"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="开始"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="开始节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_s1"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_26">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_26"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a3"></property>
+            <property name="nodeid" value="24_s1"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a11" type="A" name="一级分行绿色金融产品经理审查">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="2"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="1"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="1"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="一级分行绿色金融产品经理审查"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a11"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_55">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_55"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e18"></property>
+            <property name="nodeid" value="24_a11"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_37">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_37"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a12"></property>
+            <property name="nodeid" value="24_a11"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_45">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_45"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a13"></property>
+            <property name="nodeid" value="24_a11"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_e17" type="E" name="否决">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value=""></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="E"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="否决"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="结束节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_e17"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a7" type="A" name="二级分行绿色金融产品经理 所在处（科）室审核">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="二级分行绿色金融产品经理 所在处（科）室审核"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a7"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_49">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_49"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e17"></property>
+            <property name="nodeid" value="24_a7"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_33">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_33"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a9"></property>
+            <property name="nodeid" value="24_a7"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a14" type="A" name="总行可持续金融中心专家审查">
+         <property name="noderoutertype" value="1"></property>
+         <property name="nodecallbackset" value="1"></property>
+         <property name="nodeeditcontrol" value="2"></property>
+         <property name="nodetransacttype" value="1"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="1"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="1"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="总行可持续金融中心专家审查"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a14"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_46">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_46"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a16"></property>
+            <property name="nodeid" value="24_a14"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_57">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_57"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_e19"></property>
+            <property name="nodeid" value="24_a14"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <route id="24_41">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_41"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a15"></property>
+            <property name="nodeid" value="24_a14"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_e2" type="E" name="认定流程办结">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="0"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value=""></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="0"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="E"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="0"></property>
+         <property name="nodename" value="认定流程办结"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="结束节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="0"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_e2"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+      <node id="24_a10" type="A" name="总行可持续金融中心业务受理员受理">
+         <property name="noderoutertype" value="0"></property>
+         <property name="nodecallbackset" value="0"></property>
+         <property name="nodeeditcontrol" value="0"></property>
+         <property name="nodetransacttype" value="3"></property>
+         <property name="nodetransfercondition" value=""></property>
+         <property name="nodereturnreceiptscope" value="0"></property>
+         <property name="overdueext" value=""></property>
+         <property name="nodetimelimitrepeattimes" value="0"></property>
+         <property name="nodeuserscompute" value="0"></property>
+         <property name="nodeuserslist" value="O.0"></property>
+         <property name="nodepowercontrol" value=""></property>
+         <property name="nodeusesubwf" value="0"></property>
+         <property name="nodeannounceuser" value=""></property>
+         <property name="noderecallset" value="0"></property>
+         <property name="nodelevel" value=""></property>
+         <property name="repeatersign" value="1"></property>
+         <property name="noderunscript" value=""></property>
+         <property name="nodetype" value="A"></property>
+         <property name="subwfid" value=""></property>
+         <property name="nodeurgeset" value="0"></property>
+         <property name="nodereturnbackset" value="1"></property>
+         <property name="nodename" value="总行可持续金融中心业务受理员受理"></property>
+         <property name="classname" value=""></property>
+         <property name="nodetimelimitnotification" value="0"></property>
+         <property name="nodeassist" value=""></property>
+         <property name="nodereaderslist" value=""></property>
+         <property name="nodeannounceset" value="0"></property>
+         <property name="nodedescription" value="人工节点"></property>
+         <property name="nodeweigh" value="0"></property>
+         <property name="nodetimelimitrepeat" value=""></property>
+         <property name="nodedurationtime" value=""></property>
+         <property name="nodetodonotice" value="0"></property>
+         <property name="nodeformid" value=""></property>
+         <property name="nodechangeset" value="1"></property>
+         <property name="nodesign" value=""></property>
+         <property name="nodegather" value=""></property>
+         <property name="nodereaderscontrol" value="0"></property>
+         <property name="nodeafterduration" value="0"></property>
+         <property name="nodeid" value="24_a10"></property>
+         <property name="taskstrategy" value=""></property>
+         <property name="wfid" value="24"></property>
+         <property name="meetingsign" value=""></property>
+         <property name="nodevicarset" value="0"></property>
+         <property name="method" value=""></property>
+         <property name="$ext_scene" value="0"></property>
+         <property name="nodetimelimitefficient" value=""></property>
+         <property name="nodeusersassign" value="0"></property>
+         <route id="24_40">
+            <property name="classname" value=""></property>
+            <property name="appsign" value=""></property>
+            <property name="routeid" value="24_40"></property>
+            <property name="routerunscriptsign" value="0"></property>
+            <property name="routename" value=""></property>
+            <property name="routerunscript" value=""></property>
+            <property name="routecondition" value=""></property>
+            <property name="noderouternodeid" value="24_a14"></property>
+            <property name="nodeid" value="24_a10"></property>
+            <property name="routeseq" value=""></property>
+            <property name="spstatus" value="0"></property>
+            <property name="wfid" value="24"></property>
+            <property name="method" value=""></property>
+         </route>
+         <field id="cardtype" name="申请卡类型" type="F" control="1"></field>
+         <field id="organno" name="机构号" type="F" control="1"></field>
+         <field id="cid" name="证件号码" type="F" control="1"></field>
+         <field id="cus_id" name="客户ID" type="F" control="1"></field>
+         <field id="yxydm" name="营销员代码" type="F" control="1"></field>
+         <field id="cus_name" name="客户名称" type="F" control="1"></field>
+         <field id="postcode" name="邮编" type="F" control="1"></field>
+         <field id="grflag" name="个人标志" type="F" control="1"></field>
+         <field id="address" name="联系地址" type="F" control="1"></field>
+         <field id="mobilenum" name="申请人手机号" type="F" control="1"></field>
+         <field id="fjgs" name="附件个数" type="F" control="1"></field>
+         <field id="jjflag" name="加急自取标志" type="F" control="1"></field>
+         <field id="email" name="申请人邮箱" type="F" control="1"></field>
+      </node>
+   </wf>
+</wfs>
+

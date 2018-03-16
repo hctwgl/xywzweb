@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>国内机构</title>	
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">	
+	<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/h5/js/underscore-min.js"></script>
+	<script type="text/javascript" src="/h5/js/dropload.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/h5/css/apph5.css?$!module.module('webmobile').build">
+	<link rel="stylesheet" type="text/css" href="/h5/css/dropload.min.css">
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style>
+		.bespeak_list{
+			height:3rem;
+		}
+		.bespeak_list dt{
+			width: 2.4rem;
+    height: 2.4rem;
+    margin-top:.6rem;
+		}
+		.bespeak_list dd {
+    float: left;
+    height: 2.7rem;
+    padding-top: .3rem;
+    	}
+  	.bespeak_list dd h4{
+   	padding-top:.3rem; 	
+    	}
+  	.bespeak_list dd p{
+    	padding-top:.2rem;
+    	}
+   .bespeak_icon {
+    padding-left: 3rem;
+		}
+		.bespeak_list dd{
+			height:3.5rem;
+		}
+		.bespeak_list dd p{
+			height:.7rem;
+		}
+		.bespeak_list dd p:nth-child(2){
+			color:#444;
+		}
+		.bespeak_list.bespeak_list_null {
+			border-bottom:none;
+		}
+		.bespeak_list.bespeak_list_null dt{
+			margin-top:.3rem;
+		}
+		.bespeak_list.bespeak_list_null dd{
+			height:2.7rem;
+			border-bottom:1px solid #eee;
+		}
+		
+	</style>
+</head>
+<body style="background:#fff;">
+	<div class="wrap_bg"></div>
+	<div class="wrap">
+		<div class="enquiry icon_border">
+			<div class="select">
+				<div class="select_a"><i>选择地区</i></div>
+				<div class="option">
+					
+				</div>
+			</div>
+			<div class="enquiry_content">
+				
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			window.limit = 5;
+			window.skip = 0;
+			$.ajax({
+				url:"/search/getprovince",
+				dataType : "json",
+				type:"GET",
+				success:function(data){
+					var li="";
+					$.each(data,function(index,data){ 
+						li+='<li dataid="'+data.code+'">'+data.name+'</li>'
+					})
+					$('.option').append(li);
+				}
+			});
+			showdl('');
+			function showdl(dataid){
+				$.ajax({
+					url:"/department/listDepartment",
+					dataType : "json",
+					data:"intercode=0&limit="+window.limit+"&skip="+window.skip+"&code="+dataid,
+					type:"GET",
+					success:function(datas){
+						$('.enquiry_content').empty();
+						var dl="";
+						$.each(datas,function(index,data){ 
+							dl+="<a href='http://fake.jiahao.me?siteid="+data.siteid+"&type=10' onclick=\"if(app == 'undefined'){return true;}else{app.hospitalDetail('"+data.siteid+"');return false;}\">"
+							if(data.level!="undefined" && data.level!=""){
+								dl+="<dl class='bespeak_list'>";
+							}else{
+								dl+="<dl class='bespeak_list bespeak_list_null'>";
+							}
+							dl+="<dt style='background: url("+data.icon+") no-repeat center;background-size: cover;'></dt><dd><h4>"+data.hospital+"</h4>"
+							if(data.level!="undefined" && data.level!=""){
+								dl+="<p>"+data.level+"</p>"
+							}
+							dl+="<p>"+data.specialize+"</p></dd></dl><p class='bespeak_icon'>";
+							if(data.consult_enable==1){
+								dl+="<span class='icon_b active'></span>";
+							}else{
+								dl +="<span class='icon_b'></span>";
+							}
+							if(data.register_enable==1){
+								dl+="<span class='icon_a active'></span>";
+							}else{
+								dl +="<span class='icon_a'></span>";
+							}
+							if(data.checkitem_enable==1){
+								dl+="<span class='icon_e active'></span>";
+							}else{
+								dl +="<span class='icon_e'></span>";
+							}
+							if(data.case_enable==1){
+								dl+="<span class='icon_c active'></span>";
+							}else{
+								dl +="<span class='icon_c'></span>";
+							}
+							/*if(data.article_enable==1){
+								dl+="<span class='icon_d active'></span>";
+							}else{
+								dl +="<span class='icon_d'></span>";
+							}*/
+							dl+="</p></a>";
+						})
+				        $('.enquiry_content').append(dl);	
+						var dlwid=$(".enquiry").width();
+						var dtwid=$(".bespeak_list dt").outerWidth(true);
+						$(".bespeak_list dd").width(dlwid-dtwid-1);
+						$(".enquiry_content").css("minHeight",$(window).height()-$(".enquiry .select").outerHeight(true)-parseFloat($(".enquiry").css("paddingTop")));
+					}
+				})
+			}
+			$(".select .select_a").click(function(){
+				var id=$(this).find("i").attr("dataid");
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(".select .option").hide();
+					$(".wrap_bg").hide();
+				}else{
+					$(this).addClass("active");
+					$(".wrap_bg").show();
+      				$('.select .option li[dataid='+id+']').addClass("active").siblings().removeClass("active");
+      				$(".select .option").show();
+      			}
+      		})
+			$(".wrap_bg").click(function(){
+				$(".select .option").hide();
+				$(".wrap_bg").hide();
+				$(".select").find(".select_a").removeClass("active");
+			})
+			$(".select .option").on("click","li",function(){
+				var str=$(this).html();
+				var dataid=$(this).attr("dataid");
+				$(this).addClass("active").siblings().removeClass("active");
+				window.skip=0;
+				$(this).parents(".select").find(".select_a i").html(str);
+				$(this).parents(".select").find(".select_a i").attr("dataid",dataid);
+				$(this).parents(".select").find(".select_a").removeClass("active");
+				$(this).parents(".select").find(".option").hide();
+				$(".wrap_bg").hide();
+				showdl(dataid);
+			})
+
+			$('.enquiry_content').dropload({
+		        scrollArea : window,
+		        loadDownFn : function(me){
+		        	window.skip=window.skip+window.limit;
+		        	var area=$(".select").eq(0).find(".option li.active").attr("dataid");
+		        	if(area==undefined){
+		        		area="";
+		        	};
+		            $.ajax({
+		                url:"/department/listDepartment",
+						dataType : "json",
+						data:"intercode=0&limit="+window.limit+"&skip="+window.skip+"&code="+area,
+						type:"GET",
+		                success: function(datas){
+							var dl="";
+							$.each(datas,function(index,data){ 
+								dl+="<a href='http://fake.jiahao.me?siteid="+data.siteid+"&type=10' onclick=\"if(app == 'undefined'){return true;}else{app.hospitalDetail('"+data.siteid+"');return false;}\">";
+							if(data.level!="undefined" && data.level!=""){
+								dl+="<dl class='bespeak_list'>";
+							}else{
+								dl+="<dl class='bespeak_list bespeak_list_null'>";
+							}
+							dl+="<dt style='background: url("+data.icon+") no-repeat center;background-size: cover;'></dt><dd><h4>"+data.hospital+"</h4>"
+							if(data.level!="undefined" && data.level!=""){
+								dl+="<p>"+data.level+"</p>"
+							}
+							dl+="<p>"+data.specialize+"</p></dd></dl><p class='bespeak_icon'>";
+								if(data.consult_enable==1){
+									dl+="<span class='icon_b active'></span>";
+								}else{
+									dl +="<span class='icon_b'></span>";
+								}
+								if(data.register_enable==1){
+									dl+="<span class='icon_a active'></span>";
+								}else{
+									dl +="<span class='icon_a'></span>";
+								}
+								if(data.checkitem_enable==1){
+									dl+="<span class='icon_e active'></span>";
+								}else{
+									dl +="<span class='icon_e'></span>";
+								}
+								if(data.case_enable==1){
+									dl+="<span class='icon_c active'></span>";
+								}else{
+									dl +="<span class='icon_c'></span>";
+								}
+								/*if(data.article_enable==1){
+									dl+="<span class='icon_d active'></span>";
+								}else{
+									dl +="<span class='icon_d'></span>";
+								}*/
+								dl+="</p></a>"
+							})
+							$('.enquiry_content').append(dl);	
+							var dlwid=$(".enquiry").width();
+							var dtwid=$(".bespeak_list dt").outerWidth(true);
+							$(".bespeak_list dd").width(dlwid-dtwid-1);
+							$(".enquiry_content").css("minHeight",$(window).height()-$(".enquiry .select").outerHeight(true)-parseFloat($(".enquiry").css("paddingTop")));
+							me.resetload();
+		                },
+		                error: function(xhr, type){
+		                    alert('Ajax error!');
+		                    me.resetload();
+		                }
+		            });
+		        }
+		    });
+		})
+	</script>
+</body>
+</html>

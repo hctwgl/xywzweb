@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript" >
+		
+		$(document).ready(function () {
+			setUI();
+			
+			//把转介人ID和转介人姓名带过来
+			var sHerf = window.location.href;
+			
+			var zhuanJieRenID = getParamFromUrl(sHerf,"zhuanJieRenID");
+			var zhuanJieRenName = getParamFromUrl(sHerf,"zhuanJieRenName");
+			debugger;
+			var queuenum = getParamFromUrl(sHerf,"queuenum")
+			var id = getParamFromUrl(sHerf,"id");
+			debugger;
+			$.ajax({
+				type : "GET",
+				url : basePath+'custViewBaseInfoQueryAction!getBaseInfo.json?&id='+id,
+				cache: false, 
+				dataType: 'json',
+				async: false, 
+				success : function(response){
+					var aResutlt = response.baseInfo.data[0];	//客户基本信息
+					if (aResutlt != null && aResutlt != undefined && aResutlt != '') {
+						$("#kehuxingming").val(aResutlt.CUST_NAME);
+						$("#lianxidianhua").val(aResutlt.CONT_METH);
+					}
+				},
+				error:function(){
+					//loadStop();
+					//alert('数据初始化失败!!!!');
+				}
+			});
+			$.ajax({
+				type : "GET",
+				url : basePath+'custViewBaseInfoQueryAction!queryYingxiaoren.json',
+				cache: false, 
+				dataType: 'json',
+				async: false, 
+				success : function(response){
+					var aResutlts = response.data.data;
+					var yingxiaorenId = [];
+					var yingxiaorenName = [];
+					if (aResutlts != null && aResutlts != '') {
+						for (var i = 0; i < aResutlts.length; i++) {
+							yingxiaorenId[i] = aResutlts[i].ACCOUNT_NAME;
+							yingxiaorenName[i] = aResutlts[i].USER_NAME;
+						}
+					}
+					var li = '';
+					if (yingxiaorenId.length > 0) {
+						for (var k = 0; k < yingxiaorenId.length; k++) {
+							li += '<option value="'+yingxiaorenId[k]+','+yingxiaorenName[k]+'">'+yingxiaorenName[k]
+								+ '</option>'
+								;
+						}
+					}
+					$("#yingxiaoren").append(li);
+				},
+				error:function(){
+					//loadStop();
+					//alert('数据初始化失败!!!!');
+				}
+			});
+			
+			$("#gonghao").val(zhuanJieRenID);
+			$("#zhuanjieren").val(decodeURI(zhuanJieRenName));
+			
+			$("#liCai").bind("click",function(){
+				if($("#chanPin1").val()){
+					$("#chanPin1").remove();
+					$("#liCai").attr("class","yxcpMenu ymBg6");
+				}else{
+					var li = '<input id="chanPin1" value="01"/>';
+					$("#chanPinIds").append(li);
+					$("#liCai").attr("class","yxcpMenu ymBg6 ymSelected");
+				}
+			});
+			$("#jiJin").bind("click",function(){
+				if($("#chanPin2").val()){
+					$("#chanPin2").remove();
+					$("#jiJin").attr("class","yxcpMenu ymBg1");
+				}else{
+					var li = '<input id="chanPin2" value="02"/>';
+					$("#chanPinIds").append(li);
+					$("#jiJin").attr("class","yxcpMenu ymBg1 ymSelected");
+				}
+			});
+			$("#baoXian").bind("click",function(){
+				if($("#chanPin3").val()){
+					$("#chanPin3").remove();
+					$("#baoXian").attr("class","yxcpMenu ymBg6");
+				}else{
+					var li = '<input id="chanPin3" value="03"/>';
+					$("#chanPinIds").append(li);
+					$("#baoXian").attr("class","yxcpMenu ymBg6 ymSelected");
+				}
+			});
+			$("#guiJinShu").bind("click",function(){
+				if($("#chanPin4").val()){
+					$("#chanPin4").remove();
+					$("#guiJinShu").attr("class","yxcpMenu ymBg4");
+				}else{
+					var li = '<input id="chanPin4" value="04"/>';
+					$("#chanPinIds").append(li);
+					$("#guiJinShu").attr("class","yxcpMenu ymBg4 ymSelected");
+				}
+			});
+			$("#teSeCunKuan").bind("click",function(){
+				if($("#chanPin5").val()){
+					$("#chanPin5").remove();
+					$("#teSeCunKuan").attr("class","yxcpMenu ymBg3");
+				}else{
+					var li = '<input id="chanPin5" value="05"/>';
+					$("#chanPinIds").append(li);
+					$("#teSeCunKuan").attr("class","yxcpMenu ymBg3 ymSelected");
+				}
+			});
+			$("#daiKuan").bind("click",function(){
+				if($("#chanPin6").val()){
+					$("#chanPin6").remove();
+					$("#daiKuan").attr("class","yxcpMenu ymBg2");
+				}else{
+					var li = '<input id="chanPin6" value="06"/>';
+					$("#chanPinIds").append(li);
+					$("#daiKuan").attr("class","yxcpMenu ymBg2 ymSelected");
+				}
+			});
+			$("#guoZhai").bind("click",function(){
+				if($("#chanPin7").val()){
+					$("#chanPin7").remove();
+					$("#guoZhai").attr("class","yxcpMenu ymBg3");
+				}else{
+					var li = '<input id="chanPin7" value="07"/>';
+					$("#chanPinIds").append(li);
+					$("#guoZhai").attr("class","yxcpMenu ymBg3 ymSelected");
+				}
+			});
+			$("#dianZiYinHang").bind("click",function(){
+				if($("#chanPin8").val()){
+					$("#chanPin8").remove();
+					$("#dianZiYinHang").attr("class","yxcpMenu ymBg8");
+				}else{
+					var li = '<input id="chanPin8" value="08"/>';
+					$("#chanPinIds").append(li);
+					$("#dianZiYinHang").attr("class","yxcpMenu ymBg8 ymSelected");
+				}
+			});
+			$("#shouJiYinHang").bind("click",function(){
+				if($("#chanPin9").val()){
+					$("#chanPin9").remove();
+					$("#shouJiYinHang").attr("class","yxcpMenu ymBg4");
+				}else{
+					var li = '<input id="chanPin9" value="09"/>';
+					$("#chanPinIds").append(li);
+					$("#shouJiYinHang").attr("class","yxcpMenu ymBg4 ymSelected");
+				}
+			});
+			
+			
+			$("#submit").bind("click",function(){
+				debugger;
+				var kehuxingming = $("#kehuxingming").val();
+				var gonghao = $("#gonghao").val();
+				var zhuanjieren = $("#zhuanjieren").val();
+				var yingxiaoren = $("#yingxiaoren").val();
+				var lianxidianhua = $("#lianxidianhua").val();
+				var bz = $("#bz").val();
+				
+				var referralType = '';
+				$("#chanPinIds input").each(function(){
+					referralType = referralType + $(this).val() + ',';
+				});
+				var errMsg='';
+				if(kehuxingming == ""){
+					errMsg = errMsg + "客户姓名不能为空\n";
+				}
+				if(gonghao == ""){
+					errMsg = errMsg + "转介人工号不能为空\n";
+				}
+				if(zhuanjieren == ""){
+					errMsg = errMsg + "转介人不能为空\n";
+				}
+				if(yingxiaoren == ""){
+					errMsg = errMsg + "营销人不能为空\n";
+				}
+				if(referralType == ""){
+					errMsg = errMsg + "请选择意向产品\n";
+				}
+				if(lianxidianhua == ""){
+					errMsg = errMsg + "客户联系电话不能为空\n";
+				}
+				if(errMsg){
+					mesUtil.alert(errMsg);
+					return;
+				}
+				var custId = id.substring(0, id.length-1);
+				$.ajax({
+					type : "GET",
+					url : basePath+"zhuanJieAction!save.json?kehuxingming="+kehuxingming+"&cust_Id="+custId+"&gonghao="+gonghao+"&zhuanjieren="+zhuanjieren+"&yingxiaoren="+yingxiaoren+"&lianxidianhua="+lianxidianhua+"&bz="+bz+"&referralType="+referralType,
+					dataType: 'json',
+					async: false, 
+					success : function(response){
+						$("#kehuxingming").val('');
+						$("#gonghao").val('');
+						$("#zhuanjieren").val('');
+						$("#yingxiaoren").val('');
+						$("#lianxidianhua").val('');
+						$("#bz").val('');
+						mesUtil.alert("保存成功");
+						goPage('./keHuXinXiDaTang.html?zhuanJieRenID='+zhuanJieRenID+'&zhuanJieRenName='+zhuanJieRenName+'&id='+id+'&queuenum='+queuenum);
+					},
+					error:function(){
+						mesUtil.alert("保存失败");
+						//loadStop();
+						//alert('数据初始化失败!!!!');
+					}
+				});
+				
+			});
+			
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('./keHuXinXiDaTang.html?zhuanJieRenID='+zhuanJieRenID+'&zhuanJieRenName='+zhuanJieRenName+'&id='+id+'&queuenum='+queuenum);
+			});
+		});
+	</script>
+	
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-388;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(354);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+			<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>创建转介线索</span>
+		</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"  id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	
+	<div class="botm" id="botm">   
+	  <div class="btmRight2" id="btmRight2">
+	  <h1>转介信息<a href="#"  id="submit" class="bt01">确定</a>
+				</h1>
+	   <div class="xinxi">
+					<p>客户姓名：</p>
+					<input name="kehuxingming" id="kehuxingming" type="text" readOnly />
+				</div>
+	     <div class="xinxi" hidden="true">
+					<p>
+						<span>*</span>转介人工号：</p>
+					<input name="gonghao" id="gonghao" type="text" />
+				</div>
+	     <div class="xinxi" hidden="true">
+					<p>客户号：</p>
+					<input name="custId" id=""custId"" type="text" />
+				</div>
+	     <div class="xinxi">
+					<p>转介人：</p>
+					<input name="zhuanjieren" id="zhuanjieren" type="text" readOnly />
+				</div>
+	      <div class="xinxi">
+					<p>营销人：</p>
+						<select id="yingxiaoren" style="width:405px"></select>
+					<!-- 
+					<div class="xinxibt">王石（00001）</div>
+					<button class="xinxibt2">选择被销售人</button>
+					 -->
+				</div>
+	      <div class="xinxi">
+					<p>客户联系电话：</p>
+					<input name="lianxidianhua" id="lianxidianhua" type="text" />
+				</div>
+	      <div class="xinxi">
+					<p>备注：</p>
+					<textarea class="xinxitxtarea" style="height:200px; width:403px" name="bz" id="bz" cols="" rows=""></textarea>
+				</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>意向产品</h1>
+	       <div class="chanpin">
+	          <a href="#" id="liCai" class="yxcpMenu ymBg6"><div class="ymIco6"></div><span>理财</span></a>
+	          <a href="#" id="jiJin" class="yxcpMenu ymBg1"><div class="ymIco1"></div><span>基金</span></a>
+	          <a href="#" id="baoXian" class="yxcpMenu ymBg6"><div class="ymIco14"></div><span>保险</span></a>
+	          <a href="#" id="guiJinShu" class="yxcpMenu ymBg4"><div class="ymIco4"></div><span>贵金属</span></a>
+	          <a href="#" id="teSeCunKuan" class="yxcpMenu ymBg3"><div class="ymIco3"></div><span>特色存款</span></a>
+	          <a href="#" id="daiKuan" class="yxcpMenu ymBg2"><div class="ymIco2"></div><span>贷款</span></a>
+	          <a href="#" id="guoZhai" class="yxcpMenu ymBg3"><div class="ymIco11"></div><span>国债</span></a>
+	          <a href="#" id="dianZiYinHang" class="yxcpMenu ymBg8"><div class="ymIco8"></div><span>电子银行</span></a>
+	          <a href="#" id="shouJiYinHang" class="yxcpMenu ymBg4"><div class="ymIco12"></div><span>手机银行</span></a>
+	       </div>
+	  </div>
+	  
+	  <div id="chanPinIds" hidden="true"></div>
+	</div>
+	
+</body>
+</html>

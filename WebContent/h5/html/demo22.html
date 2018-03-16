@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>理财工具</span>
+				</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>贷款计算器</h1>
+	   <div class="xinxi">
+					<p>贷款类型：</p>
+					<select id="sl1">
+						<option>楼宇按揭</option>
+						<option>购车按揭</option>
+					</select>
+				</div>
+	     <div class="xinxi">
+					<p>贷款金额：</p>
+					<input name="" type="text" />元
+				</div>
+	    <div class="xinxi">
+					<p>贷款期限：</p>					
+					<select id="sl2">
+						<option>3</option>
+						<option>6</option>
+						<option>12</option>
+						<option>24</option>
+						<option>36</option>
+					</select>月
+				</div>
+	      <div class="xinxi">
+					<p>基准年利率利率：</p>
+					<input name="" type="text" />%
+				</div>
+	      <div class="xinxi">
+					<p>浮动比例：</p>
+					<input name="" type="text" />%
+				</div>
+	      <div class="xinxi">
+					<p>执行年利率：</p>
+					<input name="" type="text" />%
+				</div>
+	   <div class="xinxi">
+					<p>还款方式：</p>
+					<select id="sl1">
+						<option>等额本金</option>
+						<option>等额本息</option>
+					</select>
+				</div>
+	      <div class="xinxi">
+					<p>执行年利率：</p>
+					<input name="" type="text" />%
+				</div>
+	      <div class="xinxi">
+					<p>偿还频率：</p>
+					<input name="rag1" type="radio" id="ra1"/><label for="ra1">每月</label>
+					<input name="rag1" type="radio" id="ra2"/><label for="ra2">每季</label>
+					<input name="rag1" type="radio" id="ra3"/><label for="ra3">一次性</label>
+				</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算"/>
+			<input id="bt2" type="button" value="重新计算"/>
+		</div>
+	  <h1>计算结果</h1>
+	  <table class="tbRate">
+		  	<tr>
+			  	<th>期次</th>
+			  	<th>还款时间</th>
+			  	<th class="am">偿还利息</th>
+			  	<th class="am">偿还本金</th>
+			  	<th class="am">偿还本息</th>
+			  	<th class="am">剩余本金</th>
+		  	</tr>
+		  	<tr>
+		  		<td>1</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		  	<tr>
+		  		<td>2</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		  	<tr>
+		  		<td>3</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		  	<tr>
+		  		<td>4</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		  	<tr>
+		  		<td>5</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		  	<tr>
+		  		<td>6</td>
+		  		<td>2015-01-01</td>
+		  		<td class="am">24.00</td>
+		  		<td class="am">27.00</td>
+		  		<td class="am">38.00</td>
+		  		<td class="am">287494.00</td>
+		  	</tr>
+		 </table>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>理财工具</h1>
+	       <div class="jsqBox">
+	          <a href="demo08.html" class="jsqMenu jm1">存款利息计算器</a>
+	          <a href="demo08.html" class="jsqMenu jm2" >贷款计算器</a>
+	          <a href="demo08.html" class="jsqMenu jm3">基金转换计算器</a>
+	          <a href="demo08.html" class="jsqMenu jm4">预期收益计算器</a>
+	          <a href="demo08.html" class="jsqMenu jm5">外汇换算计算器</a>
+	          <a href="demo08.html" class="jsqMenu jm6">外币兑换计算器</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

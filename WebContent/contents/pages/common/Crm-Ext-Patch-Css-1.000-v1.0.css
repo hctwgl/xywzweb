@@ -1,0 +1,7 @@
+/**
+ 重写ext-all.css中类，去掉“!important”
+解决border布局下，自面板被遮罩后错位的情况
+*/
+.x-masked-relative {
+	position: absolute !important ;
+}

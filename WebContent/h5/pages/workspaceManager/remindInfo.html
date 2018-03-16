@@ -1,0 +1,136 @@
+<!-- 
+   功能描述：提醒信息
+   作者 ：wangwan1@yuchengtech.com
+   时间 ：2014-11-15
+   版本 ：v1.0.0
+ -->
+ <!DOCTYPE html>
+<html>
+<title>提醒信息</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="remindInfo.js"></script>
+<header>
+	<div class="top_header"> 
+	<h1>提醒信息</h1></div>
+			<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			$.ui.animateHeaders  = false;
+			
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+                 document.addEventListener('deviceready', onDeviceready, false);
+            });
+			
+			
+			$.ui.ready(function() {
+				var customerQuery = PageBarFactory.get(config);
+				customerQuery.queryFun();
+				$("#searchCustButton").click(function(){
+					customerQuery.queryFun(basePath + 'MobileRemindInfoQueryAction.json?key='+$("#searchCustKey")[0].value);
+				});
+				$("#filterButton").click(function(){
+					customerQuery.queryFun();
+					setFilter();
+				});
+				//菜单初始化
+				$("#menuButton").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+				var remindTypeContent="";
+				$.ajax({//提醒信息类别
+					type : "GET",
+					url : basePath+'/lookup.json?name=XD000353',
+					cache: false, 
+					contentType: "application/json", 
+					success : function(response){
+						for(var i=0;i<response.JSON.length;i++){
+							if(i==0){
+								remindTypeContent=remindTypeContent+'<select id="selectContent1" name="sourceChannel">'
+									 + ' <option value="'+response.JSON[i].key+'">'+response.JSON[i].value+'</option>';
+							}else if(i==response.JSON.length-1){
+								remindTypeContent=remindTypeContent+' <option value="'+response.JSON[i].key+'">'+response.JSON[i].value+'</option></select>'
+							}else{
+								remindTypeContent=remindTypeContent+' <option value="'+response.JSON[i].key+'">'+response.JSON[i].value+'</option>'
+							}
+						}
+					}
+				});
+			});
+			function onDeviceready() {
+            	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+            	}
+                $.ui.launch();
+            }
+		</script>
+</header>
+<body>
+<div id="afui" class="ycskin">
+	<div  id="content">
+		<div id="remindInfoPanel" class="panel" data-header="headerui" data-footer='none'>
+		<header id="headerui">
+			<a id="menuButton" class="menuButton" style="float: left;"></a> 
+				<h1>信息提醒</h1>
+		</header>
+		<div class="toolsBar">
+			<div class="tbLeft">
+				<input id="searchCustKey"  type="text" class="txtSearch" placeholder="请输入客户名称查询…"/>
+				<a id="searchCustButton" class="btSearch icon-search" >搜索</a>
+			</div>
+			<div class="tbRight">
+				<a id="searchCustButton" class="txtBt icon-filter" onclick='setFilter(this)'>筛选</a>
+			</div>
+		</div>
+		<div>
+			<ul class="list" id="remindInfo_list">
+			</ul>
+		</div>				
+		</div>
+	</div>
+		<!-- 客户查询筛选面板 --->
+			<div class="filterPanel" style="heigth:800px">
+				<div class="arrow-up"></div>
+				<div class="formContent">
+					<div class="formCell">
+						<label>提醒类别：</label>
+						<div class="fcContent">
+							<select id='custLevel' multiple='multiple'  name='custLevel'>
+			          		<option value='1'>生日提醒</option>
+			          		<option value='2'>到期提醒</option>
+			          		<option value='3'>出账提醒</option>
+			          		</select>
+						</div>
+					</div>
+					<div class="fpToolsBar">
+						<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+						<a class="txtBt icon-checkmark" id="filterButton" >确定</a>
+					</div>
+				</div>
+			</div>				
+			<!--客户查询筛选面板 -->
+	</div>
+	<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+</body>
+</html>

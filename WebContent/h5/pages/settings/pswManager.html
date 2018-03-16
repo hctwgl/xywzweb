@@ -1,0 +1,91 @@
+<!-- 
+   功能描述：密码修改
+   作者 ：CHANGZH@YUCHENGTECH.COM
+   时间 ：20141105
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>客户关系管理系统</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8" src="pswManager.js"></script>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			//$.ui.slideSideMenu   = false;
+			$.ui.animateHeaders  = false;
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+                document.addEventListener('deviceready', onDeviceready, false);
+            });
+			$.ui.ready(function() {
+				$("#homePagebtn").click(function(){
+					mobileUitls.goPage(filePath+"homePage.html");
+				});
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+			});
+			function onDeviceready() {
+	        	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+	        	}
+	            $.ui.launch();
+	        }
+		</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<div id="content">
+				<div id="changePswPanel" title="修改密码" class="panel" data-footer="none">
+					<header>
+						 <div class="top_header">
+						 	<a id="menuBtn" class="menuButton"></a> 
+						 	<h1>修改密码</h1>
+						 </div>
+					 </header>
+					 <form id="changePsw" action="" method="get">
+						 <div class="toolsBar noSearch">
+							 <div class="tbLeft">
+							 	<div class="tabsMenu selected">修改密码</div>
+							 </div>
+							 <div class="tbRight">
+							 	<a class="txtBt icon-loop" onclick="javascript:resetPsw();">重置</a>
+							 	<a class="txtBt icon-checkmark" id="addCustomerVisit" onclick="javascript:updatePsw();">保存</a>
+							 </div>
+						 </div>
+						 <div class="formContent /*row2*/">
+						 	<div class="formCell"><label><span class="red">*</span>原密码：</label><div class="fcContent"><input name="oldPsw"  type="password" placeholder="原密码"/></div></div>
+						 	<div class="formCell"><label><span class="red">*</span>新密码：</label><div class="fcContent"><input name="newPsw" type="password" placeholder="新密码"/></div></div>
+						 	<div class="formCell"><label><span class="red">*</span>重复输入新密码：</label><div class="fcContent"><input name="repeatPsw" type="password" placeholder="重复输入新密码"/></div></div>
+						 </div>
+					 </form>
+ 				 </div>
+			</div>
+			<nav class="mainNav">
+				<div id="userInfo">
+					<div id="userPhoto"></div>
+					<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+				</div>
+				<ul class="list" id="appMenuList"></ul>
+			</nav>
+	</div>
+</body>
+</html>
+

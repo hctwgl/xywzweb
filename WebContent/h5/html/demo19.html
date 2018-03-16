@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-22).width((_cw-34)/2);
+		$("#btmLeft2").height(_ch-22).width((_cw-34)/2);
+		$(".tbRate").width((_cw-34)/2-20);
+		
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>存贷款利率</span>
+				</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2" id="btmRight2">
+	  <h1>人民币存款利率</h1>
+		  <table class="tbRate">
+		  	<tr>
+			  	<th></th>
+			  	<th>项目</th>
+			  	<th>城乡居民存款</th>
+		  	</tr>
+		  	<tr>
+			  	<td rowspan="6" class="tbrB">活期</td>
+			  	<td colspan="2">整存整取</td>
+		  	</tr>
+		  	<tr>
+			  	<td>三个月</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>半个月</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>一年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>二年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>三年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td rowspan="6" class="tbrB">定期</td>
+			  	<td colspan="2">零存整取、存本取息</td>
+		  	</tr>
+		  	<tr>
+			  	<td>一年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>三年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>五年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>三年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td>五年</td>
+			  	<td>2.80</td>
+		  	</tr>
+		  	<tr>
+			  	<td colspan="3" class="tbrR">存款息率发布日期：2015-02-23</td>
+		  	</tr>
+		  </table>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>人民币贷款利率</h1>
+		  <table class="tbRate">
+		  	<tr>
+			  	<th>项目</th>
+			  	<th>金融机构人民币贷款</th>
+		  	</tr>
+		  	<tr>
+			  	<td>短期贷款</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>六个月以内（含6个月）</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>六个月至一年（含1年）</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>中长期贷款</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>一至三年（含3年）</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>三至五年（含5年）</td>
+			  	<td>5.35</td>
+		  	</tr>
+		  	<tr>
+			  	<td>五年以上</td>
+			  	<td>7.55</td>
+		  	</tr>
+		  	<tr>
+			  	<td colspan="3" class="tbrR">贷款息率发布日期：2015-02-23</td>
+		  	</tr>
+		  </table>
+	  </div>
+	</div>
+</body>
+</html>

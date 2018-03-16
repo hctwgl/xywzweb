@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	<script type="text/javascript" src="../../pages/common/com.yucheng.hbcrm.panel.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-272;
+		$("#botm").height(_ch);
+		$("#btmLeft").height(_ch-24);
+		$("#btmLeft .btmLeftCon").height(_ch-100);
+		$("#btmRight").height(_ch-24).width(_cw-34).css("overflow","auto");
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('jijin.html');
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>基金详情</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#" id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a> <a
+					href="#"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+			</div>
+
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="botm" id="botm">
+		<div class="btmLeft" id="btmLeft">
+			<div class="Titltop">
+				<h1>易方达股票期权增强</h1>
+				<p>
+					<span></span><span></span><span></span><span></span><span></span>
+				</p>
+			</div>
+			<div class="btmLeftCon">
+				<p>基金代码：00001</p>
+				<p>风险等级：中等风险</p>
+				<p>成立日期：1001-12-18</p>
+				<p>基金规模：8104251684</p>
+				<p>基金公司：易方达基金</p>
+				<p>基金经理：李四</p>
+				<p>基金期间：开放期</p>
+				<p>净值日期：2013-09-30</p>
+				<p>
+					单位净值：<span>1.1342</span>
+				</p>
+				<p>
+					累计单位净值：<span>3.00</span>
+				</p>
+				<p>
+					济安评级：<span>3.2320元</span>
+				</p>
+				<p>
+					每万份收益：<span>320元</span>
+				</p>
+				<p>
+					7年收益率：<span>24.14%</span>
+				</p>
+				<p>基金代码：00001</p>
+				<p>风险等级：中等风险</p>
+				<p>成立日期：1001-12-18</p>
+				<p>基金规模：8104251684</p>
+				<p>基金公司：易方达基金</p>
+				<p>基金经理：李四</p>
+				<p>基金期间：开放期</p>
+				<p>净值日期：2013-09-30</p>
+				<p>
+					单位净值：<span>1.1342</span>
+				</p>
+				<p>
+					累计单位净值：<span>3.00</span>
+				</p>
+				<p>
+					济安评级：<span>3.2320元</span>
+				</p>
+				<p>
+					每万份收益：<span>320元</span>
+				</p>
+				<p>
+					7年收益率：<span>24.14%</span>
+				</p>
+			</div>
+		</div>
+		<div class="btmRight" id="btmRight">
+			<h1>基金回报率</h1>
+			<div class="huibaolv">
+				<ul class="hblTitle bg1">
+					<li class="hblTitlewth1">时间</li>
+					<li class="hblTitlewth2">回报率</li>
+					<li class="hblTitlewth3">排名</li>
+				</ul>
+				<ul class="hblTitle bg3">
+					<li class="hblTitlewth1">过去一个月</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg2">
+					<li class="hblTitlewth1">过去三个月</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg3">
+					<li class="hblTitlewth1">过去半年</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg2">
+					<li class="hblTitlewth1">今年以来</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg3">
+					<li class="hblTitlewth1">过去一年</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg2">
+					<li class="hblTitlewth1">过去两年</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+				<ul class="hblTitle bg3">
+					<li class="hblTitlewth1">成立以来</li>
+					<li class="hblTitlewth2">4.231%</li>
+					<li class="hblTitlewth3">34</li>
+				</ul>
+
+
+			</div>
+			<h1>基金净值趋势图</h1>
+			<div class="jzqushi">
+
+
+				<img src="../../themes/hbbank/images/qushitu.png" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

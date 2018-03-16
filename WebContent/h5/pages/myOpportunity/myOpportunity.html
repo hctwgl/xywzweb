@@ -1,0 +1,273 @@
+<!-- 
+   功能描述：我的商机
+   作者 ：zb
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>我的商机</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="myOpportunity.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../pages/common/com.yucheng.mobile.custChooseBar.js"></script>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			$.ui.animateHeaders  = false;
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			};
+			$(document).ready(function() {
+                //mesUtil.alert('document ready | ;platform='+crmApp.device.platform);
+                document.addEventListener('deviceready', onDeviceready, false);
+                //$.ui.launch();
+        	});
+			$.ui.ready(function() {
+				var myOpportunity = PageBarFactory.get(config);
+				myOpportunity.queryFun();
+				//var myOpportunity = $('#myOpportunityPanel').scrollBar(config);
+				//myOpportunity.scrollBar.queryFun();
+				$("#addMyOpportunity").click(function(){
+					addMyOpportunity();
+				});
+				$("#searchMyOpportunity").click(function(){
+					searchMyOpportunity();
+				});
+				$("#deleteMyOpportunitys").click(function(){
+					deleteMyOpportunitys();
+				});
+				$("#filterButton").click(function(){
+					//TODO 按实际拼装查询条件
+					myOpportunity.queryFun();
+					//myOpportunity.scrollBar.queryFun();
+					//关闭过滤窗口
+					setFilter();
+				});
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+			});
+			function onDeviceready() {
+            	//mesUtil.alert('device ready | ;platform='+crmApp.device.platform);
+            	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS'|| crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+            	}
+                $.ui.launch();
+            }
+		</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<div id="content">
+				<div id="myOpportunityPanel" class="panel" data-header="headerui" data-footer="none">
+					<header id="headerui">
+						<div class="top_header"> 
+							<a id="menuBtn" class="menuButton" style="float: left;"></a> 
+							<h1>我的商机</h1>
+						</div>
+					</header>
+					<div class="toolsBar">
+						<div class="tbLeft">
+							<input type="text" id="searchField" class="txtSearch" placeholder="请输入商机名称…"/>
+							<a class="btSearch icon-search" id="searchMyOpportunity">查询</a>
+						</div>
+						<div class="tbRight">
+							<a class="txtBt icon-filter" onclick="showPopWin('div_search');">筛选</a>
+							<a class="txtBt icon-plus" id="addMyOpportunity">新增</a>
+							<a class="txtBt icon-pencil" id="deleteMyOpportunitys">编辑</a>
+						</div>
+					</div>
+					<div>
+						<ul class="list" id="myOpportunity_list">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- popWin面板 --start -->
+		<div id="div_search" class="popWin" style="height:220px;/*可自定义width:xxxpx;*/">
+				<div class="toolsBar noSearch">
+					<div class="tbLeft">
+						<div class="tabsMenu selected">选择筛选条件</div>
+					</div>
+					<div class="tbRight">
+						<a class="txtBt icon-checkmark" onclick="javascript:searchMyOpportunity();">查询</a>
+						<a class="txtBt icon-close" onclick="javascript:closePopWin('div_search');">关闭</a>
+					</div>
+				</div>
+				<div class="formContent">
+					<div class="formCell">
+						<label>商机状态：</label>
+						<div class="fcContent">
+							<select id="selectOpporStat" multiple='multiple' name='opporStat'>
+								<option value='' selected="selected">全部</option>
+								<option value='0'>暂存</option>
+								<option value='1'>待分配</option>
+								<option value='2'>认领</option>
+								<option value='3'>待审批</option>
+								<option value='4'>执行中</option>
+								<option value='5'>退回</option>
+								<option value='6'>到期退回</option>
+								<option value='7'>失败关闭</option>
+								<option value='8'>成功关闭</option>
+							</select>
+						</div>
+					</div>
+					<div class="formCell">
+						<label>商机阶段：</label>
+						<div class="fcContent">
+							<select id="selectOpporStage" multiple='multiple' name='opporStage'>
+								<option value='' selected="selected">全部</option>
+								<option value='1'>了解商机</option>
+								<option value='2'>确认商机</option>
+								<option value='3'>方案论证</option>
+								<option value='4'>商务谈判</option>
+								<option value='5'>商机成交</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- popWin面板 --end -->
+			<!-- 筛选面板 --start -->
+			<div class="filterPanel">
+				<div class="arrow-up"></div>
+				<div class="formContent">
+					<div class="formCell">
+						<label>商机状态：</label>
+						<div class="fcContent">
+							<select id="selectOpporStat" multiple='multiple' name='opporStat'>
+								<option value=''>全部</option>
+								<option value='0'>暂存</option>
+								<option value='1'>待分配</option>
+								<option value='2'>认领</option>
+								<option value='3'>待审批</option>
+								<option value='4'>执行中</option>
+								<option value='5'>退回</option>
+								<option value='6'>到期退回</option>
+								<option value='7'>失败关闭</option>
+								<option value='8'>成功关闭</option>
+							</select>
+						</div>
+					</div>
+					<div class="formCell">
+						<label>商机阶段：</label>
+						<div class="fcContent">
+							<select id="selectOpporStage" multiple='multiple' name='opporStage'>
+								<option value=''>全部</option>
+								<option value='1'>了解商机</option>
+								<option value='2'>确认商机</option>
+								<option value='3'>方案论证</option>
+								<option value='4'>商务谈判</option>
+								<option value='5'>商机成交</option>
+							</select>
+						</div>
+					</div>
+					<!--
+					<div class="formCell" style="display:none;">
+						<label>商机来源：</label>
+						<div class="fcContent">
+							<select id="select1">
+								<option value='0'>手动创建</option>
+								<option value='1'>提醒创建</option>
+								<option value='2'>外部名单批量创建</option>
+								<option value='3'>内部名单批量创建</option>
+								<option value='4'>渠道(大堂)</option>
+								<option value='5'>渠道(柜员)</option>
+								<option value='6'>渠道(网银)</option>
+								<option value='7'>渠道(手机银行)</option>
+								<option value='8'>渠道(门户)</option>
+								<option value='9'>渠道(外呼)</option>
+								<option value='10'>渠道(新媒体)</option>
+								<option value='11'>渠道(CRM自动)</option>
+								<option value='12'>渠道(其他)</option>
+							</select>
+						</div>
+					</div>
+					<div class="formCell">
+						<label>商机类型：</label>
+						<div class="fcContent">
+							<select id="select1">
+								<option value='0'>资产业务</option>
+								<option value='1'>负债业务</option>
+								<option value='2'>中间业务</option>
+								<option value='3'>综合业务</option>
+							</select>
+						</div>
+					</div>
+					<div class="formCell">
+						<label>开始时间：</label>
+						<div class="fcContent">
+							<input name="text2" type="date">
+						</div>
+					</div>
+					<div class="formCell">
+						<label>有效期：</label>
+						<div class="fcContent">
+							<input name="text2" type="date">
+						</div>
+					</div>
+					 -->
+					<!-- 
+					<div class="formCell">
+						<label>结束时间：</label>
+						<div class="fcContent">
+							<input name="text2" type="date">
+						</div>
+					</div>
+					<div class="formCell">
+						<label>客户编号：</label>
+						<div class="fcContent">
+							<input name="text4" type="text" placeholder="客户名称">
+						</div>
+					</div>
+					<div class="formCell">
+						<label>客户名称：</label>
+						<div class="fcContent">
+							<input name="text4" type="text" placeholder="客户名称">
+						</div>
+					</div>
+					<div class="formCell">
+						<label>产品编号：</label>
+						<div class="fcContent">
+							<input name="text4" type="text" placeholder="客户名称">
+						</div>
+					</div>
+					<div class="formCell">
+						<label>产品名称：</label>
+						<div class="fcContent">
+							<input name="text4" type="text" placeholder="客户姓名">
+						</div>
+					</div>
+					 -->
+					<div class="fpToolsBar">
+						<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+						<a class="txtBt icon-checkmark" id="filterButton" onclick='searchMyOpportunity()'>确定</a>
+					</div>
+				</div>
+			</div>
+			<!-- 筛选面板 --end -->
+			<nav class="mainNav">
+				<div id="userInfo">
+					<div id="userPhoto"></div>
+					<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+				</div>
+				<ul class="list" id="appMenuList"></ul>
+			</nav>
+		</div>
+	</body>
+</html>
+

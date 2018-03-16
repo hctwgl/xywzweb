@@ -1,0 +1,47 @@
+/*
+create date：2014-11-23 23:06
+created by：YuchengTech-UedTeam-WY
+file name：login.css
+remark：登录样式
+last update：2014-11-24 01:39
+*/
+
+/*01-全局样式 sta*/
+html,body {height:100%;overflow: hidden;}
+body,td,th {font-size: 12px;color: #222;outline: none;}
+* {font-family: 微软雅黑, 宋体;outline:none;}
+body {margin: 0;padding: 0;background: url(images/login1/pic_03.png) center #1485bd no-repeat;}
+div,ul,li,form,p {margin: 0;padding: 0;	list-style: none;border: none;}
+img {border: none;}
+input,textarea {resize: none;}
+a:link,a:visited {font-size: 12px;color: #222;text-decoration: none;outline: none;}
+a:hover {color: #266a0d;text-decoration: none;}
+a:active {color: #222;}
+.cl {clear: both;width: 0;height: 0;}
+/*01-全局样式 end*/
+
+/*02-login sta*/
+#afui{background-color: transparent;}
+#afui.login #content{background-color: transparent;background-image: none;}
+#loginPanel{padding: 0!important;}
+#loginBottomBg{height: 180px;position: absolute;z-index: 1;bottom: 0;width: 100%;background: url(images/login1/pic_02.png) left top repeat-x; }
+#logo{height: 63px; background: url(images/login1/pic_01.png) top center no-repeat;font-size:35px; text-shadow:0px 0px 3px #333333;text-align:center;color: #fff;}
+#loginForm{width: 350px;height:380px;position: absolute;z-index: 3;left:50%;top:50%; margin-left: -175px;margin-top: -190px; }
+.lcRow{height: 50px;margin-top:25px;}
+.lcrSmaHt{height:30px; }
+.lcrText,.lcrInput{float: left;width: 79px;height: 44px;}
+.lcrText{line-height: 44px;background-color: #e8f2f7;border-right: 1px #bfd8e5 solid;font-size:20px; color:#475b66; text-shadow:0px 1px 0px #ffffff;text-align: center;}
+.lcrInput{width: 265px;}
+#afui input.txtLogin{height: 48px;width:352px;padding-left:45px; border: 0px;font-size:20px;margin-top: 0;margin-bottom: 0; color: #fff;text-shadow:0px 1px 2px #107495;}
+#afui input[type="text"]#txtusername{background: url(images/login1/pic_04.png) left center no-repeat;}
+#afui input[type="password"]#txtpassword{background: url(images/login1/pic_05.png) left center no-repeat;}
+#afui .btLogin:link,#afui .btLogin:visited {height:48px;line-height:48px; margin:0;padding:0; border-radius:5px;border:none;font-weight:normal; font-size: 25px;color: #436b78;text-decoration: none;text-shadow:0px 1px 0px #ffffff;text-align: center;background-color: #eaf9fe;border-bottom: 3px #c6e5ef solid;-moz-box-shadow:0px 1px 3px #287ca6; -webkit-box-shadow:0px 1px 3px #287ca6; box-shadow:0px 1px 3px #287ca6;}
+#afui .btLogin:hover,#afui .btLogin:active {color: #325a67;text-decoration: none;background-color: #f8fcfe;border-bottom: 3px #c4dee7 solid;}
+.cbLogin{float:left;cursor:pointer; height: 30px;margin-right:30px; line-height: 30px;padding-left: 40px;background: url(images/login1/pic_06.png) left center no-repeat;color: #e2ebf0;font-size: 18px;}
+.cblIsChecked{background: url(images/login1/pic_06_ov.png) left center no-repeat;}
+
+#afui input[type="text"]#txtusername::-webkit-input-placeholder,#afui input[type="password"]#txtpassword::-webkit-input-placeholder {color:#fff;}
+#afui input[type="text"]#txtusername:-moz-placeholder,#afui input[type="password"]#txtpassword:-moz-placeholder {color:#fff;}
+#afui input[type="text"]#txtusername::-moz-placeholder,#afui input[type="password"]#txtpassword::-moz-placeholder {color:#fff;}
+#afui input[type="text"]#txtusername:-ms-input-placeholder,#afui input[type="password"]#txtpassword:-ms-input-placeholder {color:#fff;}
+/*02-login end*/

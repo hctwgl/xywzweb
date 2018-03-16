@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>XXXX系统</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="./themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="./themes/hbbank/css/swiper.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="./resource/jquery.min.js"></script>
+	<script type="text/javascript" src="./resource/swiper/swiper.js"></script>
+	<script type="text/javascript" src="./pages/common/common.js"></script>
+	<!-- 
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="./pages/common/com.yucheng.mobile.cordova.js"></script>
+	 -->
+	<script type="text/javascript" src="./pages/common/com.yucheng.mobile.dbUtils.js"></script>	 
+	<script type="text/javascript" src="./pages/common/com.yucheng.mobile.cameraUtil.js"></script>
+	<script type="text/javascript" src="./pages/common/com.yucheng.mobile.mapUtils.js"></script>
+	<script type="text/javascript" src="./pages/common/com.yucheng.hbcrm.calDistance.js"></script>
+	<script type="text/javascript">
+		/*
+	   	* centerLatitude（中心点维度）
+	   	* centerLongitude（中心点经度）
+	   	* setDistance（设定的距离）
+	   	* calDistance（计算的距离）
+	   	* networkState（网络状态）
+	   	*/
+	   	var centerLatitude;
+	   	var centerLongitude;
+	   	var setDistance;
+	   	var calDistance;
+	   	var networkState;
+	    
+		/*
+		$(function(){
+			setUI();
+			/*
+			* 判断网络状态
+			
+			judNetworkState();
+		});
+		*/
+		//OC回调获取token
+		function getToken(token) {
+		    
+		
+			if(token!="" && token != null && token  != undefined && token  !='' )
+   			{
+				crmToken=token;
+   				mobileApp.setCrmToken(token);
+   				
+   			}  		
+	
+		};
+		$(document).ready(function() {
+			$("#synBt").hide();
+			if(!devModel){ 
+            	document.addEventListener('deviceready', onDeviceready, false);
+			}else
+				setUI();
+			
+
+			
+        });
+           
+        
+        function onDeviceready() {
+//        	  var mes = getEnterForeground();//此处获取了OC传过来的值，后续逻辑自行写方法实现
+//       	  alert(mes);
+//       	  var tiken = getSiPadToken();//此处获取了OC传过来的值，后续逻辑自行写方法实现
+//      	  alert(tiken);
+  
+			judNetworkState();
+			
+
+        }
+		
+		
+		var judNetworkState = function(){
+			networkState = navigator.connection.type;
+
+			if(networkState != "cellular"){
+				mesUtil.alert("请使用蜂窝网络，谢谢！");
+				return;
+			}
+			setUI();
+		};
+		function setUI(){
+
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#synBt").show();
+			}
+			
+			load_menu();
+			
+			//实际开发过程中，请自行实现UI逻辑
+			$("#loginBt").click(function(){
+				//var authUser = $._APP.getUserInfo();
+				//if(authUser.userId){
+				if(isOnline){
+					mesUtil.alert("请先退出登陆！");
+					return;
+				}
+				else
+				{
+					$("#lgMask").show();
+					$("#lgBox").show();
+					}
+			
+				 getCoordinate_y();
+			});
+			$("#synBt").click(function(){
+				 $("#synBt").attr("disabled",true);
+		         UPDATE_PIC();
+			});
+			
+			$("#btLoginSub").click(function(){
+
+				loginFun();
+			});
+			$("#lgBox .lgClose").click(function(){
+				$("#lgMask").hide();
+				$("#lgBox").hide();
+			});
+			$("#lgBox .lgSetting").click(function(){
+				showPop();
+			});
+		};
+		
+		function load_menu(){
+			var li = {};
+			for (var i = 0; i < 5; i++) {
+				li[i] = '<div class="swiper-slide"> '
+					+ ' <div class="swiper-slide" onclick="goPage(\'wwwww\')"> '
+					+ ' <div class="imMenu qqqqq"> '
+					+ ' <div class="immIco eeeee"></div> '
+					+ ' <div class="immText">fffff</div> '
+					+ ' </div>'
+					+ ' </div>'
+					+ ' </div> '
+					;
+				swiper.appendSlide(li[i],'swiper-slide','div');
+			/*			
+			//初始化菜单			
+						$.ajax({
+							type : "GET",
+							url : basePath + 'menuQueryAction.json',
+							cache : false,
+							// async: false,
+							dataType : "json",
+							success : function(response) {
+								$("#swiper_sy").text('');
+								var aResults = response.json.data;
+								var li = {};
+								for (var i = 0; i < aResults.length; i++) {
+									li[i] = '<div class="swiper-slide"> '
+										+ ' <div class="swiper-slide" onclick="goPage(\''+aResults[i].ACTION+'\')"> '
+										+ ' <div class="imMenu '+aResults[i].TIP+'"> '
+										+ ' <div class="immIco '+aResults[i].ICON+'"></div> '
+										+ ' <div class="immText">'+aResults[i].NAME+'</div> '
+										+ ' </div>'
+										+ ' </div>'
+										+ ' </div> '
+										;
+									swiper.appendSlide(li[i],'swiper-slide','div');
+								}
+								
+							},
+							error : function() {
+								mesUtil.alert("菜单初始化错误");
+							}
+						});
+				*/
+		};
+		
+		function refresh(obj){
+			obj.src = basePath+"mobile/imageServlet?"+Math.random();
+		}
+		function sendCode(){
+			$("#sendCode").attr("disabled",true);
+			var userName = $("#userName").val();
+    		if(userName == ""){
+    			mesUtil.alert("用户名不能为空");
+    			$("#sendCode").attr("disabled",false); 
+    			return false;
+    		}
+    		
+    		$.ajax({
+				type : "GET",
+				url : basePath + 'checkOnlineAction!checkUser.json',
+				cache : false,
+				data: {"userName":$("#userName").val()},
+				dataType : "json",
+				success : function(response) {
+					var msg = response.msg;
+					var hasUser = response.hasUser;
+					if(hasUser == "1"){//客户存在
+	    				time(document.getElementById("sendCode"));
+					}else{
+						$("#sendCode").attr("disabled",false); 
+					}
+					mesUtil.alert(msg);
+				},
+				error : function() {
+					mesUtil.alert("验证码发送失败");
+					$("#sendCode").attr("disabled",false); 
+					return;
+				}
+			});
+		}
+		//验证码按钮60秒允许点一次
+		var secnum = 60;
+		var wait = secnum;
+		var timeout;
+		function time(o) {
+		    if (wait == 0) {
+		    	clearTimeout(timeout);
+		        o.removeAttribute("disabled");           
+		        o.value="发送验证码";
+		        wait = secnum;
+		    } else {
+		        o.setAttribute("disabled", true);
+		        o.value="再次发送(" + wait + ")";
+		        wait--;
+		        timeout = setTimeout(function() {
+		            time(o);
+		        }, 1000);
+		    }
+		}
+		
+		var user = {};
+    	
+		
+		//修改访问IP地址
+		function showPop(){			
+			layer.confirm('<input style="width:400px; height:50px; border:none; font-size:20px; "  id="crm_server_path" type="text" value="'+basePath+'"/>',
+			{
+			title:'服务器地址(重启软件后生效)'		    
+			},
+			function(index){
+			    //do something
+			var serverPath = $("#crm_server_path").val();
+	        			updateServerPath(serverPath);
+			    layer.close(index);
+			});			
+		}		
+
+		function updateServerPath(path) {
+			var usql = "update ADMIN_AUTH_CFG set SERVER_PATH='"+path+"'";
+   			execute(crmApp,usql,function(){
+   				//服务器地址保存到localStorage
+   				basePath = path;
+   				mobileApp.setServerPath(path);
+   				$("#lgBox").hide()
+   			});
+		}
+		
+ 		/**
+         * 校验用户名密码
+         * @returns {Boolean}
+         */
+		function valid(){
+        	var userName = $("#userName").val();
+    		var userPwd = $("#password").val();
+    		if(userName == ""){
+    			mesUtil.alert("用户名不能为空");
+    			return false;
+    		}
+    		if(userPwd == ""){
+    			mesUtil.alert("短信验证码不能为空");
+    			return false;
+    		}
+    		user.j_username = jiaMi(userName);
+       		user.j_password = jiaMi(userPwd);
+    		user.deviceId   = "ipad";
+    
+			
+    		user.token = jiaMi(crmToken);
+    		return true;
+         }
+         
+   
+         
+    /**
+     * 登录方法
+     */
+   	function loginFun(){
+	/*
+		if(!devModel && networkState != "3g"){//4g，请改为 4g
+			mesUtil.alert("请改为3g网络后登录，谢谢！");
+			return false;
+		}
+	*/
+		if(valid()) {
+			if(!devModel){
+				var loading = layer.msg('正在登录...', {icon: 16});
+				   $("#btLoginSub").attr("disabled",true);
+				//验证位置		
+				$.ajax({
+					type : "GET",
+					url : basePath + 'mapQueryAction!mapprepare.json',
+					cache : false,
+					data: {"userName":jiaMi($("#userName").val()),"crmToken":jiaMi(crmToken)},
+					dataType : "json",
+					success : function(response) {
+						var aResults = response.json.data;
+						var aResults_j = response.json_j.data;
+ 
+						//用户被锁定或无此用户
+						if(aResults.length == 0 ){
+							mesUtil.alert("登陆失败,用户名或密码输入错误");
+							layer.close(loading);
+							   $("#btLoginSub").attr("disabled",false);
+							return;
+							
+						}
+						//用户首次登陆
+						if(aResults_j.length == 0){
+							
+							getCoordinate_sc($("#userName").val());
+			
+						}
+						else{
+						   	 centerLongitude = aResults_j[0].X*1;
+						   	 centerLatitude = aResults_j[0].Y*1;
+						   	 setDistance = aResults_j[0].MAP_COORDINATE*1;
+						 	getCoordinate();
+					
+						}
+				
+					 	
+					},
+					error : function() {
+						mesUtil.alert("登陆失败");
+						layer.close(loading);
+						   $("#btLoginSub").attr("disabled",false);
+						return;
+					}
+				});
+			}else{
+       			loginFn_();
+			}
+				
+		}
+     }
+
+   	var loginFn_ = function(){
+
+   		var loading = layer.msg('正在登录...', {icon: 16});
+   		
+   		$.ajax({
+	    	type : "POST",
+	  		url : basePath +'j_spring_security_check',
+			data : user,
+	 		cache: false,
+	   		dataType: "json",
+	   		success : function(response){
+	   			if(crmToken!="" && crmToken != null && crmToken  != undefined && crmToken  != '' )
+	   			{
+	   				
+	   				record_token();
+	   				
+	   			}
+	   			record_login(); 
+	   			getOrgId(); 		
+	   			layer.close(loading);	   			
+   				if (response.status == '00') {
+   					user.isOffline = "0";//0表示在线
+		     		mobileApp.setUserInfo(response.datas,user.isOffline);
+		     		$("#lgMask").hide();
+					$("#lgBox").hide();		
+					$("#synBt").show();
+					load_menu();
+					isOnline = true;
+					 $("#btLoginSub").attr("disabled",false);
+					 $("#password").val("");
+				} else {
+					mesUtil.alert(response.errors);
+					layer.close(loading);
+				$("#btLoginSub").attr("disabled",false);
+		     	}
+  			},
+       		error:function(a,b,c){
+       			layer.close(loading);
+       			$("#btLoginSub").attr("disabled",false);
+       		}
+         });
+   
+   	};
+	/**
+   	* 获取和保存token
+   	*/
+	function record_token(){
+			$.ajax({
+   				type : "GET",
+   				url : basePath + 'recordTokenaction!save.json',
+   				cache : false,
+   				data: {"crmToken":crmToken},
+   				dataType : "json",
+   				success : function(response) {
+   	 
+   				},
+   				error : function() {
+   		
+   				}
+   			});
+	};
+
+	/**
+   	* 获取和保存token
+   	*/
+	function record_login(){
+			$.ajax({
+   				type : "GET",
+   				url : basePath + 'recordLoginAction!save.json',
+   				cache : false,
+   				data: user,
+   				dataType : "json",
+   				success : function(response) {
+   	 
+   				},
+   				error : function() {
+   		
+   				}
+   			});
+	};
+
+	/**
+   	* 获取和保存上级机构
+   	*/
+	function getOrgId(){
+		$.ajax({
+				type : "GET",
+				url : basePath + 'checkOnlineAction!getUpOrgId.json',
+				cache : false,
+				data: user,
+				dataType : "json",
+				success : function(response) {
+					var upOrgId=response.upOrgId;
+					var usql = "update PARAMETER set ORG='"+upOrgId+"' ";
+					execute(crmApp,usql,function(){
+						belong_org=upOrgId;
+						mobileApp.setBelongOrg(upOrgId);
+					});	
+				},
+				error : function() {
+		
+				}
+			});
+	};
+   	
+   	/**
+   	* 首次登陆获取经纬度
+   	*/
+   	var getCoordinate_sc = function(userName){
+   		mapUtils.getPosition(crmApp,function(position){
+   			var latitude = position.coords.latitude;
+   			var longitude = position.coords.longitude;
+   			
+   		 centerLongitude = position.coords.longitude;
+	   	 centerLatitude = position.coords.latitude;
+   			
+   			$.ajax({
+   				type : "GET",
+   				url : basePath + 'mapFirstAction!save.json',
+   				cache : false,
+   				data: {"userName":jiaMi(userName),"latitude":latitude,"longitude":longitude,"crmToken":jiaMi('910445e93f6f6e135ef4a351c85056b7741a28f6b01bf5a38d7aca27825f35fb')},
+   				dataType : "json",
+   				success : function(response) {
+   					var aResults = response.json; 
+			   	 setDistance = aResults*1;
+   		   		calculateDistance(latitude,longitude);
+  		   			if(crmApp.device.platform != 'IOS' && crmApp.device.platform != 'iOS'){
+  		   				baidulocation.stop();
+  		   			}
+   				},
+   				error : function() {
+   					mesUtil.alert("登陆失败");
+   				   $("#btLoginSub").attr("disabled",false);
+   					return;
+   				}
+   			});
+   			
+
+   			
+
+   	
+   		},function(err){
+   			mesUtil.alert("请先打开定位服务！");//+ err.code +"\n" + err.message
+   		   $("#btLoginSub").attr("disabled",false);
+   			if(crmApp.device.platform != 'IOS' && crmApp.device.platform != 'iOS'){
+   				baidulocation.stop();
+   		
+   			}
+   		});
+   	};  
+   	
+   	/**
+   	* 获取经纬度
+   	*/
+   	var getCoordinate = function(){
+   		mapUtils.getPosition(crmApp,function(position){
+   			var latitude = position.coords.latitude;
+   			var longitude = position.coords.longitude;
+   			//("经度>>"+longitude+"<<维度>>"+latitude);
+//   			mesUtil.alert("维度>>"+latitude+"<<经度>>"+longitude);
+   			calculateDistance(latitude,longitude);
+   			if(crmApp.device.platform != 'IOS' && crmApp.device.platform != 'iOS'){
+   				baidulocation.stop();
+   			}
+   		},function(err){
+   			mesUtil.alert("请先打开定位服务！");//+ err.code +"\n" + err.message
+   		   $("#btLoginSub").attr("disabled",false);
+   			if(crmApp.device.platform != 'IOS' && crmApp.device.platform != 'iOS'){
+   				baidulocation.stop();
+   		
+   			}
+   		});
+   	};  
+   	  	
+   	
+   	
+   	/**
+   	* 定位开关
+   	*/
+   	var getCoordinate_y = function(){
+   		mapUtils.getPosition(crmApp,function(position){
+   			var latitude = position.coords.latitude;
+   			var longitude = position.coords.longitude;
+   			user.centerLongitude=longitude;//经度
+			user.centerLatitude=latitude//纬度
+   			
+   		},function(err){
+   			mesUtil.alert("请先打开定位服务！");//+ err.code +"\n" + err.message
+   			$("#lgMask").hide();
+			$("#lgBox").hide();
+   		});
+   	};  
+   	
+   	var calculateDistance = function(latitude,longitude){
+   		calDistance = getFlatternDistance(latitude,longitude,centerLatitude,centerLongitude);
+//		mesUtil.alert("centerLatitude>>>"+centerLatitude);
+//		mesUtil.alert("centerLongitude>>>"+centerLongitude);
+//		R=parseFloat(calDistance) - parseFloat(setDistance);
+//		R1=calDistance*1-setDistance;
+//		mesUtil.alert("R>>"+R+"<<R1>>"+R1);
+   		if(parseFloat(calDistance) > parseFloat(setDistance)){
+   			mesUtil.alert("您已超出范围！");
+   		   $("#btLoginSub").attr("disabled",false);
+   			return;
+   			
+   		}
+   		else{
+   			loginFn_();
+   		}
+   	};
+   	var UPDATE_PIC = function(){
+
+//  		var loading = layer.load('正在更新...');
+//      var loading = layer.msg('正在更新...', {icon:16,time: 20000000});
+var loading_update = layer.load(1, {shade: [0.5,'#000000']}); //0.1透明度的白色背景
+
+   		var syncTime = ""; 
+   		var recordIds = "";
+   		var dataList_ = [];
+   		//获取手机数据库，最后更新时间
+   		var sql = "select max(UPDATE_DATE) UPDATE_DATE from OCRM_F_PD_PICLIB_MAINTENANCE";
+   		query(crmApp,sql,function(res){
+   			var maxData = res.rows;
+   			if(maxData != null && maxData.length > 0){//有数据
+   				syncTime = maxData.item(0).UPDATE_DATE;
+   			}
+   			//获取更新未成功的数据
+   			var sql_ = "select RECORD_ID from OCRM_F_PD_PICLIB_MAINTENANCE where ISSUCSYNC=0 and STATUS=1";
+   			query(crmApp,sql_,function(res_){
+   				var data_ = res_.rows;
+   				if(data_ != null && data_.length > 0){//有数据
+   					for(var i = 0; i < data_.length; i++){
+//   						alert(data.item(i).RECORD_ID);
+   						recordIds += data_.item(i).RECORD_ID + ",";
+   					}
+   					recordIds = recordIds.substring(0,recordIds.length-1);
+   				}
+   				//传到后台获取需要更新的数据
+   	   			$.ajax({
+   					type : "GET",
+   					url : basePath+'proSYNCAction.json',
+   					cache: false, 
+   					data: {"syncTime":syncTime,"recordIds":recordIds},
+   					dataType : "json",
+   					success : function(response) {
+   						//获取数据，先下载图片；如果下载不成功那么更新标识
+   						dataList_ = response.json.data;
+   						if(dataList_ == null || dataList_ ==""){
+   							layer.closeAll();
+   							mesUtil.alert('无数据更新！');
+   						 $("#synBt").attr("disabled",false);
+   							return; 
+   						}
+   						
+   						saveLocalPro(dataList_);
+ 
+   						
+   					},
+   					error:function(response) {
+   						layer.closeAll();
+   						mesUtil.alert('请先登录，谢谢！');
+   					 $("#synBt").attr("disabled",false);
+   					return; 
+   					}
+   				});
+   			});
+   		});
+   		
+   	};
+   	var saveLocalPro = function(dataList_){
+//   		var loading = layer.msg('正在登录...', {icon: 16});
+   		var recordIds = "";
+   		for(var i = 0; i < dataList_.length; i++){
+   			var d = dataList_[i];
+   			recordIds += d.RECORD_ID+",";
+   		}
+   		//去掉最后一个,
+   		recordIds = recordIds.substring(0,recordIds.length-1);
+   		//先删一遍数组数据
+   		var dsql = "delete from OCRM_F_PD_PICLIB_MAINTENANCE where RECORD_ID in ("+recordIds+")";
+   		execute(crmApp,dsql,function(){
+
+   			    
+				
+   		});
+   		
+			//开始新增
+			for(var i = 0; i < dataList_.length; i++){
+				var d = dataList_[i];
+				var isql = "insert into OCRM_F_PD_PICLIB_MAINTENANCE(RECORD_ID,PRODUCT_ID,PRODUCT_NAME,START_TIME,END_TIME,";
+				isql += " STATUS,PIC_ADDR,ACCOUNT_NAME,ACCOUNT_DATE,PIC_NAME,";
+				isql += "UPDATE_DATE,ISSUCSYNC,TYPE,PRODUCT_TYPE,PRODUCT_SHOW,CONTACT_ID)";
+				isql += " values('"+d.RECORD_ID+"','"+d.PRODUCT_ID+"','"+d.PRODUCT_NAME+"','"+d.START_TIME+"','"+d.END_TIME+"',";
+				isql += " '"+d.STATUS+"','"+d.PIC_ADDR+"','"+d.ACCOUNT_NAME+"','"+d.ACCOUNT_DATE+"','"+d.PIC_NAME+"',";
+				isql += "datetime('"+d.UPDATE_DATE+"'),'0','"+d.TYPE+"','"+d.PRODUCT_TYPE+"','"+d.PRODUCT_SHOW+"','"+d.CONTACT_ID+"')";
+				execute(crmApp,isql,function(res){
+			
+				});
+				if(i == dataList_.length -1){//最后一条时，开始下载图片
+					goDown(dataList_);
+				}
+			}
+		
+		  	
+   	};
+   	/**
+   	* 下载：更新PIC_ADDR、ISSUCSYNC=1
+   	*/
+   	var goDown = function(dataList_){
+		if(dataList_ == null && dataList_.length == 0){
+			return;
+		}
+   		var saveUrl = "";
+   		if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS'){//IOS系统
+   			var temp_ = ""+cordova.file.dataDirectory;
+   			saveUrl = temp_.split("/Library/")[0]+"/Documents/";
+   		}else{
+   			var temp_ = ""+cordova.file.dataDirectory;
+   			var t = temp_.split("/data/");
+   			var s_ = t[1];
+   			s_ = s_.replace("data/","");
+   			saveUrl = ""+cordova.file.externalRootDirectory+"Android/data/"+s_;
+   		}
+		downAndUpdate(0,dataList_,saveUrl);
+   	};
+	var downAndUpdate = function(i,dataList_,saveUrl){
+		if(1*i < dataList_.length){
+			//mesUtil.alert("i>>"+i);
+			var d = dataList_[i];
+			var picAddr = d.PIC_ADDR;
+			var fileName = d.PIC_NAME;
+			var recordId = d.RECORD_ID;
+			cameraUtils.downFiles(picAddr,saveUrl,function(entry){
+				console.log("download complete: " + entry.toURL());
+				var usql = "update OCRM_F_PD_PICLIB_MAINTENANCE set PIC_ADDR='"+entry.toURL()+"',PIC_NAME='"+d.PIC_NAME+"'";
+				usql += ",ISSUCSYNC='1' where RECORD_ID="+d.RECORD_ID;
+				//mesUtil.alert("usql>>>"+usql);
+				execute(crmApp,usql,function(){
+					i++;
+					downAndUpdate(i,dataList_,saveUrl);
+				
+				});
+				
+			});
+		}
+		else{
+		
+				//传到后台获取需要更新的数据
+	  			$.ajax({
+					type : "GET",
+					url : basePath+'proUpdateStAction.json',
+					cache: false, 
+					data: {},
+					dataType : "json",
+					success : function(response) {
+						//更新
+			
+						dataList_ = response.json.data;
+						var recordIds = "";
+				   		for(var i = 0; i < dataList_.length; i++){
+				   			var d = dataList_[i];
+				   			recordIds += d.RECORD_ID+",";
+				   		}
+				   		//去掉最后一个,
+				 	recordIds = recordIds.substring(0,recordIds.length-1);
+			
+				   		var upsql_q = "update OCRM_F_PD_PICLIB_MAINTENANCE set STATUS='2' where RECORD_ID not in ("+recordIds+")  ";
+						execute(crmApp,upsql_q,function(){
+			
+							
+						});
+						layer.closeAll();
+						mesUtil.alert('更新成功！');
+						 $("#synBt").attr("disabled",false);
+					},
+					error:function(response) {
+						
+					}
+				});
+		}
+	};
+	</script>
+</head>
+<body class="indexBody">
+	<div class="idxLogo"></div>
+	<div class="indexBot"><div id="loginBt"></div></div>
+	<div class="indexBt">	
+		<input type="button" class="synBt" id="synBt"></input>
+	</div>
+	
+	<!-- login form sta-->
+	<div id="lgMask" class="lgMask"></div>
+	<div id="lgBox" class="lgBox">		
+		<div class="tempDiv"><img title="点击获取-最终请删除整个tempDiv标签" alt="点击获取" id="randomCodeImg" onclick="javascript:refresh(this);"><br/></div>
+		<div class="lgClose"></div>
+		<div class="lgSetting"></div>
+		<div><input type="number" id="userName" value="010241"placeholder="用户名"/></div>
+		<div><input type="number" id="password" class="txtMsgCode" placeholder="短信验证码"/><input type="button" id="sendCode" onclick="sendCode();" class="btMsgCode" value="发送验证码" /></div>
+		<div><input type="button" id="btLoginSub" value="登　录" /></div>
+	</div>
+	<!-- login form end-->
+	
+	
+		<!--index menu sta-->
+    <div class="indexMenuBox">
+        <div class="swiper-wrapper" id="swiper_sy">
+        </div>
+    </div>    
+	<!--index menu end-->
+	<script type="text/javascript">
+	var swiper = new Swiper('.indexMenuBox', {
+        effect: 'coverflow',
+        grabCursor: false,
+        centeredSlides: false,
+        slidesPerView: 5,
+        mode:'carousel',
+        loop: true, 
+        loopAdditionalSlides:1,
+        loopedSlides:6,
+        freeMode : true,
+        freeModeMomentumBounce : true,
+        freeModeMomentumBounceRatio : 1,
+        freeModeMomentumRatio : 0.5,
+        freeModeMomentum : true,
+        resistance : true,
+        resistanceRatio : 0.9,
+        speed: 400,
+        coverflow: {
+            rotate: 50,
+            stretch: 3,
+            depth: 100,
+            modifier: 0.4,
+            slideShadows : false
+        }
+    });
+	</script>
+</body>
+</html>

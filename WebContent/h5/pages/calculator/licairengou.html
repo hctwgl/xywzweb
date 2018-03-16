@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcDeposit.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcBondLiCaiBuy.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('./financialTool.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	//计息方式 万元
+	  function checkW(CheckCtl){
+		  if(CheckCtl.value==''){
+			  alert("认购金额必须输入万的倍数！");
+			  CheckCtl.select();
+		  	  CheckCtl.focus();
+			  return false;
+		  }else if(parseFloat(CheckCtl.value)%10000==0){
+		  	return true;
+		  }else{
+			  alert("认购金额必须输入万的倍数！");
+			  CheckCtl.select();
+		  	  CheckCtl.focus();
+		  }
+			
+    }
+	  //计息方式千元
+    function checkQ(CheckCtl){
+  	  if(CheckCtl.value==''){
+      	  alert("认购金额必须输入千的倍数！");
+  		  CheckCtl.select();
+	  	 	  CheckCtl.focus();
+			  return false;
+      	  }else if(parseFloat(CheckCtl.value)%1000==0){
+      		  return true;
+       	  }else{
+       		  alert("认购金额必须输入千的倍数！");
+			  CheckCtl.select();
+		  	  CheckCtl.focus();
+       	  }
+			
+    }
+	 //判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {
+		if (this.document.getElementById("ddlIncomeType").value == 0)
+		{	    
+			if(!checkW(this.document.getElementById("edCost"))){
+				this.document.getElementById("edCost").value = "";
+				return false;
+			}
+		}
+		else if(this.document.getElementById("ddlIncomeType").value==2)
+		{	
+			if(!checkQ(this.document.getElementById("edCost"))){
+				this.document.getElementById("edCost").value = "";
+				return false;
+			}
+		}else if(this.document.getElementById("ddlIncomeType").value==3){
+			if (!checkNumAndFloat(document.getElementById("edCost").value)) {
+				alert("请在认购金额输入非负数");
+				return false;
+			}
+		}
+		if (!checkNumAndFloat(document.getElementById("edCost").value)) {
+			alert("请在认购金额输入非负数");
+			return false;
+		}
+		if (!checkNumber(document.getElementById("edYear").value)) {
+			alert("请在期限输入正整数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("edRate").value)) {
+			alert("请在年化收益率输入非负数");
+			return false;
+		}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    CalcBondBuy();
+	    document.getElementById("edCost").value = document.getElementById("edCost").value*1;
+		document.getElementById("edYear").value = document.getElementById("edYear").value*1;
+		document.getElementById("edRate").value = document.getElementById("edRate").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("edCost").value = null;
+		document.getElementById("edYear").value = null;
+		document.getElementById("edRate").value = null;
+		return true;
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财工具</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>理财认购计算器</h1>
+	  <div class="xinxi"  style="font-size:16px;">
+					<p>计息方式：</p>
+					<select id="ddlIncomeType" style="width:425px">
+						<option selected="selected" value="3">全额</option>
+						<option value="0">万元</option>
+						<option value="2">千元</option>
+					</select>
+		</div>
+		<div class="xinxi"  style="font-size:16px;">
+				<p><span>*</span>认购金额(元)：</p>
+				<input name="edCost" id="edCost" type="number" class="txtnum" style="width:405px" onkeyup="javascript:lengthCheck('edCost')" onafterpaste="javascript:lengthCheck('edCost')" />
+		</div>
+		<div class="xinxi"  style="font-size:16px;">
+					<p>计息基础(360/365)：</p>
+					<select id="edPrice" style="width:425px">
+						<option selected="selected" value="365">365</option>
+						<option value="360">360</option>
+					</select>
+		</div>
+		<div class="xinxi"  style="font-size:16px;">
+			<p><span>*</span>期限(天)：</p>
+			<input name="edYear" id="edYear" type="number" class="txtnum" style="width:405px" onkeyup="javascript:lengthCheck('edYear')" onafterpaste="javascript:lengthCheck('edYear')" />
+		</div>
+		<div class="xinxi"  style="font-size:16px;">
+			<p><span>*</span>预期年化收益率(%)：</p>
+			<input name="edRate" id="edRate" type="number" class="txtnum" style="width:405px" onkeyup="javascript:ratioCheck('edRate')" onafterpaste="javascript:ratioCheck('edRate')" />
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()" />
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()" />
+		</div>
+	  <h1>计算结果</h1>
+      <div class="xinxi"  style="font-size:16px;">
+			<p>预期收益额(元)：</p>
+			<input name="lbResult" id="lbResult" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>理财工具</h1>
+	       <div class="jsqBox">
+	          <a href="depCalculator.html" class="jsqMenu jm1">存款利息计算器</a>
+	          <a href="financialTool.html" class="jsqMenu jm2" >贷款计算器</a>
+	          <a href="jijinshengou.html" class="jsqMenu jm3">基金申购计算器</a>
+	          <a href="jijinshuhui.html" class="jsqMenu jm4">基金赎回计算器</a>
+	          <a href="licairengou.html" class="jsqMenu jm5">理财认购计算器</a>
+	          <a href="waihuiduihuan.html" class="jsqMenu jm6">汇率计算器</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

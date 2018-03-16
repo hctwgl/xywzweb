@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>病历查询结果</title>	
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">	
+	<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/h5/js/underscore-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/h5/css/apph5.css?$!module.module('webmobile').build">
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<p class="list_null" style="font-size:.8rem">您输入的卡号有误或检查结果</br>还未生成，请重试</p>
+	</div>
+	<script id="tpl" type="text/template"> 
+		<%_.each(obj.list,function(e,i){%>
+			<div class="list_all">
+				<p><%=e.time%></p>
+				<%_.each(e.data,function(e,i){%>
+					<div class="list">
+						<h3><%=e.proj_name%></h3>
+						<table class="stat-table tablesorter" border="0" cellpadding="0" cellspacing="1">
+							<thead>
+								<tr>
+									<th>检查项目</th>
+									<th>结果</th>
+									<th>范围</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%_.each(e.data,function(e,i){%>
+									<tr>
+										<td><%=e.item_name%></td>
+										<td><%=e.result%></td>
+										<td><%=e.range%></td>
+									</tr>
+								<%})%>
+							</tbody>
+						</table>
+					</div>
+				<%})%>
+			</div>
+		<%})%>
+	</script>
+	<script type="text/javascript">
+		$(function(){
+		 	var json = {card:'$card',siteid:'$siteid'};
+			$.ajax({
+				url:"/checkresult/getcheckresult",
+				data:json,
+				dataType : "json",
+				type:"GET",
+				success:function(data){
+					var template = _.template($("#tpl").html());
+					var html = template(data);
+					if(data.list.length==0){
+						$(".list_null").show();
+					}else{
+						$('.wrap').append(html);
+					}
+				}
+			})
+		})
+	</script>
+</body>
+</html>

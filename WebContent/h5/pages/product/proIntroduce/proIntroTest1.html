@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>产品介绍</title>
+	<meta name="author" content="Ste Brennan - Code Computerlove - http://www.codecomputerlove.com/" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="styles.css" type="text/css" rel="stylesheet" />
+	<link href="photoswipe.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="klass.min.js"></script>
+	<script type="text/javascript" src="code.photoswipe-3.0.5.1.min.js"></script>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.min.js"></script>	
+	<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+	<script type="text/javascript">
+
+		(function(window, Util, PhotoSwipe){
+			document.addEventListener('DOMContentLoaded', function(){
+				options = {
+					captionAndToolbarFlipPosition:true,
+					getImageCaption: function(el){
+						var captionText, captionEl;
+						// Get the caption from the alt tag
+						if (el.nodeName === "IMG"){
+							captionText = el.getAttribute('alt'); 
+						}
+						var i, j, childEl;
+						for (i=0, j=el.childNodes.length; i<j; i++){
+							childEl = el.childNodes[i];
+							if (el.childNodes[i].nodeName === 'IMG'){
+								captionText = childEl.getAttribute('alt'); 
+							}
+						}
+						// Return a DOM element with custom styling
+						captionEl = document.createElement('div');
+						captionEl.appendChild(document.createTextNode(captionText));
+						return captionEl;
+					},
+					getToolbar: function(){
+						return '<div class="ps-toolbar-close" style="padding-top: 12px;">关闭</div><div class="ps-toolbar-previous" style="padding-top: 12px;">前一张</div><div class="ps-toolbar-next" style="padding-top: 12px;">后一张</div>';
+					}
+				},
+				instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+			}, false);
+		}(window, window.Code.Util, window.Code.PhotoSwipe));
+		
+	</script>
+	
+	<script type="text/javascript">
+	$(function () {
+		var filterList = {
+			init: function () {
+				// MixItUp plugin
+				$('#portfoliolist').mixitup({
+					targetSelector: '.portfolio',
+					filterSelector: '.filter',
+					effects: ['fade'],
+					easing: 'snap',
+					// call the hover effect
+					onMixEnd: filterList.hoverEffect()
+				});				
+			},
+			hoverEffect: function () {
+				// Simple parallax effect
+				$('#portfoliolist .portfolio').hover(
+				);				
+			}
+		};
+		// Run the show!
+		filterList.init();
+	});	
+	</script>
+</head>
+<body>
+<div class="container">
+
+		<ul id="filters" class="clearfix">
+			<li><span class="filter active" data-filter="logo web app card ">全部产品</span></li>
+			<li><span class="filter" data-filter="logo">保险产品</span></li>
+			<li><span class="filter" data-filter="web">基金产品</span></li>
+			<li><span class="filter" data-filter="app">理财产品</span></li>
+			<li><span class="filter" data-filter="card">信贷产品</span></li>
+		</ul>
+
+		<div id="portfoliolist">
+			
+			<div class="portfolio logo" data-cat="logo">
+				<div id="Gallery" class="portfolio-wrapper">				
+					<a href="Images/a.jpg">
+					<img src="Images/a.jpg" alt="产品A" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>				
+
+			<div class="portfolio app" data-cat="app">
+				<div id="Gallery" class="portfolio-wrapper">	
+				<a href="Images/b.jpg">				
+					<img src="Images/b.jpg" alt="产品B" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>		
+			<div class="portfolio web" data-cat="web">
+				<div id="Gallery" class="portfolio-wrapper">			
+				<a href="Images/c.jpg">							
+					<img src="Images/c.jpg" alt="产品C" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>				
+		
+			<div class="portfolio card" data-cat="card">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/d.jpg">							
+					<img src="Images/d.jpg" alt="产品D" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>													
+			<div class="portfolio card" data-cat="card">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/e.jpg">							
+					<img src="Images/e.jpg" alt="产品E" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="portfolio web" data-cat="web">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/f.jpg">							
+					<img src="Images/f.jpg" alt="产品F" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="portfolio logo" data-cat="logo">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/g.jpg">							
+					<img src="Images/g.jpg" alt="产品G" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="portfolio web" data-cat="web">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/h.jpg">							
+					<img src="Images/h.jpg" alt="产品H" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>
+			<div class="portfolio web" data-cat="web">
+				<div id="Gallery" class="portfolio-wrapper">		
+					<a href="Images/i.jpg">							
+					<img src="Images/i.jpg" alt="产品I" /></a>
+					<div class="label">
+						<div class="label-bg"></div>
+					</div>
+				</div>
+			</div>
+				
+		</div>
+		
+	</div>
+
+</body>
+</html>

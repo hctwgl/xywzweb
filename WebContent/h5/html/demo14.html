@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="../themes/hbbank/css/swiper.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../resource/swiper.min.js"></script>
+	<script type="text/javascript" src="../resource/layer/layer.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		//实际开发过程中，请自行实现UI逻辑
+		$("#loginBt").click(function(){
+			$("#lgMask").show();
+			$("#lgBox").show();
+		});
+		$("#btLoginSub").click(function(){
+			$("#lgMask").hide();
+			$("#lgBox").hide();
+		});
+		$("#lgBox .lgClose").click(function(){
+			$("#lgMask").hide();
+			$("#lgBox").hide();
+		});
+
+		//子菜单面板 
+		//实际开发过程中，请自行实现UI逻辑
+		$(".imMenu").click(function(){
+			var $_cm=$(".childMenuBox");
+			var _i= layer.open({
+			    type: 1,
+			    shift:6,
+			    shade: [0.5,'#000'],
+			    area: [$_cm.width()+'px', $_cm.height()+'px'],
+			    title: false,
+			    closeBtn: false,
+			    shadeClose: true,
+			    content: $_cm
+			});
+			$_cm.find(".cmClose").click(function(){
+				layer.close(_i);
+			});
+		});
+		
+		
+	};
+	</script>
+</head>
+<body class="indexBody">
+	<div class="idxLogo"></div>
+	<div class="indexBot"><div id="loginBt"></div></div>
+	<div class="indexBt">	
+		<div class="synBt"></div>
+	</div>
+	
+	<!-- login form sta-->
+	<div id="lgMask" class="lgMask"></div>
+	<div id="lgBox" class="lgBox">
+		<div class="lgClose"></div>
+		<div><input type="text" id="userName" placeholder="用户名"/></div>
+		<div><input type="text" class="txtMsgCode" placeholder="短信验证码"/><input type="button" class="btMsgCode" value="发送验证码" /></div>
+		<div><input type="button" id="btLoginSub" value="登　录" /></div>
+	</div>
+	<!-- login form end-->
+	
+	<!--index menu sta-->
+    <div class="indexMenuBox">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+				<div class="imMenu imm1" onclick="">
+					<div class="immIco immi1"></div>
+					<div class="immText">金融超市</div>
+				</div>
+			</div>
+            <div class="swiper-slide">
+				<div class="imMenu imm2" onclick="">
+					<div class="immIco immi2"></div>
+					<div class="immText">优惠活动</div>
+				</div>
+			</div>
+            <div class="swiper-slide">
+				<div class="imMenu imm3" onclick="">
+					<div class="immIco immi3"></div>
+					<div class="immText">理财工具</div>
+				</div>
+			</div>
+            <div class="swiper-slide">
+				<div class="imMenu imm4" onclick="">
+					<div class="immIco immi4"></div>
+					<div class="immText">产品展示</div>
+				</div>
+			</div>
+            <div class="swiper-slide">
+				<div class="imMenu imm5" onclick="">
+					<div class="immIco immi5"></div>
+					<div class="immText">猜你喜欢</div>
+				</div>
+			</div>
+            <div class="swiper-slide">
+				<div class="imMenu imm6" onclick="">
+					<div class="immIco immi6"></div>
+					<div class="immText">财富规划</div>
+				</div>
+			</div>
+        </div>
+    </div>       
+	<!--index menu end-->
+    
+    <!-- 子菜单面板 sta -->
+    <div class="childMenuBox">
+    	<!--说明：ymBgn n:1至8，cmIcon n:1至470 ,ico预览路径： /mobile/themes/common/ico -->
+    	<div class="cmTitle">金融超市<div class="cmClose"></div></div>    	
+    	<div class="cmBox">
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg2"><div class="cmIco2"></div><span>个贷产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg3"><div class="cmIco3"></div><span>存款产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg1"><div class="cmIco1"></div><span>基金产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg6"><div class="cmIco61"></div><span>国债产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg4"><div class="cmIco4"></div><span>贵金属产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg5"><div class="cmIco15"></div><span>保险产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg6"><div class="cmIco61"></div><span>国债产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg7"><div class="cmIco7"></div><span>外汇产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg1"><div class="cmIco8"></div><span>国债产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg4"><div class="cmIco29"></div><span>保险产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg1"><div class="cmIco48"></div><span>国债产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg4"><div class="cmIco99"></div><span>保险产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg1"><div class="cmIco1"></div><span>基金产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg2"><div class="cmIco2"></div><span>个贷产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg3"><div class="cmIco3"></div><span>存款产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg4"><div class="cmIco99"></div><span>保险产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg2"><div class="cmIco2"></div><span>个贷产品</span></a>
+		    	<a href="javascript:void(0);" onclick="" class="cmMenu ymBg3"><div class="cmIco3"></div><span>存款产品</span></a>
+    	</div>
+    </div> 
+    <!-- 子菜单面板 end -->
+    
+	<script type="text/javascript">
+	var swiper = new Swiper('.indexMenuBox', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: false,
+        slidesPerView: 5,
+        mode:'carousel',
+        loop: true, 
+        loopAdditionalSlides:1,
+        loopedSlides:6,
+        centeredSlides:true,
+        coverflow: {
+            rotate: 50,
+            stretch: 3,
+            depth: 100,
+            modifier: 0.4,
+            slideShadows : false
+        }
+    });
+	</script>
+</body>
+</html>

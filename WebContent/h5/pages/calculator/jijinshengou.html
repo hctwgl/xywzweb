@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcDeposit.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="CalcFoundSale.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('./financialTool.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	
+	 //判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {
+		if (!checkNumAndFloat(document.getElementById("sdamount").value)) {
+			alert("请在[申购金额]中输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("sdone").value)) {
+			alert("请在[基金单位面值]中输入非负数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("sdrate").value)) {
+			alert("请在[申购费率]中输入非负数");
+			return false;
+		}
+		//if (document.getElementById("beginDateID").value == null || document.getElementById("beginDateID").value == '') {
+			//alert("请输入初始存入日期");
+			//return false;
+		//}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    calc();
+	    document.getElementById("sdamount").value = document.getElementById("sdamount").value*1;
+		document.getElementById("sdone").value = document.getElementById("sdone").value*1;
+		document.getElementById("sdrate").value = document.getElementById("sdrate").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("sdamount").value = null;
+		document.getElementById("sdone").value = null;
+		document.getElementById("sdrate").value = null;
+		//document.getElementById("beginDateID").value = null;
+		return true;
+	}
+	//基金单位净值保留四位小数
+	function lengthCheck(valueId) {//校验输入字符长度，不能超过8位
+		var a = document.getElementById(valueId).value;
+		var b = a.replace(/\\.\D/g,'');
+		$("#"+valueId+"").val(b);
+		if ($("#"+valueId+"").val()*1 > 99999999) {
+			mesUtil.alert("输入数字太长");
+			$("#"+valueId+"").val('');
+		}
+		if ($("#"+valueId+"").val().indexOf('.') > -1) {
+			var value = $("#"+valueId+"").val().split('.');
+			if (value[1] != '' && value[1] != null && value[1] != undefined && value[0] != '' && value[0] != null 
+					&& value[0] != undefined) {
+				var v = value[0]+'.'+value[1].substr(0, 4);
+				if (v == '0.00') {
+					mesUtil.alert("输入数据不合法");
+					$("#"+valueId+"").val('');
+				}else {
+					$("#"+valueId+"").val(v);
+				}
+			}
+			
+		}
+	}
+	//申购金额输入整数
+	function countCheck(valueId) {//份数校验，大小不能超过99999999
+		var a = document.getElementById(valueId).value;
+		var b = a.replace(/\D/g,'');
+		$("#"+valueId+"").val(b);
+		if ($("#"+valueId+"").val()*1 > 99999999) {
+			mesUtil.alert("请输入正整数");
+			$("#"+valueId+"").val('');
+		}
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财工具</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>基金申购计算器</h1>
+		<div class="xinxi" style="font-size:16px">
+				<p><span>*</span>申购金额(元)：</p>
+				<input name="sdamount" id="sdamount" type="number" class="txtnum" onkeyup="javascript:countCheck('sdamount')" onafterpaste="javascript:countCheck('sdamount')" />
+		</div>
+		<div class="xinxi" style="font-size:16px">
+			<p><span>*</span>基金单位净值(元)：</p>
+			<input name="sdone" id="sdone" type="number" class="txtnum" onkeyup="javascript:lengthCheck('sdone')" onafterpaste="javascript:lengthCheck('sdone')" />
+		</div>
+		<div class="xinxi" style="font-size:16px">
+			<p><span>*</span>申购费率(%)：</p>
+			<input name="sdrate" id="sdrate" tabindex="5" tabindex="5" type="number" class="txtnum" onkeyup="javascript:ratioCheck('sdrate')" onafterpaste="javascript:ratioCheck('sdrate')" />
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()" />
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()" />
+		</div>
+	  <h1>计算结果</h1>
+      <div class="xinxi" style="font-size:16px">
+			<p>申购费用(元)：</p>
+			<input name="sdmoney" id="sdmoney" value="计算得出" disabled readonly type="text" />
+		</div>
+      <div class="xinxi" style="font-size:16px">
+			<p>净申购金额(元)：</p>
+			<input name="sdcmoney" id="sdcmoney" value="计算得出" disabled readonly type="text" />
+		</div>
+      <div class="xinxi" style="font-size:16px">
+			<p>申购份数(份)：</p>
+			<input name="sdnumber" id="sdnumber" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>理财工具</h1>
+	       <div class="jsqBox">
+	          <a href="depCalculator.html" class="jsqMenu jm1">存款利息计算器</a>
+	          <a href="financialTool.html" class="jsqMenu jm2" >贷款计算器</a>
+	          <a href="jijinshengou.html" class="jsqMenu jm3">基金申购计算器</a>
+	          <a href="jijinshuhui.html" class="jsqMenu jm4">基金赎回计算器</a>
+	          <a href="licairengou.html" class="jsqMenu jm5">理财认购计算器</a>
+	          <a href="waihuiduihuan.html" class="jsqMenu jm6">汇率计算器</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

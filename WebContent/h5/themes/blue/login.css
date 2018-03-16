@@ -1,0 +1,101 @@
+/*
+create date：2014-11-04 14:10
+created by：YuchengTech-UedTeam-WY
+file name：login.css
+remark：登录样式
+last update：2014-11-04 14:10
+*/
+
+/*01-全局样式 sta*/
+html,body {height:100%;overflow: hidden;}
+body,td,th {font-size: 12px;color: #222;outline: none;}
+* {font-family: 微软雅黑, 宋体;outline:none;}
+body {margin: 0;padding: 0;background: url(images/login/pic_02.png) #1485bd repeat;}
+div,ul,li,form,p {margin: 0;padding: 0;	list-style: none;border: none;}
+img {border: none;}
+input,textarea {resize: none;}
+a:link,a:visited {font-size: 12px;color: #222;text-decoration: none;outline: none;}
+a:hover {color: #266a0d;text-decoration: none;}
+a:active {color: #222;}
+.cl {clear: both;width: 0;height: 0;}
+/*01-全局样式 end*/
+
+/*02-login sta*/
+#afui{background-color: transparent;}
+#afui.login #content{background-color: transparent;background-image: none;}
+#loginPanel{padding: 0!important;}
+#loginTopBg{height: 429px; position: absolute;z-index: 2;top: 0;width: 100%;background: url(images/login/pic_03.png) left top no-repeat; }
+#loginBottomBg{height: 68px;position: absolute;z-index: 1;bottom: 0;width: 100%;background: url(images/login/pic_04.png) left bottom no-repeat; }
+#logo{height: 60px; background: url(images/login/pic_01.png) top center no-repeat;font-size:35px; text-shadow:0px 0px 3px #333333;text-align:center;color: #fff;}
+#loginForm{width: 350px;height:460px;position: absolute;z-index: 3;left:50%;top:50%; margin-left: -175px;margin-top: -250px; }
+#loginIco{height: 95px;background: url(images/login/pic_05.png) top center no-repeat;}
+.lcRow{height: 50px;margin-top:25px;}
+.lcrHasBg{border-radius:2px;background: url(images/login/pic_06.png);padding:3px; }
+.lcrSmaHt{height:30px; }
+.lcrText,.lcrInput{float: left;width: 79px;height: 44px;}
+.lcrText{line-height: 44px;background-color: #e8f2f7;border-right: 1px #bfd8e5 solid;font-size:20px; color:#475b66; text-shadow:0px 1px 0px #ffffff;text-align: center;}
+.lcrInput{width: 265px;}
+#afui input.txtLogin{height: 44px;border: none;border-radius:0px;font-size:20px;margin-top: 0;margin-bottom: 0; }
+#afui .btLogin:link,#afui .btLogin:visited {height:48px;line-height:48px; margin:0;padding:0; border-radius:5px;border:none;font-weight:normal; font-size: 25px;color: #475b66;text-decoration: none;text-shadow:0px 1px 0px #ffffff;text-align: center;background-color: #e8f2f7;border-bottom: 2px #b5d3e1 solid;-moz-box-shadow:0px 2px 5px #333333; -webkit-box-shadow:0px 2px 5px #333333; box-shadow:0px 2px 5px #333333;}
+#afui .btLogin:hover,#afui .btLogin:active {color: #475b66;text-decoration: none;background-color: #d1e2ea;border-bottom: 2px #b5ceda solid;}
+.cbLogin{float:left; height: 30px;margin-right:30px; line-height: 30px;padding-left: 40px;background: url(images/login/pic_07.png) left top no-repeat;color: #e2ebf0;font-size: 18px;}
+.cblIsChecked{background: url(images/login/pic_07_ov.png) left top no-repeat;}
+/*02-login end*/
+
+
+#afui.login .afPopup>HEADER{
+    font-weight:normal;
+    font-size:20px;    
+    text-align:center;
+    margin:0;
+    padding:8px;
+    color:white;
+    border-radius: 2px;
+    background:#0088D1;
+    background:-ms-linear-gradient(65deg, #0088D1 0%,#00AFEE 100%);
+    background:-webkit-gradient(linear, left bottom, right top, color-stop(0%,#0088D1), color-stop(100%,#00AFEE));
+    background:-webkit-linear-gradient(65deg, #0088D1 0%,#00AFEE 100%);
+    background:linear-gradient(65deg, #0088D1 0%,#00AFEE 100%);    
+}
+#afui.login .footer {
+    border:none;
+    border-radius:0px;
+    background:none;
+    padding:0;
+    -webkit-box-shadow:none;
+    box-shadow: none;
+}
+
+#afui.login .footer>footer>a:not(.button) {
+    height:49px;
+    top:0px;
+    border-top:4px solid #000;
+    background:#1e1e1e;
+}
+#afui.login .footer>footer>a:not(:last-of-type):not(.pressed):not(.button){
+    border-right:1px solid black;
+}
+
+#afui.login .footer>footer>a.icon.pressed:not(.button):before {
+    color: white;
+}
+#afui.login .afPopup>FOOTER{
+    padding:5px;
+}
+
+#afui.login .afPopup>FOOTER>A#cancel{
+    width:120px;
+}
+
+#afui.login .afPopup>FOOTER>A#action{
+    width:120px;
+}
+#settingButton.icon-cog:before{margin-top: 16px;position: absolute;right: 10px;}
+#settingButton{width:36px;height:36px;line-height:36px;font-size:18px;cursor: pointer; float: right;text-align:center; color: #fff!important;text-decoration: none;float: right!important;margin-top: 5px;margin-right: 5px;}
+
+.popWin{display:none; width: 450px;height: 450px;background-color:#fff;border-radius:5px; overflow:hidden; position: absolute;z-index:1000; left: 50%;margin-left: -225px;/*top: 50%;margin-top: -225px;*/box-shadow:0px 0px 8px #474d50;}
+.popWin .noSearch{padding: 5px;border-radius:5px 5px 0 0;}
+#afui .popWin .formCell label{width: 150px;}
+#afui .popWin .formCell .fcContent{padding-left: 155px;}
+#afui .popWin .formContent{overflow: auto;background: #fff;}
+

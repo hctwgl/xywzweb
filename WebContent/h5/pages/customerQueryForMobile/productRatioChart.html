@@ -1,0 +1,84 @@
+<!-- 
+   功能描述：存款业务趋势图
+   作者 ：
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>产品配比图</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.pieRenderer.min.js"></script>
+		
+		<script type="text/javascript">
+		    
+			$(document).ready(function() {
+				$.jqplot.config.enablePlugins = true;
+				var basePath = parent.document.getElementById("basePath").value;
+				var custId = parent.document.getElementById("custId").value;
+				drawChart(basePath,custId);
+			});
+			function drawChart(basePath,custId){
+				var s1;
+				$.ajax({
+					url : basePath + 'custViewBaseInfoQueryAction!getProductRatio.json?custId='+custId,
+					type : "GET",
+					async : false,
+					cache: false, 
+					dataType : "json",
+					success : function(response){
+						s1 = response.data;
+					},
+					error:function(a,b,c){
+						//alert('信息提醒数据加载失败...','提示');
+						
+					}
+				});
+				
+				$.jqplot('productRatioChart', [s1], {
+					title: '产品配比图',
+			        grid: {
+			            drawBorder: false, 
+			            drawGridlines: false,
+			            background: '#ffffff',
+			            shadow:false
+			        },
+			        axesDefaults: {
+			        	tickOptions: {
+			                   formatString: '%.2f'
+		               	}
+			        },
+			        seriesDefaults:{
+			            renderer:$.jqplot.PieRenderer,
+			            rendererOptions: {
+			                dataLabelsFormatString:'%s',
+			                showDataLabels: true
+			            }
+			        },
+			        legend: {
+			            show: true,
+			            rendererOptions: {
+			                numberRows: 1
+			            },
+			            location: 's',
+			            //marginRight: '40px', 
+			            fontSize: '8pt' 
+			        }
+			    }); 
+			}
+		</script>
+	</head>
+	<body>
+        <div id="productRatioChart" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
+	</body>
+</html>

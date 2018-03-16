@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		$("#botm").height(_ch);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>日程管理</span>
+				</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+			<iframe id="scheduleIframe" src="../pages/workspaceManager/scheduleCalendar.html"></iframe>
+	</div>
+</body>
+</html>

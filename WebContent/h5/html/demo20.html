@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$(".khxinxi").height(_ch-44).width((_cw-74)/2);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+<body>
+<div class="top">
+  <p class="logo"><img src="../themes/hbbank/images/logo_top.png"/></p>
+
+<div class="zDh">
+   <p class="zDhLeft"><a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>客户信息</span></p>
+   
+   <div class="zDhRight">
+     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png"/></a>
+   </div>
+   
+</div>
+</div>
+<div class="topLine"><img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" /></div>
+<div class="botm" id="botm">
+   
+  <div class="khxinxi">
+    <h1>基本信息<a href="#" class="bt01">客户转介</a></h1>
+       <div class="khxCon1">
+          <div  class="khxCoP1"><p>张某<img src="../themes/hbbank/images/man.png" width="16" height="20" /></p><span></span><span></span></div>
+          <ul class="khxCoP2">
+             <li><p>证件类型：</p><span>身份证</span></li>
+             <li><p>证件号码：</p><span>110101198201018888</span></li>
+             <li><p>联系电话：</p><span>13810000000</span></li>
+             <li><p>电子邮箱：</p><span>zhangsan@yuchengtech.com</span></li>
+             <li><p>联系地址：</p><span>北京市朝阳区北三环环球贸易中心D座9层</span></li>
+          </ul>
+     </div>
+      
+  </div> 
+  <div class="khxinxi">
+    <h1>资产管理</h1>
+    <div class="zcgl"><img src="../themes/hbbank/images/bingzhuangtu.png"  /></div>
+    <h1>资产趋势</h1>
+    <div class="zcgl"><img src="../themes/hbbank/images/zhexiantu.png"  /></div>
+  </div> 
+  
+
+  
+
+</div>
+</body>
+</html>

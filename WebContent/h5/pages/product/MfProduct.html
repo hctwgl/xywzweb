@@ -1,0 +1,208 @@
+<!-- 
+   功能描述：理财产品
+   作者 ：lan
+   时间 ：2015-03-03
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>客户关系管理系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	<script type="text/javascript" src="../../pages/common/com.yucheng.hbcrm.tabpanel.js"></script>
+	<script type="text/javascript" src="./MfProduct.js"></script>
+        
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#btRm").show();
+			}else{
+				$("#btRm").hide();
+			} 
+			//实际开发过程中，请勿如此调用
+			$("#fb1").click(function(){
+				if ($("#dbinfo").get(0).childElementCount == 2) {
+					var id = '';
+					$("#dbinfo p").each(function(){
+						id = id + $(this).attr("id")+',';
+					});
+					var idStr = '';
+					idStr = id.substr(0, id.length-1).split(",");
+					if (idStr.length == 2) {//所选产品中有2个或3个相同时，不能比较
+						if (idStr[0] == idStr[1]) {
+							mesUtil.alert('请选择不同的产品进行对比.');
+							$("#dbinfo li").each(function(){
+			                    $(this).remove();
+			                });
+							duibiCount=0;
+							$("#duibi").text('0');
+							return false;
+						}
+					}
+				}  else {
+					mesUtil.alert('对比产品只能为两个.');
+					return false;
+				}
+				layer.open({
+			        type: 2,
+			        title: '产品对比',
+			        shadeClose: false, //点击遮罩关闭层
+			        cancel : function(){
+			        	var syId = '';
+			        	var syCount = '';
+			            $("#fundDuibi div input").each(function(){
+			                    //$(this).remove();
+			            	syId = syId + $(this).val() + ',';
+			            });
+			            if (syId != '' && syId != null) {
+			            	var id = syId.split(",");
+			            	syCount = id.length;
+			            }
+			            $("#dbinfo li").each(function(){
+		                    $(this).remove();
+		                });
+
+			            duibiCount=0;
+			            $("#duibi").text('0');
+			    	},
+			        area : ['600px' , '350px'],
+			        content: 'mfProdDuibiWindow.html?id='+id
+			    });
+			});
+			
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('finSupermarket.html');
+			});
+			$("#licaiPageBtn").bind("click",function() { 
+				goPage('./MfProduct.html');
+			});
+			$("#jijinPageBtn").bind("click",function() { 
+				goPage('./fundProduct.html');
+			});
+			$("#cunkuanPageBtn").bind("click",function() { 
+				goPage('./lnProduct.html');
+			});
+			$("#daikuanPageBtn").bind("click",function() { 
+				goPage('./depsLiabProduct.html');
+			});
+			$("#guijinshuPageBtn").bind("click",function() { 
+				goPage('./goldProduct.html');
+			});
+			$("#baoxianPageBtn").bind("click",function() { 
+				goPage('./lnsuProduct.html');
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			setUI();
+			setRightMenu();
+			callPeople();
+		});
+		function setUI(){
+			var _ch=$(window).height()-121;
+			var _cw=$(window).width()-175;
+			$("#Cleft").height(_ch);
+			$("#Cright").height(_ch).width(_cw);
+			$("#CrightCon").height(_ch-42);
+			$("#CrightCon .QHCon").height(_ch-100).width(_cw-42);;
+			$("#CrightCon .QHCon .bQ").width(($("#CrightCon .QHCon").width()/3-12));
+			
+		};
+		$(window).resize(function(){
+			setUI();
+		});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+		<div class="duibi">
+			<ul class="DBxinxi" id="dbinfo" hidden="true"></ul>
+			<a class="dBbtn" href="#" hidden="true"><img src="../../themes/hbbank/images/duibi.png" width="95"
+				height="32" onclick="goToDBpage();"/></a>
+		</div>
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a> 
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+			<div class="search" hidden="true">
+				<p class="searchP1">
+					<input id="searchField" name="" type="text" placeholder="请输入关键字…" /><a href="#" id="searchPanelButton"><img
+						src="../../themes/hbbank/images/chanxun.png" /></a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="Cleft" id="Cleft">
+		<ul>
+			<li class="CleftClick"><a class="Cleft_a1" href="#" id="licaiPageBtn">理　财</a></li>
+			<li><a class="Cleft_a2 " href="#" id="jijinPageBtn">基　金</a></li>
+			<li><a class="Cleft_a3" href="#" id="cunkuanPageBtn">存　款</a></li>
+			<li><a class="Cleft_a4" href="#" id="daikuanPageBtn">贷　款</a></li>
+			<li><a class="Cleft_a5" href="#" id="baoxianPageBtn">保　险</a></li>
+			<li><a class="Cleft_a6" href="#" id="guijinshuPageBtn">贵金属</a></li>
+		</ul>
+	</div>
+	<div class="Cright" id="Cright">
+		<div class="CrightCon" id="CrightCon">
+			<div id="fb1" class="floatBt"><b>比</b><span id="duibi">0</span></div>
+			<div class="qiehuan" id="tabPanel">
+				<a class="qhSelected" href="#" id="tab1">开放式理财</a>
+				<a href="#" id="tab2">封闭式理财</a>
+				<p class=" both"></p>
+			</div>
+			<div class="QHCon" id="panel1">
+				<div id="scroller">
+					<div id="pullDown">
+						 <!--  <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>-->
+					</div>
+					<div id="list_panel1"></div>
+					<div id="pullUp">
+						<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+					</div>
+				</div>
+			</div>
+			<div class="QHCon" id="panel2">
+				<div id="scroller">
+					<div id="pullDown">
+						<span class="pullDownIcon"></span>
+						<!-- <span class="pullDownLabel">下拉刷新...</span> -->
+					</div>
+					<div id="list_panel2"></div>
+					<div id="pullUp">	
+						<span class="pullUpIcon"></span>
+						<span class="pullUpLabel">上拉加载更多...</span>
+					</div>
+				</div>
+			</div>
+			<p class=" both"></p>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!-- 
+   功能描述：热销产品
+   作者 ：luoyad
+   时间 ：2014-11-18
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>客户关系管理系统</title>
+		<meta name="keywords" content="客户关系管理系统,CRM" />
+		<meta name="description" content="客户关系管理系统,CRM" />
+		<meta name="Author" content="YuchengTech" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="hotSellProduct.js"></script>
+        
+        <style>
+		 .radioInputClass{
+			width: 95%;font-size: 16px;
+		 } 
+		</style>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			//$.ui.slideSideMenu   = false;
+			$.ui.animateHeaders  = false;
+	
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+	                document.addEventListener('deviceready', onDeviceready, false);
+	                //$.ui.launch();
+	        });
+	    
+	        function onDeviceready() {
+	        	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+	        	}
+	            $.ui.launch();
+	        }
+			$.ui.ready(function() {
+				var hotSellProduct = PageBarFactory.get(config);
+				hotSellProduct.queryFun();
+
+				$("#searchPanelButton").click(function(){
+					
+					   var hotSellProduct = PageBarFactory.get(config);
+	                   var url = queryConfigUrl();
+	                   hotSellProduct.queryFun(url);
+
+				});
+				
+				$("#filterButton").click(function(){
+					//TODO 按实际拼装查询条件
+					var url = queryConfigUrl();
+					hotSellProduct.queryFun(url);
+					//关闭过滤窗口
+					setFilter();
+				});
+				
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+				
+			});
+			
+			function queryConfigUrl(){
+				
+				var condition = {};
+				
+				var keyW = $("#searchField").val();
+				var prodName = $("#filterProdName").val();
+				var startDate = $("#filterProdStartDate").val();
+				
+				if(keyW != null && keyW != "undefined") {
+					condition.keyW = keyW;
+				}
+				if(prodName != null && prodName != "undefined") {
+					condition.prodName = prodName;
+				}
+				
+				if(startDate != null && startDate != "undefined") {
+					condition.startDate = startDate
+				}
+				
+				var url = basePath + 'hotSellAction.json?condition='+$.toJSON(condition);
+				
+				return url;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<header id="headerui">
+				<div class="top_header"> 
+					<a id="menuBtn" class="menuButton" style="float: left;"></a> 
+					<h1>热销产品</h1>
+				</div>
+			</header>
+			<div id="content">
+				<div id="hotSellProductPanel" class="panel" data-header="headerui" data-footer='none'>
+				<div class="toolsBar">
+					<div class="tbLeft">
+						<input type="text" id="searchField" class="txtSearch" placeholder="请输入关键字…"/>
+						<a class="btSearch icon-search" id="searchPanelButton">查询</a>
+					</div>
+					<div class="tbRight">
+						<a class="txtBt icon-filter" onclick='setFilter(this)'>筛选</a>
+
+					</div>
+				</div>
+				
+				<div>
+					<ul class="list" id="hotSellProduct_list"></ul>
+				</div>				
+				</div>
+				
+				<div id="productView" title="产品详情" class="panel hasLeft" data-footer="none">
+					<header>
+						<div class="top_header">
+							 <a href="javascript:$.ui.loadContent('hotSellProductPanel');" class="button backButton" >返回</a>
+							 <h1 id="visitHeader">热销产品</h1>
+						</div>
+					</header>
+					<div class="toolsBar noSearch">
+						<div class="tbLeft">
+					 		<div class="tabsMenu selected">产品详情</div>
+					 	</div>
+					</div>
+					<div class="rightContainer">
+						<div class="leftContainer">
+							<div class="formContent viewContent">
+								<div class="formCell"><label>产品排名：</label><div class="fcContent"><span class="prdPM prdF">第&nbsp;<i>1</i>&nbsp;名</span></div></div>
+								<div class="formCell"><label>产品名称：</label><div class="fcContent">理财"共赢3号"2014年第44期</div></div>
+								<div class="formCell"><label>发售日期：</label><div class="fcContent">2014-09-22</div></div>
+								<div class="formCell"><label>年化收益率：</label><div class="fcContent">6.50%</div></div>
+								<div class="formCell"><label>累计销售：</label><div class="fcContent">3,876,251.89</div></div>
+								<div class="formCell"><label>本月销售：</label><div class="fcContent">45,322.50</div></div>
+							</div>
+						</div>
+						<div class="productPic">
+							<img src="../../themes/blue/images/main/temp_pic_02.jpg" />
+							<img src="../../themes/blue/images/main/temp_pic_03.jpg" />
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<!-- 筛选面板 --start -->
+		<div class="filterPanel" style="height:200px;">
+			<div class="arrow-up"></div>
+			<div class="formContent">
+				<div class="formCell">
+					<label >产品名称：</label>
+					<div class="fcContent">
+						<input id="filterProdName" name="text1" placeholder="产品名称" type="text">
+					</div>
+				</div>
+				
+				<div class="formCell">
+					<label>发售日期：</label>
+					<div class="fcContent">
+						<input id="filterProdStartDate" name="filterContent"  placeholder="发售日期" type="date">
+					</div>
+				</div>
+
+				<div class="fpToolsBar">
+					<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+					<a class="txtBt icon-checkmark" id="filterButton" >确定</a>
+				</div>
+			</div>	
+		</div>
+			<!-- 筛选面板 --end -->
+		</div>
+		<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+	</body>
+</html>

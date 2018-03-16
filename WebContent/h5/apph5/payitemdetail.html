@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>检查项目详情</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript">
+		function sizeHtml() {
+			var size = window.innerWidth / 16;
+			size = size > 40 ? 40 : size;
+			document.getElementsByTagName("html")[0].style.fontSize = size
+					+ "px";
+		}
+		sizeHtml();
+		window.onresize = function() {
+			sizeHtml();
+		}
+	</script>
+	<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js?$!module.module('webmobile').build"></script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	.wrap{
+		background:#F3F3F3;
+		padding:0;
+		padding-top:0.5rem;
+		display:table;
+		width:100%;
+	}
+
+	.item_doc{
+		padding:0 .5rem;
+		background:#fff;
+		margin-bottom:0.5rem;
+	}
+	.item_doc dl dd p{
+		font-weight:normal;
+		font-size:.55rem;
+		color:#888;
+		padding-left:.7rem;
+		padding-top:.5rem;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.item_doc a{
+		padding:.75rem 0;
+		display:block;
+	}
+	.item_doc dl{
+		width:100%;
+		display:table;
+		background:url(/h5/images/btn_next.png) no-repeat right center;
+		background-size:.375rem .675rem;
+	}
+	.item_doc dl dt{
+		width:2.9rem;
+		height:2.9rem;
+		float:left;
+		background:url($!{item.link_obj.siteconfig_obj.urlIcon}) no-repeat;
+		background-size:contain;
+		border:1px solid #e6e6e6;
+		border-radius:1.5rem;
+	}
+	.item_doc dl dd{
+		float:left;
+		width:11.5rem;
+	}
+	.item_doc dl dd h3{
+		font-weight:normal;
+		font-size:.7rem;
+		color:#333;
+		padding-left:.7rem;
+		padding-top:.45rem;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.item_doc dl dd h3 i{
+		font-style:normal;
+		font-size:.55rem;
+		padding-left:.2rem;
+		color:#888;
+		
+	}
+	.serve_detail{
+		background:#fff;
+		padding:0 .5rem;
+		overflow: auto;
+		margin-bottom:0.5rem;
+	}
+	.serve_detail h2{
+		font-size:.75rem;
+		font-weight:normal;
+		color:#333;
+		padding:.5rem 0;
+		border-bottom:1px solid #f6f6f6;
+	}
+	.serve_detail p,.serve_detail span{
+		font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+		/*white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;*/
+	}
+	.serve_detail h1,.serve_detail h2,.serve_detail h3,.serve_detail h4,.serve_detail h5,.serve_detail h6{
+	font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+		font-weight:normal;
+	}
+
+	.serve_detail>h2{
+		color:#333;
+		font-size:.7rem;
+	}
+	.serve_detail li{
+		list-style:none;
+		font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+	}
+	
+	.serve_detail strong{
+		font-weight:normal;
+	}
+	.serve_detail img{
+	     display:block;
+	     width:100%;
+	}
+	.serve_process{
+		background:#fff;
+		padding:0 .5rem;
+		margin-top:.5rem;
+	}
+	.serve_process h2{
+		font-size:.75rem;
+		font-weight:normal;
+		color:#333;
+		padding:.5rem 0;
+		border-bottom:1px solid #f6f6f6;
+	}
+	.serve_detail_cont{
+	    padding: .5rem 0;
+	    font-size: .6rem;
+	    line-height: 1.05rem;
+	    color: #888;
+	}
+	
+	.serve_detail>h4.look_all{
+		text-align: center;
+	    line-height: 2rem;
+	}
+	.choice_date{
+		margin-top: 0.5rem;
+	    width: 100%;
+	    height: 3.6rem;
+	    overflow: hidden;
+	}
+	.choice_date>div{
+		width: 21%;
+	    height: 3.5rem;
+	    border: 1px solid #fc5a9c;
+	    float: left;
+	    margin-right: 4.5%;
+	    border-radius: 2px;
+	    margin-bottom:0.5rem;
+	}
+	.choice_date>div.active{
+	    background: #fc5a9c;
+	    color: #fff;
+	}
+	.choice_date>div.last_right{
+		margin-right:0;
+	}
+	.choice_date>div h3{
+		text-align: center;
+		font-size: 0.6rem;
+		padding-top: 10px;
+		line-height: 0.9rem;
+	}
+	.choice_date>div h6{
+		text-align: center;
+		font-size: 0.6rem;
+		line-height: 0.9rem;
+	}
+	.choice_date>div.active h3{
+		color: #fff;
+	}
+	.choice_date>div.active h6{
+		color: #fff;
+	}
+	.choice_date>div h6:last-child{
+		font-size: 0.5rem;
+		color:#888;
+	}
+	.choice_date>div h6:nth-child(2){
+		color:#555;
+	}
+	.choice_date>div.active h6:nth-child(2){
+		color:#fff;
+	}
+	.choice_date>div.active h6:last-child{
+		color:#fff;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		#if($!item.linktype  == 2 )
+		<div class="item_doc">
+			<a href='javascript:;' onclick="hospitalinfo('$!{item.linkid}');return false;">
+				<dl>
+					<dt></dt>
+					<dd>
+						<h3>$!item.link_obj.siteconfig_obj.abbreviation</h3>
+						<p>地址：$!item.address</p>
+					</dd>
+				</dl>
+			</a>
+		</div>
+		#else
+		#end
+		#if(${item.type_obj.linkdoctor}==1)
+		<div class="serve_detail">
+			<h2>选择就诊日期</h2>
+			<div class="choice_date">
+				#foreach($l in $plan)
+				#if($!{velocityCount}==1) 
+				<div class="active" dateTime="$l.datetime" displaytime = "$l.displaydatetime">
+				#elseif($!{velocityCount}%4==0)
+				<div class="last_right" dateTime="$l.datetime" displaytime = "$l.displaydatetime">
+				#else
+				<div dateTime="$l.datetime" displaytime = "$l.displaydatetime">
+				#end
+					<h3>$l.showdate.date</h3>
+					<h6>$l.showdate.week</h6>
+					<h6>$l.showdate.time</h6>
+				</div>
+				#end
+			</div>
+			#if($!{plan.size()}>4)
+			<h4 class="look_all">查看全部</h4>
+			#end
+		</div>
+		#end
+		#foreach($l in $item.h5)
+		<div class="serve_detail">
+			<h2>$l.title</h2>
+			<div class="serve_detail_cont">
+			$htmlUtil.htmlspecialchars($l.content)
+			</div>
+		</div>
+		#end
+	</div>
+	<script>
+		function doctorinfo(doctorid){
+			var u = navigator.userAgent;
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+				//app.hospitalDetail(siteid);
+				app.expert(doctorid);
+			} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+				//app.hospitalInfo(siteid);
+				app.doctorDetail(doctorid);
+		    } 
+		}
+		
+		function hospitalinfo(siteid){
+			var u = navigator.userAgent;
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+				app.hospitalDetail(siteid);
+			} else if(u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+				app.hospitalInfo(siteid);
+		    } 
+		}
+		
+		function getexpecteddate(){
+			var json = {};
+			json.displaydatetime=$(".choice_date>div.active").attr("displaytime");
+			json.datetime=$(".choice_date>div.active").attr("dateTime");
+			return json;
+		}
+		$(function(){
+			var datehei=$(".choice_date").height();
+			$(".serve_detail").on("click",".look_all",function(){
+				var u = navigator.userAgent;
+				var bodyheight=$("body").height();
+				if($(this).hasClass("active")){
+					$(this).parent().find(".choice_date").height(datehei);
+					//alert(datehei);
+					$(this).html("查看全部");
+					$(this).removeClass("active");
+				}else{
+					$(this).parent().find(".choice_date").css("height","inherit");
+					$(this).html("收起");
+					$(this).addClass("active");
+				}
+						alert("ok");
+				if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+					app.changeWebHeight(bodyheight);
+					alert("ok");
+				}else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+					app.changeWebHeight();
+			    } 
+			})
+			$(".serve_detail").on("click",".choice_date>div",function(){
+				$(this).addClass("active");
+				//alert(datehei);
+				$(this).siblings().removeClass("active");
+			})
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Amaze UI Admin index Examples</title>
+		<meta name="description" content="这是一个 index 页面">
+		<meta name="keywords" content="index">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="assets/i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+		<link rel="stylesheet" href="assets/css/admin.css">
+		<link rel="stylesheet" href="assets/css/admin_custom.css" />
+	</head>
+
+	<body>
+		<style>
+			.pd8 {
+				padding: 0.7rem;
+			}
+			
+			@media only screen and (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			@media (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			.am-nav-pills>li+li {
+				margin-left: 0px !important;
+			}
+			
+			.am-topbar,
+			.am-topbar a {
+				color: #ddd;
+			}
+			
+			.headerbg {
+				border-color: #50627f !important;
+			}
+			
+			body {
+				font-size: 1.4em;
+			}
+			
+			.admin-sidebar-list li a {
+				padding-left: 15px;
+			}
+			
+			.admin-sidebar {
+				width: 245px;
+			}
+			/*.tabspad {
+				
+				padding: 1.6rem;
+				padding-left: 0px !important;
+				padding-right: 0px !important;				
+			}*/
+			
+			.am-tabs-nav {
+				padding: 0px 20px;
+				background: url(assets/images/default/noise.white.png);
+			}
+			
+			.headermenu span {
+				display: block;
+				padding-bottom: 8px;
+			}
+			
+			.am-tabs-bd {
+				border: 0px;
+			}
+			
+			.am-tabs-bd {
+				overflow: inherit;
+			}
+			
+			.admin-content {
+				overflow: inherit;
+			}
+		</style>
+		<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+		<!-- content start -->
+		<div class="admin-content">
+
+			<!--<div class="pageheader">
+					<h1 class="pagetitle">编辑公众号</h1>
+					<span class="pagedesc">Add</span>
+
+				</div>-->
+
+			<form class="am-form">
+				<fieldset>
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							公众号名称
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="wxname" name="wxname" />
+						</div>
+						<div class="am-hide-sm-only am-u-md-3"></div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							公众号原始ID
+						</div>
+						<div class="am-u-sm-12 am-u-md-7 am-u-end col-end">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="wxid" name="wxid" />
+						</div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							微信号
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="wxnum" name="wxnum" />
+						</div>
+						<div class="am-hide-sm-only am-u-md-3"></div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							AppID（公众号）
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="appid" name="appid" />
+						</div>
+						<div class="am-u-sm-12 am-u-md-3"></div>
+					</div>
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							AppSecret
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="appsecret" name="appsecret" />
+						</div>
+						<div class="am-u-sm-12 am-u-md-3"></div>
+					</div>
+
+
+				<div class="am-g am-margin-top am-form-group">
+					<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+						服务号类型
+					</div>
+					<div class="am-u-sm-12 am-u-md-10">
+						<select data-am-selected="{btnSize: 'sm',dropUp: 1}"  >
+							
+							<option value="option1">选项一...</option>
+							<option value="option2">选项二.....</option>
+							<option value="option3">选项三........</option>
+						</select>
+						<span class="am-form-caret"></span>
+					</div>
+</div>
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">&nbsp;</div>
+						<div class="am-u-sm-12 am-u-md-10">
+							<button class="am-btn  am-btn-success" type="submit">提交</button>
+						</div>
+					</div>
+			</form>
+
+		</div>
+		<!-- content end -->
+
+		<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<script src="assets/js/jquery.min.js"></script>
+		<!--<![endif]-->
+		<script src="assets/js/amazeui.min.js"></script>
+		<script type="text/javascript" src="assets/js/layer.js" ></script>
+		<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="assets/js/localization/messages_zh.js"></script>
+		<script src="assets/js/app.js"></script>
+		<script>
+			$.validator.setDefaults({
+				submitHandler: function() {
+	            alert("提交成功")   
+	            form.submit();
+	            e.preventDefault();
+				}
+			});
+			$().ready(function() {
+				// 在键盘按下并释放及提交后验证提交表单
+				$(".am-form").validate({
+					rules: {
+						wxname: {
+							required: true,
+							minlength: 2
+						},
+						wxid: {
+							required: true,
+							minlength: 5
+						},
+						wxnum: {
+							required: true,
+							minlength: 5
+						},
+						appid: {
+							required: true,
+							minlength: 5
+						},
+						appsecret: {
+							required: true,
+							minlength: 5
+						}
+					},
+					messages: {
+						wxname: "请输入您的公众号名称",
+						wxid: "请输入公众号原始ID",
+						wxnum: {
+							required: "请输入微信号",
+							minlength: "用户名必需由两个字母组成"
+						},
+						appid: {
+							required: "请输入APPID",
+							minlength: "密码长度不能小于 5 个字母"
+						},
+						appsecret: {
+							required: "请输入AppSecret",
+							minlength: "密码长度不能小于 5 个字母",
+						}						
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

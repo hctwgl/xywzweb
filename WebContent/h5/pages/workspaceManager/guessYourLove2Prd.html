@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+		function getParam(sHerf,value) {
+			var retval = "";
+			var args = sHerf.split("?");
+			if (args[0] == sHerf) {
+				//return retval;
+			}
+			var str = args[1];
+			args = str.split("&");
+			for (var i = 0; i < args.length; i++) {
+				str = args[i];
+				var arg = str.split("=");
+				if (arg.length <= 1) continue;
+				if (arg[0] == value) retval = arg[1];
+			}
+			return retval;
+		}
+		$(document).ready(function () {
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#btRm").show();
+			}else{
+				$("#btRm").hide();
+			} 
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			var sHerf = window.location.href;
+			var prodId = getParam(sHerf,"prodId");
+			document.getElementById("prodIdId").value = prodId;
+		});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+		//实际开发过程中，请勿如此调用
+		setTimeout(function(){ myscroll=new iScroll("bxPicBox");},1000);
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$("#bxPicBox").height(_ch-42).width(_cw-180);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>猜你喜欢</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#" id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="botm bxBox" id="botm">
+		<div class="bxPicBox" id="bxPicBox">
+		<div>
+			<div class="bxPicList">
+				<!-- <p style="font-size:30px">产品编号：<output id="prodIdId"></output></p>  -->
+				<img src="../../themes/hbbank/images/pic_09.jpg"/>
+				<div class="cl"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+</body>
+</html>

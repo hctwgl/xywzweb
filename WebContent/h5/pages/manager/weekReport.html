@@ -1,0 +1,214 @@
+<!-- 
+   功能描述：工作周报
+   作者 ：luoyad
+   时间 ：2014-11-16
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>客户关系管理系统</title>
+		<meta name="keywords" content="客户关系管理系统,CRM" />
+		<meta name="description" content="客户关系管理系统,CRM" />
+		<meta name="Author" content="YuchengTech" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="weekReport.js"></script>
+  
+    
+    
+        <style>
+		 .radioInputClass{
+			width: 95%;font-size: 16px;
+		 } 
+		</style>
+		<script type="text/javascript">
+		$.ui.openLinksNewTab = false;
+		$.ui.splitview 		 = false;
+		//$.ui.slideSideMenu   = false;
+		$.ui.animateHeaders  = false;
+		
+		$.ui.autoLaunch  = false;
+		if(devModel) {
+			$.ui.autoLaunch  = true;
+		}
+		$(document).ready(function() {
+                document.addEventListener('deviceready', onDeviceready, false);
+            
+                //$.ui.launch();
+        });
+    
+        function onDeviceready() {
+        	if(!devModel) {
+                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+                    $("body").addClass("iospad");
+                } else {
+                    $("body").addClass("androidpad");
+                }
+        	}
+            $.ui.launch();
+        }
+			
+			$.ui.ready(function() {
+				var weekReport = PageBarFactory.get(config);
+				weekReport.queryFun();
+				$("#addWeekReport").click(function(){
+					addWeekReport();
+				});
+
+				$("#searchPanelButton").click(function(){
+
+	                   var url = queryConfigUrl();
+	                   weekReport.queryFun(url);
+
+				});
+				$("#deleteWeekReport").click(function(){
+					deleteWeekReports();
+				});
+				
+				$("#filterButton").click(function(){
+					//TODO 按实际拼装查询条件
+					var url = queryConfigUrl();
+					weekReport.queryFun(url);
+					//关闭过滤窗口
+					setFilter();
+				});
+				
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+				
+			    $('#searchField').mobiscroll().datetime({
+                    theme: 'ios-classic',     // Specify theme like: theme: 'ios' or omit setting to use default 
+                    mode: 'mixed',       // Specify scroller mode like: mode: 'mixed' or omit setting to use default 
+                    display: 'bubble', // Specify display mode like: display: 'bottom' or omit setting to use default 
+                    lang: 'zh',       // Specify language like: lang: 'pl' or omit setting to use default
+                    minDate: new Date(1987,3,10,9,22),  // More info about minDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-minDate
+                    maxDate: new Date(2100,7,30,15,44),   // More info about maxDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-maxDate
+                    stepMinute: 1  // More info about stepMinute: http://docs.mobiscroll.com/2-14-0/datetime#!opt-stepMinute
+                });
+				
+			});
+			
+			function queryConfigUrl(){
+				var user = parent.mobileApp.getUserInfo();//当前登陆用户的基本信息保存对象
+				var userId		= user.userId;//从当前登陆用户对象中获取用户编号
+				
+				var url = basePath + 'weekReportAction.json?createrId='+userId;
+				
+				var keyW = $("#searchField").val();
+				var startTime = $("#filterStartTime").val();
+				var endTime = $("#filterEndTime").val();
+				var content = $("#filterContent").val();
+				
+				if(keyW != null && keyW != "undefined") {
+					url += "&keyW="+keyW;
+				}
+				if(startTime != null && startTime != "undefined") {
+					url += "&startTime="+startTime;
+				}
+				if(endTime != null && endTime != "undefined") {
+					url += "&endTime="+endTime;
+				}
+				if(content != null && content != "undefined") {
+					url += "&content="+content;
+				}
+				
+				return url;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<header id="headerui">
+				<div class="top_header"> 
+					<a id="menuBtn" class="menuButton" style="float: left;"></a> 
+					<h1>工作周报</h1>
+				</div>
+			</header>
+			<div id="content">
+				<div id="weekReportPanel" class="panel" data-header="headerui" data-footer='none'>
+				<div class="toolsBar">
+					<div class="tbLeft">
+						<input type="text" id="searchField" class="txtSearch" placeholder="请输入关键字…"/>
+						<a class="btSearch icon-search" id="searchPanelButton">查询</a>
+					</div>
+					<div class="tbRight">
+						<a class="txtBt icon-filter" onclick='setFilter(this)'>筛选</a>
+						<a class="txtBt icon-plus" id="addWeekReport" >新增</a>
+						<a class="txtBt icon-pencil" id="deleteWeekReport">编辑</a>
+
+					</div>
+				</div>
+				
+				<div>
+					<ul class="list" id="weekReport_list"></ul>
+				</div>				
+				</div>
+			</div>
+			<!-- 筛选面板 --start -->
+		<div class="filterPanel">
+			<div class="arrow-up"></div>
+			<div class="formContent">
+				<div class="formCell">
+					<label>起始时间：</label>
+					<div class="fcContent">
+						<input id="filterStartTime" name="text1" placeholder="起始时间" readonly="readonly"  onclick="dateUtils.datePicker('filterStartTime','date');" type="text">
+					</div>
+				</div>
+				<div class="formCell">
+					<label>结束时间：</label>
+					<div class="fcContent">
+						<input id="filterEndTime" name="text1"  readonly="readonly" onclick="dateUtils.datePicker('filterEndTime','date');"  placeholder="结束时间" type="text">
+					</div>
+				</div>
+				<div class="formCell">
+					<label>周报内容：</label>
+					<div class="fcContent">
+						<input name="filterContent" type="text">
+					</div>
+				</div>
+
+				<div class="fpToolsBar">
+					<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+					<a class="txtBt icon-checkmark" id="filterButton" >确定</a>
+				</div>
+			</div>	
+		</div>
+			<!-- 筛选面板 --end -->
+		</div>
+		<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+	
+		
+	    <script src="../../resource/appframework.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.appframework.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.core.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.widget.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.scroller.js"></script>
+
+	    <script src="../../resource/datetime/js/mobiscroll.util.datetime.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.datetimebase.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.datetime.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.i18n.zh.js"></script>
+	    <script src="../../resource/datetime/js/mobiscroll.widget.ios-classic.js"></script>
+		
+	    <link href="../../resource/datetime/css/mobiscroll.widget.css" rel="stylesheet" type="text/css" />
+	    <link href="../../resource/datetime/css/mobiscroll.widget.ios-classic.css" rel="stylesheet" type="text/css" />
+	    <link href="../../resource/datetime/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+	    <link href="../../resource/datetime/css/mobiscroll.scroller.ios-classic.css" rel="stylesheet" type="text/css" />
+		
+	</body>
+</html>

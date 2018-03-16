@@ -1,0 +1,549 @@
+
+
+  https://su.yzcdn.cn/v2/build/www/pages/weixin/imagetext_1aaaba8389.js:1
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/lib/chosen.jquery.20150826.min.css ***/
+
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/lib/jquery.ui.20151022.min.css ***/
+
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/lib/bootstrap_140705.min.css ***/
+
+
+
+
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+@media print {
+  tr {
+    page-break-inside: avoid;
+  }
+
+  * {
+    color: #000!important;
+    text-shadow: none!important;
+    background: 0 0!important;
+    box-shadow: none!important;
+  }
+
+
+
+@page {
+    margin: .5cm;
+}
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+body {
+  background-color: #fff;
+}
+
+body {
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
+a {
+  color: #08c;
+  text-decoration: none;
+}
+
+
+
+.container {
+  width: 940px;
+}
+
+.container:after,
+.container:before {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+h1,
+h4 {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+h1 {
+  line-height: 40px;
+}
+
+h1 {
+  font-size: 38.5px;
+}
+
+h4 {
+  font-size: 17.5px;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #999;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #999;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button.btn::-moz-focus-inner,
+input[type=submit].btn::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.navbar-inverse .navbar-search .search-query:-moz-placeholder {
+  color: #ccc;
+}
+
+.navbar-inverse .navbar-search .search-query:-ms-input-placeholder {
+  color: #ccc;
+}
+
+.pull-right {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/lib/pc_346e770ff6.css ***/
+
+html,
+body,
+div,
+span,
+iframe,
+h1,
+h4,
+p,
+a,
+table,
+tbody,
+tr,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+body {
+  /*min-width: 1000px;*/
+  font-size: 12px;
+  line-height: 1.5em;
+  font-family: Helvetica, STHeiti, "Microsoft YaHei", Verdana, Arial, Tahoma, sans-serif;
+  background-color: #fff;
+}
+
+
+
+/*a:hover,
+a:focus {
+  color: #07d;
+  text-decoration: none;
+}*/
+
+.container {
+  zoom: 1;
+  margin: 0 auto;
+  padding: 0;
+  width: 1000px;
+}
+
+.app {
+  width: 100%;
+  float: left;
+}
+
+.app-inner {
+  min-height: 800px;
+  margin: 0 0 0 150px;
+  padding-bottom: 60px;
+  background-color: #fff;
+}
+
+
+
+
+.app__content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.notify-bar {
+  position: fixed;
+  z-index: 100;
+  bottom: 0px;
+  width: 850px;
+  font-size: 14px;
+}
+
+.ui-form .control-group::last-of-type {
+  margin-bottom: 10px;
+}
+
+.app-design .app-preview {
+  position: relative;
+  float: left;
+  width: 350px;
+  
+  border-bottom-width: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+}
+
+.app-design .app-preview .app-header {
+  height: 70px;
+  background: url("/v2/image/widget/showcase/iphone_head.png") no-repeat center center;
+}
+
+.app-design .app-preview .app-entry {
+  width: 320px;
+  margin: 0 auto;
+  padding-bottom: 11px;
+  min-height: 200px;
+  border: 1px solid #c5c5c5;
+  background: #f9f9f9;
+}
+
+.app-design .app-preview .app-config .app-field {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+/*.app-design .app-preview .app-config .app-field:hover {
+  background-color: transparent;
+}*/
+
+.app-design .app-preview .app-config .app-field h1 {
+  padding: 18px 60px 0 60px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  background: url(../../img/titlebar.png) no-repeat;
+}
+
+.app-design .app-preview .app-config .app-field h1 span {
+  display: inline-block;
+  height: 46px;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.app-design .app-preview .app-field {
+  position: relative;
+  cursor: move;
+  -webkit-user-select: none;
+}
+
+/*.app-design .app-preview .app-field:hover {
+  background-color: #f2f2f2;
+}*/
+
+/*.app-design .app-preview .app-field:hover .actions {
+  display: inline-block;
+}*/
+
+.app-design .app-preview .app-add-field {
+  position: relative;
+  left: -1px;
+  top: -1px;
+  border: 1px solid #ddd;
+}
+
+.app-design .app-preview .app-add-field:before,
+.app-design .app-preview .app-add-field:after {
+  position: absolute;
+  content: ' ';
+  border: 8px solid transparent;
+  border-bottom-width: 10px;
+  border-bottom-color: #f8f8f8;
+  top: -18px;
+  left: 167px;
+}
+
+.app-design .app-preview .app-add-field:before {
+  top: -19px;
+  border-bottom-color: #ddd;
+}
+
+.app-design .app-preview .app-fields .app-field {
+  position: relative;
+}
+
+.app-design .app-preview .app-fields .app-field:last-child {
+  border-bottom: none;
+}
+
+.app-design .app-preview .actions {
+  position: absolute;
+  display: none;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 320px;
+  border: 2px dashed rgba(255, 0, 0, 0.5);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.app-design .app-preview .actions .actions-wrap {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.app-design .app-preview .actions span {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 0 5px;
+  margin-left: 1px;
+  font-size: 12px;
+}
+
+/*.app-design .app-preview .actions span:hover {
+  color: #ddd;
+  cursor: pointer;
+}*/
+
+.app-design .app-add-field {
+  position: relative;
+  padding: 0 14px 4px 14px;
+  background: #f8f8f8;
+  width: 350px;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.app-design .app-add-field h4 {
+  text-align: center;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5) {
+  .app-design .app-preview .app-header {
+    background-image: url("/v2/image/widget/showcase/iphone_head@2x.png");
+    background-size: 80px 34px;
+  }
+
+  .app-design .app-preview .app-config .app-field h1 {
+    background-image: url("/v2/image/widget/showcase/titlebar@2x.png");
+    background-size: 320px 64px;
+  }
+}
+
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/image_text_28e2a4d1aa.css ***/
+
+.app-add-image-text {
+  display: block;
+  cursor: pointer;
+}
+
+.appmsg {
+  width: 268px;
+  position: relative;
+  margin: 10px;
+}
+
+.appmsg-title {
+  word-break: break-all;
+}
+
+.appmsg-multiple .appmsg-multiple-others {
+  width: 268px;
+  position: relative;
+  min-height: 40px;
+}
+
+.appmsg-multiple .appmsg-multiple-others .appmsg-title {
+  padding-right: 70px;
+  word-break: break-all;
+}
+
+.appmsg-multiple .appmsg-multiple-others .appmsg-thumb-wrap {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 50px;
+  height: 50px;
+}
+
+.appmsg-multiple .appmsg-multiple-others .appmsg-thumb-wrap p {
+  color: #C0C0C0;
+  background-color: #ECECEC;
+  line-height: 50px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.appmsg-multiple .appmsg-multiple-first {
+  height: 150px;
+}
+
+.appmsg-multiple .appmsg-multiple-first .appmsg-thumb-wrap {
+  overflow: hidden;
+  height: 150px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.appmsg-multiple .appmsg-multiple-first .appmsg-thumb-wrap p {
+  color: #C0C0C0;
+  text-align: center;
+  line-height: 150px;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #ECECEC;
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.appmsg-multiple .appmsg-multiple-first .appmsg-title {
+  word-break: break-all;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  line-height: 28px;
+  width: 100%;
+  max-height: 56px;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+
+.appmsg-view-full,
+.appmsg-meta {
+  display: none;
+}
+
+.app-fields.ui-sortable {
+  margin: 10px 15px;
+  border: 1px solid #AEAEAE;
+}
+
+.app-fields.ui-sortable .app-field {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-fields.ui-sortable .app-field:last-child {
+  border-bottom: 0 none;
+}
+
+/*.app-design .app-preview .app-field.not-sortable {
+  cursor: pointer;
+}*/
+
+/*.app-design .app-preview .app-config .app-field {
+  cursor: default;
+}*/
+
+.app-design .app-preview .actions {
+  border: 0 none;
+  width: 288px;
+}
+
+/*** uncss> filename: http://127.0.0.1:8079/youzan/css/lib/ueditor.css ***/
+
+/*åŸºç¡€UIæž„å»º
+*/
+
+/* common layer */
+
+.edui-default .edui-box {
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+div.edui-box {
+  position: relative;
+  display: -moz-inline-box !important;
+  display: inline-block !important;
+  vertical-align: top;
+}
+
+/* control layout */
+
+

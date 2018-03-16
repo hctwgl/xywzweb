@@ -1,0 +1,76 @@
+<!-- 
+   功能描述：产品介绍
+   作者 ：wangwan1@yuchengtech.com
+   时间 ：2014-11-21
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>产品介绍</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			$.ui.animateHeaders  = false;
+	
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+	                document.addEventListener('deviceready', onDeviceready, false);
+	        });
+	    
+	        function onDeviceready() {
+	        	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+	        	}
+	            $.ui.launch();
+	        }
+			$.ui.ready(function() {
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+				
+			});
+			
+		</script>
+	</head>
+	<body>
+	<div id="afui" class="ycskin">
+	<div id="content">
+		<div id="scheduleManagePanel" class="panel" data-header="headerui" data-footer='none'>
+			<header id="headerui">
+				<div class="top_header"> 
+					<a id="menuBtn" class="menuButton" style="float: left;"></a> 
+					<h1>产品介绍</h1>
+				</div>
+			</header>
+			<div style="background-color:white;height:100%;width:100%">
+				<iframe style="height:100%;width:100%" id="proIntroframe" src="proIntroTest1.html"></iframe>
+			</div>
+		</div>
+	</div>
+	</div>
+		<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+	</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="investmentPlan.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		setUI();
+		if (document.getElementById("shifou").value == '2') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden22']").hide();
+		} else if (document.getElementById("shifou").value == '1') {
+			$("div[name='hidden11']").show();
+			$("div[name='hidden22']").show();
+		}
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	function shifou() {
+		if (document.getElementById("shifou").value == '2') {
+			$("div[name='hidden11']").hide();
+			$("div[name='hidden22']").hide();
+		} else if (document.getElementById("shifou").value == '1') {
+			$("div[name='hidden11']").show();
+			$("div[name='hidden22']").show();
+		}
+	}
+	 //判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {debugger;
+		if ((document.getElementById("danbitouru").value == '' || document.getElementById("danbitouru").value == null)
+				&& (document.getElementById("dingtoujine").value == '' || document.getElementById("dingtoujine").value == null)) {
+			mesUtil.alert("至少在单笔投资和定期投资金额其中一项输入金额");
+			return false;
+		} else {
+			if (document.getElementById("danbitouru").value != '' && document.getElementById("danbitouru").value != null) {
+				if (!checkNumAndFloat(document.getElementById("danbitouru").value)) {
+					mesUtil.alert("请在单笔投入金额输入非负数");
+					return false;
+				}
+				if (document.getElementById("danbiqixian").value == '' && document.getElementById("danbiqixian").value == null) {
+					mesUtil.alert("请输入投资期限");
+					return false;
+				} else {
+					if (!checkNumber(document.getElementById("danbiqixian").value)) {
+						mesUtil.alert("请在投资期限输入正数");
+						return false;
+					}
+				}
+			}
+			if (document.getElementById("dingtoujine").value != '' && document.getElementById("dingtoujine").value != null) {
+				if (!checkNumAndFloat(document.getElementById("dingtoujine").value)) {
+					mesUtil.alert("请在定期投入金额输入非负数");
+					return false;
+				}
+				if (document.getElementById("dingtouqixian").value == '' && document.getElementById("dingtouqixian").value == null) {
+					mesUtil.alert("请输入定期投资期限");
+					return false;
+				} else {
+					if (!checkNumber(document.getElementById("dingtouqixian").value)) {
+						mesUtil.alert("请在定期投资期限输入正数");
+						return false;
+					}
+				}
+			}debugger;
+			if ((document.getElementById("danbiqixian").value != '' && document.getElementById("danbiqixian").value != null) &&
+					(document.getElementById("dingtouqixian").value != '' && document.getElementById("dingtouqixian").value != null)) {
+				if (document.getElementById("danbiqixian").value*1 < document.getElementById("dingtouqixian").value*1) {
+					mesUtil.alert("单笔投资期限不能小于定期投资期限");
+					return false;
+				}
+			}
+			
+		}
+		if (!checkNumAndFloat(document.getElementById("yujitouziRatio").value)) {
+			mesUtil.alert("请在投资回报率输入非负数");
+			return false;
+		}
+		if (document.getElementById("shifou").value == '1') {
+			if (!checkNumAndFloat(document.getElementById("jixutouziRatio").value)) {
+				mesUtil.alert("请在继续投资回报率输入非负数");
+				return false;
+			}
+			if (!checkNumber(document.getElementById("lingquqishu").value)) {
+				mesUtil.alert("请在领取期数输入正数");
+				return false;
+			}
+		}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    jisuan();
+	    document.getElementById("danbitouru").value = document.getElementById("danbitouru").value*1;
+		document.getElementById("dingtoujine").value = document.getElementById("dingtoujine").value*1;
+		document.getElementById("danbiqixian").value = document.getElementById("danbiqixian").value*1;
+		document.getElementById("dingtouqixian").value = document.getElementById("dingtouqixian").value*1;
+		document.getElementById("yujitouziRatio").value = document.getElementById("yujitouziRatio").value*1;
+		document.getElementById("jixutouziRatio").value = document.getElementById("jixutouziRatio").value*1;
+		document.getElementById("lingquqishu").value = document.getElementById("lingquqishu").value*1;
+		document.getElementById("guihuadaoqizijin").value = document.getElementById("guihuadaoqizijin").value*1;
+		document.getElementById("meiqiallowmoney").value = document.getElementById("meiqiallowmoney").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("danbitouru").value = null;
+		document.getElementById("dingtoujine").value = null;
+		document.getElementById("danbiqixian").value = null;
+		document.getElementById("dingtouqixian").value = null;
+		document.getElementById("yujitouziRatio").value = null;
+		document.getElementById("shifou").value = '2';
+		document.getElementById("jixutouziRatio").value = null;
+		document.getElementById("lingquqishu").value = null;
+		document.getElementById("guihuadaoqizijin").value = null;
+		document.getElementById("meiqiallowmoney").value = null;
+		return true;
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>财富规划</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>投资规划</h1>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>单笔投入金额(元)：</p>
+				<input name="danbitouru" id="danbitouru" type="number" class="txtnum" onkeyup="javascript:lengthCheck('danbitouru')" onafterpaste="javascript:lengthCheck('danbitouru')" />
+		</div>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>定额投入金额(元)：</p>
+				<input name="dingtoujine" id="dingtoujine" type="number" class="txtnum" onkeyup="javascript:lengthCheck('dingtoujine')" onafterpaste="javascript:lengthCheck('dingtoujine')" />
+		</div>
+		<div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>投资期限(年)：</p>
+				<input name="danbiqixian" id="danbiqixian" type="number" class="txtnum" onkeyup="javascript:yearCheck('danbiqixian')" onafterpaste="javascript:yearCheck('danbiqixian')" />
+		</div>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>定额投入期数(年)：</p>
+				<input name="dingtouqixian" id="dingtouqixian" type="number" class="txtnum" onkeyup="javascript:yearCheck('dingtouqixian')" onafterpaste="javascript:yearCheck('dingtouqixian')" />
+		</div>
+		<div class="xinxi" style="font-size:16px;">
+			<p><span>*</span>投资回报率(%)：</p>
+			<input name="yujitouziRatio" id="yujitouziRatio" value="5" type="number" class="txtnum" onkeyup="javascript:ratioCheck('yujitouziRatio')" onafterpaste="javascript:ratioCheck('yujitouziRatio')" />
+		</div>
+		<div class="xinxi" style="font-size:16px;">
+					<p>是否继续投资：</p>
+					<select id="shifou"  onchange="shifou();" style="width:63%" >
+						<option value="1">是</option>
+						<option selected="selected" value="2">否</option>
+					</select>
+		</div>
+		<div class="xinxi" name="hidden11" style="font-size:16px;">
+			<p><span>*</span>继续投资回报率(%)：</p>
+			<input name="jixutouziRatio" id="jixutouziRatio" type="number" class="txtnum" onkeyup="javascript:ratioCheck('jixutouziRatio')" onafterpaste="javascript:ratioCheck('jixutouziRatio')" />
+		</div>
+		<div class="xinxi" name="hidden11" style="font-size:16px;">
+			<p>领取期数（月）：</p>
+			<input name="lingquqishu" id="lingquqishu" type="number" class="txtnum" onkeyup="javascript:yearCheck('lingquqishu')" onafterpaste="javascript:yearCheck('lingquqishu')" />
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()"/>
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()"/>
+		</div>
+	  <h1>计算结果</h1>
+      <div class="xinxi" style="font-size:16px;">
+			<p>规划到期资金(元)：</p>
+			<input name="guihuadaoqizijin" id="guihuadaoqizijin" value="计算得出" disabled readonly type="text" />
+		</div>
+		<div class="xinxi" name="hidden22" style="font-size:16px;">
+			<p><span>*</span>每期可领取(元)：</p>
+			<input name="meiqiallowmoney" id="meiqiallowmoney" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>财富规划</h1>
+	       <div class="jsqBox">
+	          <a href="retireRequest.html" class="jsqMenu jm1">退休需求规划</a>
+	          <a href="teachFundRequest.html" class="jsqMenu jm2" >教育基金需求规划</a>
+	          <a href="baozhangRequest.html" class="jsqMenu jm3">保障需求规划</a>
+	          <a href="investmentPlan.html" class="jsqMenu jm4">投资规划</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

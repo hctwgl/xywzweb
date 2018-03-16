@@ -1,0 +1,199 @@
+<!-- 
+   功能描述：首页
+   作者 ：
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>XXXX管理系统</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8" src="welcome.js"></script>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = true;//菜单是否显示
+			$.ui.slideSideMenu   = false;
+			$.ui.animateHeaders  = false;
+			$.ui.autoLaunch      = false;
+			/***
+			 * 初始化菜单
+			 */
+			function initWelcomeMenu() {
+				var menuData = [
+				 				{ID : '1000', NAME : '金融超市demo', PARENT_ID : '001', ACTION : '/mobile/pages/supermarket/supermarket.html'},
+				 				{ID : '1001', NAME : '金融超市', PARENT_ID : '001', ACTION : ''},
+				                {ID : '1002', NAME : '优惠活动', PARENT_ID : '001', ACTION : ''},
+				                {ID : '1003', NAME : '理财工具', PARENT_ID : '001', ACTION : ''},
+				                {ID : '1004', NAME : '产品展示', PARENT_ID : '001', ACTION : ''},
+			 	                {ID : '1005', NAME : '猜你喜欢', PARENT_ID : '001', ACTION : ''},
+				                {ID : '1006', NAME : '财富规则', PARENT_ID : '001', ACTION : ''}];
+				for (var i in  menuData) {
+						$("#appMenuList").append(
+							'<li id="mobile_menu_'+ i
+									+'" ><a href="javascript:$._APP.openMenu(\''+menuData[i].ACTION+'\')"'
+									+ '><span class=\"menuIco ico_05\">　 </span>'
+									+ menuData[i].NAME + '</a></li>');
+				}
+			}
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			};
+			$(document).ready(function() {
+                //mesUtil.alert('document ready | ;platform='+crmApp.device.platform);
+                document.addEventListener('deviceready', onDeviceready, false);
+                //$.ui.launch();
+        	});
+			function onDeviceready() {
+            	//mesUtil.alert('device ready | ;platform='+crmApp.device.platform);
+            	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS'|| crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+            	}
+                $.ui.launch();
+            }
+			$.ui.ready(function() {
+				$("#filterButton").click(function(){
+					loginFun();
+					//关闭过滤窗口
+					setFilter();
+				});
+				initWelcomeMenu();
+			});
+			
+			var user = {};
+        	
+     		
+     		var login_time=500000;
+     		var login_timeout; //调度器对象。
+     		var alowLogin=true;//超时后不允许登录标示符
+     		
+     		function loginTimeOut(){
+     			alowLogin=false;
+     			mobileUtils.hideLoading();
+     			mesUtil.alert("登录超时！");
+     			clearTimeout(login_timeout);//取消登录超时计时器
+     		}
+     		function run(){
+     			login_timeout = setTimeout("loginTimeOut()", login_time);
+     		}
+	        /**
+	         * 登录方法
+	         */
+        	function loginFun(){
+         		if(valid()){
+         			mobileUtils.showLoading('正在登录...');
+         			alowLogin=true;
+         			//需根据页面选择的离在线状态判断
+						run();
+         				$.ajax({
+					    	type : "POST",
+					  		url : basePath +'j_spring_security_check',
+							data : user,
+					 		cache: false,
+					   		dataType: "json",
+					   		success : function(response){
+					   			if(alowLogin){
+						   			mobileUtils.hideLoading();
+						   			clearTimeout(login_timeout);//取消登录超时计时器
+	       							if (response.status == '00') {
+							     		mobileApp.setUserInfo(response.datas,user.isOffline);
+									} else {
+										mesUtil.alert(response.errors);
+							     	}
+					   			}
+         					},
+			         		error:function(a,b,c){
+			         			mobileUtils.hideLoading();
+			         			clearTimeout(login_timeout);//取消登录超时计时器
+			         		}
+			         });
+         	}
+         }
+        
+        /**
+         * 校验用户名密码
+         * @returns {Boolean}
+         */
+		function valid(){
+			var userName = $("#txtusername").val();
+			var userPwd = $("#txtpassword").val();
+			if(userName == ""){
+				mesUtil.alert("用户名不能为空");
+				return false;
+			}
+			if(userPwd == ""){
+				mesUtil.alert("密码不能为空");
+				return false;
+			}
+			user.j_username = userName;
+			user.j_password = userPwd;
+			user.deviceId   = "ipad";
+			return true;
+         }
+			
+		function refresh(obj) {
+			obj.src = basePath+"mobile/imageServlet?"+Math.random();
+	    }
+	</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<div id="content">
+				<div id="customerVisitPanel" class="panel" data-header="headerui" data-footer='none'>
+					<header id="headerui">
+						<div class="top_header"> 
+							<a id="menuBtn" class="menuButton"></a> 
+							<a id="settingButton" onclick="setFilter(this)" class="icon-cog"></a>
+							<h1>测试标题</h1>
+						</div>
+					</header>
+					
+					<div>
+						<ul class="list" id="customerVisit_list"></ul>
+					</div>				
+				</div>
+		</div>
+		<!-- 筛选面板 --start -->
+		<div id="test1" class="filterPanel" style="height: 250px;">
+			<div class="arrow-up"></div>
+			<div class="formContent">
+				<div class="formCell">
+					<label>用户名：</label>
+					<div class="fcContent">
+						<input name="text1" id="txtusername" type="text" value="004106" placeholder="用户名">
+					</div>
+				</div>
+				<div class="formCell">
+					<label>密码：</label>
+					<div class="fcContent">
+						<input name="text1" id="txtpassword" type="password" placeholder="密码">
+					</div>
+				</div>
+				<div class="formCell">
+					<label>验证码：</label>
+					<div class="fcContent">
+						<img title="点击获取" id="randomCodeImg" onclick="javascript:refresh(this);"><br/>
+					</div>
+				</div>
+				<div class="fpToolsBar">
+					<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+					<a class="txtBt icon-checkmark" id="filterButton" >确定</a>
+				</div>
+			</div>				
+		</div>
+		<!-- 筛选面板 --end -->	
+		<nav class="mainNav">
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+		</div>
+	</body>
+</html>

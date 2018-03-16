@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报名成功</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+	/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	.mobile_result_bg{
+		width:100%;
+		/* height:17.25rem;
+		background:url(bg.png) no-repeat center;
+		background-size: cover; */
+		position:relative;
+		background:#FF797A;
+	}
+	.mobile_result_percent{
+		width:100%;
+		height:7.375rem;
+		background:url(/h5/images/activitybgs.png) no-repeat center;
+		background-size: cover;
+	}
+	.mobile_result_text_all{
+		width:100%;
+		position:relative;
+		z-index:9;
+		margin-top: -1px;
+	}
+	.mobile_result_text{
+		width:15.125rem;
+		line-height:1rem;
+		background:#fff;
+		font-size:.725rem;
+		margin:0 auto;
+		border-radius:0 0 .4rem .4rem;
+	}
+	.mobile_result_text p{
+		padding:0.5rem;
+		padding-top: .1rem;
+	}
+	.mobile_result_text i{
+		font-style: normal;
+    	color: #FF797A;
+	}
+	.mobile_result_btn{
+		height:3.0875rem;
+		padding-top:.9125rem;
+		width:100%;
+		background:url(/h5/images/bgntn.png) no-repeat center;
+		background-size: cover;
+	}
+	.mobile_result_btn span{
+		display:block;
+		background:url(/h5/images/order.png) no-repeat center;
+		background-size: cover;
+		width:7.5rem;
+		height:2.175rem;
+		margin:0 auto;
+	}
+	.mobile_result_btn.mobile_result_hidebtn{
+		margin-top:-1rem;
+		position:relative;
+		z-index:1;
+	}
+	.mobile_result_bomb{
+		height:1.95rem;
+		margin-top:1rem;
+	}
+	.mobile_result_bomb h2{
+		width:100%;
+		text-align:center;
+		font-size:.9rem;
+		color:#e54d26;
+		padding-top:.75rem;
+	}
+	.mobile_result_bomb h4{
+		width:100%;
+		text-align:center;
+		font-size:.5rem;
+		font-weight:normal;
+		color:#e54d26;
+		padding-bottom:.7rem;
+	}
+	.mobile_result_add{
+		padding:0 2.35rem;
+		text-align:center;
+		font-size:.65rem;
+		color:#e54d26;
+		margin-top:.8rem;
+	}
+	.mobile_result_retrun{
+		width:6.5rem;
+		height:2.175rem;
+		margin:0 auto;
+		text-align:center;
+		line-height:2.175rem;
+		background:url(/h5/images/btn.png) no-repeat center;
+		background-size:contain;
+		color:#fff;
+		margin-top:3rem;
+		font-size:.8rem;
+	}
+	.mobile_result_prize{
+		width:100%;
+		height:4.2rem;
+		background:url(/h5/images/sui.png) no-repeat center bottom;
+		background-size:11.125rem 1.175rem;
+	}
+	.mobile_result_prize h4{
+		width: 100%;
+	    text-align: center;
+	    font-size: .5rem;
+	    font-weight: normal;
+	    color: #e54d26;
+	    padding-top: .2rem;
+	}
+	.mobile_result_prizes{
+		width:6.65rem;
+		height:3.5rem;
+		margin:0 auto;
+		background:url(/h5/images/hb.png) no-repeat center;
+		background-size:contain;
+		padding-top:.5rem;
+	}
+	.mobile_result_prizes_pic{
+		height:1rem;
+		margin:0 auto;
+	}
+	.mobile_result_prizes h4{
+		width: 100%;
+	    text-align: center;
+	    font-size: .6rem;
+	    padding-top: 0rem;
+	    color: #E54D26;
+	}
+	.mobile_result_prizes h6{
+		width: 100%;
+	    text-align: center;
+	    color: #fff;
+	    margin-top: .5rem;
+	    font-size: .6rem;
+	}
+	.mobile_result_prize a{
+	    text-decoration:none;
+	}
+	.mobile_result_prize h5{
+		  font-size: .55rem;
+	    font-weight: normal;
+	    text-align: center;
+	    line-height: .7rem;
+	    color: #FF797A;
+	    display:block;
+	}
+	.mobile_result_prize p{
+		font-size: .6rem;
+    	text-align: center;
+    	line-height: 1rem;
+    	padding-top: .2rem;
+    	color: #e54d26;
+	}
+	.mobile_result_prize p i{
+		font-style:normal;
+		color:#e54d26;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		var url = window.location.search;
+		var num=url.indexOf("=");
+		var iphone=url.substr(num+1);
+		var index=url.indexOf("&");
+		var indexs=url.lastIndexOf("=");
+		var iphone=url.substring(num+1,index);
+		var id=url.substring(indexs+1);
+		var json={"iphone":iphone,"id":id};
+		$.ajax({
+			url:"/activity/getresult",
+			dataType : "json",
+			data:json,
+			type:"POST",
+			success:function(data){
+					//$(".mobile_result_percent h3").html(data.odds);
+					//$(".mobile_result_text p").html(data.suggest);
+					//if(data.reservation!='1'){
+						//$(".mobile_result_btn").addClass("mobile_result_hidebtn");
+						//$(".mobile_result_btn span").hide();
+					//}
+					$(".mobile_result_prizes_pic").css({"background": "url("+data.prizepic+") no-repeat center","background-size": "contain"});
+					$(".mobile_result_prizes h4").html(data.supplier);
+					$(".mobile_result_prizes h6").html(data.prizename);
+					$(".mobile_result_prize>p i").html(data.code);
+					$(".mobile_result_prize a").attr("href",data.url);
+			}
+		})
+		$(".mobile_result_retrun").click(function(){
+			window.location.href='/h5/apph5/ivftable.html?id='+id;
+		})
+	})
+	</script>
+</head>
+<body>
+	<div class=mobile_result>
+		<div class="mobile_result_bg">
+			<div class="mobile_result_percent">
+			</div>
+			<div class="mobile_result_text_all">
+				<div class="mobile_result_text">
+					<p>您的报名信息已成功提交，下面请进入活动流程第二步：<i>预约生殖中心</i><br>  预约成功后小趣会和您联系，核实相关信息，告知您后面的流程</p>
+				</div>
+			</div>
+			<div class="mobile_result_btn "><!-- mobile_result_hidebtn -->
+				<span onclick="window.location.href='/h5/apph5/order.html'"></span>
+			</div>
+		</div>
+		<div class="mobile_result_bomb">
+			<h2>恭喜您获得</h2>
+		</div>
+		<div class="mobile_result_prize">
+			<a href="/prize/prizenote.html">
+				<div class="mobile_result_prizes">
+					<div class="mobile_result_prizes_pic">
+					</div>
+					<h4></h4>
+					<h6></h6>
+				</div>
+				<h5>点此查看礼品领取详情</h5>
+			</a>
+			<p>兑换码：<i></i></p>
+			<h4>(已发送至手机)</h4>
+		</div>
+		<div class="mobile_result_add">
+			<p>
+			</p>
+		</div>
+		<div class="mobile_result_retrun">
+			我要自测
+		</div>
+		<p style="font-size: .55rem;text-align: center;padding: 0 .5rem;line-height: 1rem;margin-bottom: 1rem;color: #6B6B6B;">测一测免费做试管概率</p>
+	</div>
+</body>
+</html>

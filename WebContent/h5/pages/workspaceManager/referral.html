@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="../../themes/hbbank/css/swiper.css" rel="stylesheet" type="text/css" />
+	<link href="../../themes/hbbank/css/photoswipe.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+		<script type="text/javascript" src="../../resource/swiper/swiper.js"></script>
+	<script type="text/javascript" src="../../resource/photoSwiper/klass.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+		<script type="text/javascript" src="../../pages/common/com.yucheng.mobile.dbUtils.js"></script>	 
+<script type="text/javascript" src="referral.js"></script>
+<script type="text/javascript">
+		
+$(document).ready(function() {
+	if(!devModel){ 
+    	document.addEventListener('deviceready', onDeviceready, false);
+	}else
+		setUI();
+});
+   
+
+function onDeviceready() {
+	setUI();
+
+}
+
+
+
+function setUI(){
+	//返回按钮                                                                                                                                                                                                                         
+	$("#goHomeBtn").bind("click",function() {                                                                                                                                                                                          
+		goPage('../../index.html');                                                                                                                                                                                                      
+	});      
+	
+	loadData(swiper);
+
+};
+
+	
+
+	</script>
+	</head>
+<body class="indexBody">                                                                              
+	<div class="idxLogo"></div>                                                                         
+	<div class="indexBot"></div>                                                                        
+		<div class="indexBt">	                                                                            
+                                                                                                      
+	<div class="zDhRight">                                                                              
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>              
+			</div>                                                                                          
+	</div>
+		
+	<div class="indexBot"><div id="loginBt"></div></div>
+	<!--产品展示 sta  说明：产品缩略图尺寸，可前往 hbbank/css/main.css中【 /*产品展示*/】下修改 .prdBox 与 .prdBox .swiper-slide的width/height-->
+    <div class="prdBox">
+        <div class="swiper-wrapper" id="youhuiList">
+        </div>
+    </div>    
+	<!--产品展示 end-->
+	<script type="text/javascript">
+	var swiper = new Swiper('.prdBox', {
+	     effect: 'coverflow',
+	        grabCursor: true,
+	        centeredSlides: false,
+	        slidesPerView: 5,
+	        mode:'carousel',
+	        loop: true, 
+	        loopAdditionalSlides:1,
+	        loopedSlides:6,
+	        centeredSlides:true,
+	        freeMode : true,
+	        freeModeMomentumBounce : true,
+	        freeModeMomentumBounceRatio : 1,
+	        freeModeMomentumRatio : 0.5,
+	        freeModeMomentum : true,
+	        resistance : true,
+	        resistanceRatio : 0.9,
+	        speed: 400,
+	        coverflow: {
+	            rotate: 50,
+	            stretch: 3,
+	            depth: 100,
+	            modifier: 0.4,
+	            slideShadows : false
+        }
+
+    });
+	
+
+	</script>
+</body>
+</html>

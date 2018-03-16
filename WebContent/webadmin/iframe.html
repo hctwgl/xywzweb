@@ -1,0 +1,74 @@
+
+<!DOCTYPE HTML>
+<html >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <title>iframe</title>
+    <meta name="description" content="" /> 
+    <meta name="keywords" content="" />
+<style>
+html,
+body,
+div,
+iframe {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+body {
+	line-height: 1;
+}
+
+:focus {
+	outline: 0;
+}
+
+
+
+#iframe {
+	margin-top: 0;
+}
+
+#iframe-wrap {
+	height: 100%;
+	overflow: visible;
+	position: relative;
+	
+	z-index: 50;
+}	
+</style>    
+    <link href="demo.css" rel="stylesheet" media="all" />
+    <script src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var theme_list_open = false;
+        $(document).ready(function () {
+            function fixHeight() {
+                var headerHeight = $("#switcher").height();
+                $("#iframe").attr("height", $(window).height()-24+ "px");
+            }
+            $(window).resize(function () {
+                fixHeight();
+            }).resize();
+
+        });
+        
+        
+    </script>
+
+</head>
+<body id="by" style="overflow-y: hidden" >
+    <div id="iframe-wrap">
+        <iframe id="iframe" src="https://daohang.qq.com" frameborder="0"  width="100%">
+        </iframe>
+    </div>
+</body>
+</html>

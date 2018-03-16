@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生殖专家建议</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="/h5/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+	/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	body{
+		background: #fff;
+	}
+	*{
+		padding:0;
+		margin:0;
+	}
+	.mobile_result_bg{
+		width:100%;
+		/* height:17.25rem;
+		background:url(bg.png) no-repeat center;
+		background-size: cover; */
+		position:relative;
+	}
+	.mobile_title{
+		width: 100%;
+	    padding-top: .5rem;
+	    background: #fa66a1;
+	}
+	.mobile_title h5{
+		text-align:center;
+		color:#fff;
+		font-size:1rem;
+		line-height:1.5rem;
+	}
+	.mobile_title h5:last-child{
+		font-size:1.2rem;
+		line-height:2rem;
+	}
+	.mobile_result_percent{
+		width: 100%;
+	    padding-top: .5rem;
+	    background: #fa66a1;
+	    display:none;
+	}
+	.mobile_result_percent_child{
+		width: 10rem;
+	    margin: 0 auto;
+	    height: 7.5rem;
+	    background: url(/h5/images/evaluation01.png) no-repeat left top;
+	    background-size: contain;
+	}
+	.mobile_result_percent h3{
+		width: 100%;
+	    text-align: center;
+	    font-size: 2.2rem;
+	    color: #fa66a1;
+	    padding-top: 1.5rem;
+	}
+	.mobile_result_percent p{
+		width:100%;
+		text-align:center;
+		font-size:.8rem;
+		color:#fa66a1;
+		padding-top:.2rem;
+	}
+	.mobile_result_percent h5{
+		width:100%;
+		text-align:center;
+		font-size:.7rem;
+		line-height:.7rem;
+		margin-top:.4rem;
+		color:#E54D26;
+	}
+	.mobile_result_text_all{
+		width: 100%;
+	    position: relative;
+	    z-index: 9;
+	    padding-bottom: .5rem;
+	    background: #fa66a1;
+	    /* padding-top: .75rem; */
+	}
+	.mobile_result_text{
+		width: 16rem;
+	    background: url(/h5/images/evaluation02.png) no-repeat left top;
+	    background-size: 100%;
+	    font-size: .725rem;
+	    margin: 0 auto;
+	    padding-top: 3.5rem;
+	}
+	.mobile_result_text>div {
+		width: 16rem;
+	    background: url(/h5/images/evaluation04.png) no-repeat left bottom 3px;
+	    background-size: 100%;
+	    margin: 0 auto;
+	    padding-bottom: 0.5rem;
+	}
+	.mobile_result_text p{
+	  padding: 0.5rem;
+    background: #fff;
+    padding-top: .1rem;
+    width: 11.2rem;
+    margin: 0 auto;
+    /*padding-right: 2.5rem;*/
+    margin-top: -1px;
+    /* padding-left: 2.5rem;
+    background: #fa66a1 url(/h5/images/evaluation031.png) repeat-y;
+    background-size: 100%; */
+	}
+	.mobile_result_btn{
+		height: 4rem;
+	    width: 100%;
+	    background: #fa66a1 url(/h5/images/evaluation05.png) no-repeat left bottom;
+	    background-size: 100%;
+	}
+	.mobile_result_btn span{
+		display: block;
+	    background: #fdf58d;
+	    width: 7.5rem;
+	    height: 2.175rem;
+	    margin: 0 auto;
+	    text-align: center;
+	    line-height: 2.175rem;
+	    border-radius: .4rem;
+	    color: #c01157;
+	    font-size: .85rem;
+	}
+	.mobile_result_btn.mobile_result_hidebtn{
+		margin-top:-1rem;
+		position:relative;
+		z-index:1;
+	}
+	.mobile_result_btn.mobile_result_hidebtn span{
+		display:none;
+	}
+	.mobile_result_add{
+		padding:0 2.35rem;
+		text-align:center;
+		font-size:.65rem;
+		color:#e54d26;
+		margin-top:.8rem;
+	}
+	.mobile_result_retrun{
+	    width: 100%;
+	    height: 3.175rem;
+	    margin: 0 auto;
+	    text-align: center;
+	    line-height: 2.175rem;
+	    color: #fff;
+	    font-size: .8rem;
+	    background: #fff;
+	}
+	.mobile_result_retrun>div{
+	    background: #FA66A1;
+	    margin: 0 auto;
+	    border-radius: .4rem;
+	    width: 7.5rem;
+	    height: 2.175rem;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		var url = window.location.href;
+		var num=url.indexOf("=");
+		var id=url.substr(num+1);
+		var json={"id":id};
+		$.ajax({
+			url:"/questionnaire/getresult",
+			dataType : "json",
+			data:json,
+			type:"POST",
+			success:function(data){
+					$(".mobile_result_percent h3").html(data.totalscore);
+					if(data.msuggest!=''){
+						$(".mobile_result_text p").eq(0).html(data.bothsuggest);
+					}
+					if(data.suggest!=''){
+						$(".mobile_result_text p").eq(1).html(data.suggest);
+					}
+					if(data.show=='0'){/*隐藏*/
+						$(".mobile_result_btn").addClass("mobile_result_hidebtn");
+					}
+			}
+		})
+		
+	})
+	function　toAppointment(){
+		var u = navigator.userAgent; 
+		if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) { 
+	    	window.location.href="/h5/apph5/bespeak.html";
+	     return true;  
+		} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+				toApp.apointHospital();
+	     return false;  
+	     }  			
+		
+	}
+	function　checklist(){
+		var u = navigator.userAgent; 
+		var id="";
+		if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) { 
+	    	　app.jumpCheckList(id);
+	     return true;  
+		} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+			　　toApp.jumpCheckList(id)
+	     return false;  
+	     }  			
+		
+	}
+	
+		function toBack(){
+			var u = navigator.userAgent; 
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) { 
+		    	app.gotoHome();
+		     return true;  
+			} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+					toApp.goBack()
+		     return false;  
+		         }  
+		}
+	</script>
+</head>
+<body>
+	<div class=mobile_result>
+		<div class="mobile_result_bg">
+			<div class="mobile_result_percent">
+				<div class="mobile_result_percent_child">
+					<h3></h3>
+					<p>生命力评估得分</p>
+				</div>
+			</div>
+			<div class="mobile_title">
+				<h5>根据您的评测</h5>
+				<h5>生殖专家建议:</h5>
+			</div>
+			<div class="mobile_result_text_all">
+				<div class="mobile_result_text">
+					<div>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+			</div>
+			<div class="mobile_result_btn">
+				<span onclick="toAppointment()">预约生殖中心</span> 
+			</div>
+		</div>
+		<div class="mobile_result_retrun">
+			<div onclick="toBack()">
+				返回助手首页
+			</div>
+			<!-- div class=""><a onclick="checklist()">测试</a></div-->
+		</div>
+	</div>
+</body>
+</html>

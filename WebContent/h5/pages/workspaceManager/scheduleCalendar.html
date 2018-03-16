@@ -1,0 +1,219 @@
+<!-- 
+   功能描述：日程安排
+   作者 ：
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>日程安排</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="format-detection" content="telephone=no" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="../../resource/Calendar/core.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resource/Calendar/m1.css"/>
+		<link rel="stylesheet" type="text/css" href="../../themes/common/forms.css"/>
+		<link rel="stylesheet" type="text/css" href="../../themes/blue/main.css"/>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jMonthCalendar.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="scheduleManage.js"></script>
+		<script type="text/javascript" src="../../pages/common/common.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../common/com.yucheng.mobile.ui.plugins.js"></script>
+		
+		<script type="text/javascript">
+		$(document).ready(function () {
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#btRm").show();
+			}else{
+				$("#btRm").hide();
+			} 
+			
+			setRightMenu();
+			callPeople();
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+		});
+	</script>
+	</head>
+	<body id="afui" class="ycskin">
+		<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>日程管理</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#" id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+
+		</div>
+		</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+		<div id="jMonthCalendar" class="leftPanel"></div>
+		<div class="rightPanel">
+			<ul class="PerDaylist" id="eventsPerDay">
+			
+			<!--该部分内容从原scheduleManage.js中提取，仅作标签结构参照  sta-->
+				<!--  <li class="nowDay">2015-04-24&nbsp;&nbsp;日程安排		
+				<div class="scheduleTools">
+					<a id="addSchedule" class="icoBt icon-plus" href="javascript:addSchedule()"></a>
+				</div>
+				</li>
+				<li>公司2015年XXX大会
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr schcOff"></div>
+					<div class="childCad">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会2
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会3
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会4
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会5
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会6
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会7
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>
+				<li>参加部门周例会8
+					<br/><span class="schDate"> 2015-2-23 12:11:00 - 2015-2-23 12:12:00</span>
+					<div class="schCtr"></div>
+					<div class="childCad" style="display: none;">
+						<div>前往XX国际机场，到访接见<br/><span>12:11-15:30</span></div>
+						<div>前往会议酒店（公司商务车）<br/><span>15:35-15:55</span></div>
+					</div>
+				</li>				-->
+			<!--该部分内容从原scheduleManage.js中提取  end-->
+			
+			</ul>
+		</div>		
+		<div id="showdiv" class="popWin" style="/*可自定义height:xxxpx;width:xxxpx;*/">
+			<form id="scheduleForm">
+				<div class="toolsBar noSearch">
+					<div class="tbLeft">
+						<div class="tabsMenu selected" id="showScheTitleDivId">新增日程</div>
+					</div>
+					<div class="tbRight">
+						<a class="txtBt icon-checkmark" id="submitBut" onclick="javascript:save();">保存</a>
+						<a class="txtBt icon-remove" id="delBut" onclick="javascript:del_sch();">删除</a>
+						<a class="txtBt icon-close" id="closeBut" onclick="javascript:closePopWin('showdiv');">关闭</a>
+					</div>
+				</div> 
+				<div class="formContent">
+					<input type="hidden" name="evDate" id="evDate" value=""/>
+					<input type="hidden" name="scheduleId" id="scheduleId" value=""/>
+					<input type="hidden" name="creator" id="creator" value=""/>
+					<input type="hidden" name="createOrg" id="createOrg" value=""/>
+					<div class="formCell">
+						<label><span class="red">*</span>日程标题：</label>
+						<div class="fcContent">
+							<input type="text" name="scheduleTitle" id="scheduleTitle" value="" placeholder="添加标题" />
+						</div>
+					</div>					
+					<div class="formCell">
+						<label><span class="red">*</span>预计开始时间：</label>
+						<div class="fcContent">
+							<input type="text" name="evStart" id="evStart" value="" placeholder="开始时间" style="" readonly="readonly" onclick="addToCal('evStart','datetime');"/>
+							<!-- 
+							<input type="date" name="evStart" id="evStart" value="" placeholder="开始时间" style="width:46%;" />
+							<input type="time" value="00:00:00" name="evStartTime" id="evStartTime" placeholder="时分秒" style="width:46%;"/>
+							-->
+							<input type="hidden" name="startDate" id="startDate" />
+						</div>
+					</div>
+					<div class="formCell">
+						<label><span class="red">*</span>预计结束时间：</label>
+						<div class="fcContent">
+							<input type="text" name="evEnd" id="evEnd" value="" placeholder="结束时间"  style="" readonly="readonly" onclick="addToCal('evEnd','datetime');"/>
+							<!-- 
+							<input type="date" name="evEnd" id="evEnd" value="" placeholder="结束时间"  style="width:46%;"/>
+							<input type="time" value="00:00:00" name="evEndTime" id="evEndTime" placeholder="时分秒" style="width:46%;"/>
+							-->
+							<input type="hidden" name="endDate" id="endDate" />
+						</div>
+					</div>
+					<div class="formCell">
+						<label>日程类型：</label>
+						<div class="fcContent">
+							<select id="remindBelong" name="remindBelong">
+								<option>请选择</option>
+								<option value='0'>行内会议</option>
+								<option value='1'>客户拜访</option>
+								<option value='2'>日常工作</option>
+								<option value='3'>私人日程</option>
+							</select>
+						</div>
+					</div>
+					<div class="formCell">
+						<label>日程内容：</label>
+						<div class="fcContent">
+							<textarea name="scheduleContent" id="scheduleContent" placeholder="请输入内容" ></textarea>
+						</div>
+					</div>
+				</div>
+		    </form>
+		</div>
+	</body>
+</html>

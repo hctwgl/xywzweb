@@ -1,0 +1,83 @@
+body {
+}
+
+a {text-decoration: none;}
+        
+#jMonthCalendar { position:relative;}
+.MonthlyCalendar .MonthNavigation { border-bottom:solid 1px #e0e4eb; clear:both; height:42px; padding:10px 10px 10px 10px; }
+.MonthlyCalendar .MonthNavPrev, .MonthlyCalendar .MonthNavNext, .MonthlyCalendar .TodayLink { float:left;}
+.MonthlyCalendar .YearNavNext, .MonthlyCalendar .YearNavPrev { float:right;}
+.MonthlyCalendar .MonthName { width:35%; text-align:center; font-weight:bold; float:left;line-height: 40px;overflow: hidden; }
+.FormHeader a{float:left;border-radius:5px;background-color:##f1f6f8; padding-left: 5px;padding-right: 5px;margin-left:2px;margin-right:2px; text-decoration: none;line-height: 40px;height: 40px;font-size: 16px; border-radius:5px;}
+.FormHeader a:active{background-color: #ccd9df;}
+
+
+.MonthlyCalendar { height:100%; width:100%; border:solid 1px #e0e4eb; border-collapse:collapse; }
+.MonthlyCalendar #CalendarHead { width:100%; background:#f1f6f8; }
+.MonthlyCalendar #CalendarHead .DateHeader { width:14%; text-align:center; }
+
+.MonthlyCalendar #CalendarBody { }
+.DateBox { vertical-align:top; border:solid 1px #e0e4eb;position: relative; }
+.DateLabel { height:16px;position:absolute;right:0; background:#F7F7F7 none repeat scroll 0 0; text-align:right; }
+.DateLabel a { cursor:pointer; padding:0 5px 2px; text-decoration:none; line-height:16px; }
+
+#CalendarBody .Inactive, #CalendarBody .Weekend { background:#fafafa none repeat scroll 0 0; }
+.Today,.dbSelected { background:#A9DFFF none repeat scroll 0 0; }
+
+#jMonthCalendar .Event { font-size:14px; padding:5px 0 5px 0; background-color:#C0D0FF; margin-bottom:1px; -moz-border-radius:0 8px 8px 8px; border:solid 1px #000; cursor:pointer; display:block; }
+.Event a { text-decoration:none; color:#000; }
+.Event a:hover { text-decoration:underline; }
+
+/**����**/
+.DateBox, .DateLabel, #CalendarBody .Inactive, #CalendarBody .Weekend{
+	background:#fafeff;	
+}
+.DateBox:active,.DateBox:active div{
+	background:#cadde5;	
+}
+.DateBox, .DateLabel a{
+	color:#666;	
+}
+.DateBox{
+	padding-left: 5px;
+	padding-right: 5px;
+	overflow: hidden;
+}
+#CalendarBody .Weekend .DateLabel, #CalendarBody .Weekend .DateLabel a{
+	color:#f29700;
+	
+}
+
+.Today { background:#2797b1!important; }
+.dbSelected { background:#ff9b24!important; }
+.Today .DateLabel,.dbSelected .DateLabel{background:none!important;	color: #fff!important;}
+.Today .DateLabel a,.dbSelected .DateLabel a{color: #fff!important;}
+/**��һ����һ��**/
+#CalendarHead a{
+	color:#f29700;
+}
+#jMonthCalendar .Event a{
+	color:#ffffff;
+	margin:0 auto;
+	border:0px;
+	border-radius:5px;
+	text-shadow:none;
+	overflow: hidden;
+	cursor: pointer;
+	width: 100%;
+	float: left;
+	height: 28px;
+	line-height: 28px;
+}
+#jMonthCalendar .Event{
+	border:none;
+	border-radius:5px;
+	display:block;
+	background-color: #f29700;
+	width: auto;
+	overflow:hidden;
+	height: 28px;
+	line-height: 28px;
+	word-break: break-all; word-wrap:break-word;
+	padding: 0;
+}

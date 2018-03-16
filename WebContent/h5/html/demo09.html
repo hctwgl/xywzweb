@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-272;
+		$("#botm").height(_ch);
+		$("#btmLeft").height(_ch-24).css("overflow","auto");
+		$("#btmRight").height(_ch-24).width(_cw-34).css("overflow","auto");
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../themes/hbbank/images/logo_top.png" />
+		</p>
+
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>贵金属详情</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a> <a
+					href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+			</div>
+
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="botm" id="botm">
+		<div class="btmLeft" id="btmLeft">
+			<div class="btmLeftCon">
+				<div class="cpxqPic"><img src="../themes/hbbank/images/cpxqpic.gif"/></div>
+				<p class="cpxqName">福禄寿禧金砖</p>
+			</div>
+		</div>
+		<div class="btmRight" id="btmRight">
+			<div class="fmList"><span>产品分类：</span>贵金属产品</div>
+			<div class="fmList"><span>产品代码：</span>HJ-03978433343434</div>
+			<div class="fmList"><span>产品材质：</span>黄金</div>
+			<div class="fmList"><span>产品发行量：</span>1000份</div>
+			<div class="fmList"><span>产品上线时间：</span>2015-01-01</div>
+			<div class="fmList"><span>产品下线时间：</span>2015-06-01</div>
+			<div class="fmList"><span>产品属性：</span>金钱XXX</div>
+			<div class="fmList"><span>产品描述：</span>贺岁金钱-福禄寿喜，中国农业银行隆重推出“传世之宝”福禄寿喜金钱，金钱正面图案鹿寓意“禄”，寿桃寓意“寿”，稀缺喜上眉梢寓意“喜”，上方托起的“福”字，整体画面则表现“辅路寿喜”主题；背面为韩美林先生题写的“传世之宝”字样及农行标识、克重、成色及编号。</div>
+		</div>
+	</div>
+</body>
+</html>

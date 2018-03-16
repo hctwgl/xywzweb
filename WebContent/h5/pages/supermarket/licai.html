@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="application/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="application/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="application/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="application/javascript" src="../../pages/common/common.js"></script>
+	<script type="application/javascript" src="./licai.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			$("#jijinPageBtn").bind("click",function() { 
+				goPage('./jijin.html');
+			});
+			
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('supermarket.html');
+			});
+			var url = basePath+'mobileDemoAction.json?&start='+start+'&limit='+limit+'';
+			loadData(url);
+		});
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			setUI();
+		});
+		function setUI(){
+			var _ch=$(window).height()-121;
+			var _cw=$(window).width()-175;
+			$("#Cleft").height(_ch);
+			$("#Cright").height(_ch).width(_cw);
+			$("#CrightCon").height(_ch-42);
+			$("#CrightCon .QHCon").height(_ch-100);
+			$("#CrightCon .QHCon .bQ").width(($("#CrightCon .QHCon").width()/3-12));
+			
+		};
+		$(window).resize(function(){
+			setUI();
+		});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../../themes/hbbank/images/logo_top.png" />
+		</p>
+		<div class="duibi">
+			<ul class="DBxinxi" id="dbinfo"></ul>
+			<a class="dBbtn" href="#"><img src="../../themes/hbbank/images/duibi.png" width="95"
+				height="32" onclick="goToDBpage();"/></a>
+		</div>
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>理财产品</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a> <a href="#"><img
+					src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+			</div>
+			<div class="search">
+				<p class="searchP1">
+					<input name="" type="text" /><a href="#"><img
+						src="../../themes/hbbank/images/chanxun.png" /></a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="Cleft" id="Cleft">
+		<ul>
+			<li class="CleftClick"><a class="Cleft_a1" href="#">理财产品</a></li>
+			<li><a class="Cleft_a2" href="#" id="jijinPageBtn">基金产品</a></li>
+			<li><a class="Cleft_a3" href="#">存贷款</a></li>
+			<li><a class="Cleft_a4" href="#">贵金属产品</a></li>
+			<li><a class="Cleft_a5" href="#">保险产品</a></li>
+		</ul>
+	</div>
+	
+	<div class="Cright" id="Cright">
+		<div class="CrightCon" id="CrightCon">
+			<div class="qiehuan">
+				<a class="qhSelected" href="#">开放式理财</a>
+				<a href="#">封闭式理财</a>
+				<p class=" both"></p>
+			</div>
+			<div class="QHCon" id="wrapper">
+				<div id="scroller">
+					<div id="pullDown">
+						<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+					</div>
+					<div id="jxlist" data-role="listview"></div>
+					<div id="pullUp">
+						<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+					</div>
+				</div>
+			</div>
+			<p class=" both"></p>
+		</div>
+	</div>
+</body>
+</html>

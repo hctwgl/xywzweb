@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+html,body{background: #fafeff;height: 100%;background-image: none;}
+/**{font-size: 16px;color: #666;}*/
+*{font-size: 16px;}
+.leftPanel{float:left;width: 65%;height: 80%;}
+.rightPanel{float:left;	width: 35%;height: 80%;overflow: auto;background: #fafeff;}
+.evClass {left: 544px;top: 350px;width:500px;height:auto;}
+.PerDaylist li{line-height: 25px;border-bottom:1px #e9edf3 dashed;padding: 10px;display: block;position:relative;}
+.PerDaylist li:nth-child(odd){background-color: #f4f8f9;}
+.PerDaylist li:nth-child(even){background-color: #fafeff;}
+.PerDaylist li.nowDay{position:relative; height: 62px;line-height: 62px;text-align: left;padding:0px; padding-left:20px; font-weight: bold;border-top: 1px solid #e0e4eb;border-bottom: 1px solid #e0e4eb;background-color: #f1f6f8;}
+.PerDaylist li:active{background-color: #ddeaed;}
+.PerDaylist div.childCad{margin: 10px 10px 10px 0;}
+.PerDaylist div.childCad>div{background-color: #fff;padding: 5px 10px 5px 10px;border: 1px #eca150 dashed;border-left: 3px #eca150 solid;margin-bottom: 5px;font-size: 14px;line-height: 22px;color: #c5751e;}
+.PerDaylist div.childCad>div span{color: #888;font-size: 14px;color: #dba66b!important;}
+.scheduleTools{position: absolute;right: 10px;top:0px;padding-top: 10px;}
+.schDate{font-size: 14px;color: #888;}
+#showdiv .noSearch{height: 48px;padding-top: 9px;}
+.schCtr{height: 42px; width:42px;position: absolute;right: 10px;top: 15px;background: url(../../themes/hbbank/images/pic_32.png) center center no-repeat;}
+.schCtr:hover{background: url(../../themes/hbbank/images/pic_32_ov.png) center center no-repeat;}
+.schcOff{background: url(../../themes/hbbank/images/pic_33.png) center center no-repeat;}
+.schcOff:hover{background: url(../../themes/hbbank/images/pic_33_ov.png) center center no-repeat;}

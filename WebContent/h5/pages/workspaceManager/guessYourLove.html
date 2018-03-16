@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="guessYourLove.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			setUI();
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			var url = basePath+'guessYourLoveAction.json';
+			loadData(url);
+		});
+	</script>
+	
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$("#qutBox").height(_ch-42).width(_cw-42);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+<body id="content">
+	
+</body>
+</html>

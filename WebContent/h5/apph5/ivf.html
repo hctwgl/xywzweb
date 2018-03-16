@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>免费做试管，带个宝宝回家</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+	<style type="text/css">
+	body{font-size:16px;background:#f9f9f9;text-align:left;color:#333;overflow:hidden;}
+	html{overflow-y:scroll;}
+	*{
+		padding:0;
+		margin:0;
+	}
+	body{
+		background:#F4F4F4;
+	}
+	li{
+		list-style: decimal;
+	}
+	.wrap{
+		padding-bottom:3.1rem;
+	}
+	.activity_rule{
+		padding:0 .5rem;
+	}
+	.activity_show{
+		min-height:6rem;
+		padding:.5rem;
+		margin-bottom:.6rem;
+		border:1px solid #DFDFDF;
+		border-radius:.3rem;
+		background:#fff;
+	}
+	.activity_show h4{
+		height:1rem;
+		width:3.5rem;
+		text-align:center;
+		line-height:1rem;
+		font-size:.6rem;
+		margin:0 auto;
+		border:1px solid #FF797A;
+		background:#FF797A;
+		border-radius:.5rem;
+		color:#fff;
+		margin-bottom:.4rem;
+	}
+	.activity_show div{
+		height:5rem;
+		overflow:hidden;
+		font-size:.75rem;
+		line-height:1rem;
+	}
+	.activity_show div.activity_show_text{
+		height:inherit;
+	}
+	.activity_show li{
+		line-height:1rem;
+		font-size:.6rem;
+		width:100%;
+	}
+	.activity_show h5{
+		font-weight:normal;
+		width:100%;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.activity_show p{
+		font-size:.6rem;
+	}
+	.activity_show span{
+		display:block;
+		margin:0 auto;
+		width:.65rem;
+		height:.525rem;
+		background:url(/h5/images/down.png) no-repeat center;
+		background-size:contain;
+		text-align:center;
+	}
+	.activity_show span.active{
+		background:url(/h5/images/up.png) no-repeat center;
+		background-size:contain;
+	}
+	.upinde{ 
+		position:absolute;
+		left:0;
+		bottom:0;
+		height:1.1rem;
+		line-height:1.1rem;
+		overflow:hidden;
+		padding-left:1.55rem;
+		padding-right:.5rem;
+	}
+	.upinde div{
+		width:14rem;
+		overflow:hidden;
+	}
+	.upinde p{
+		width:100%;
+		height:1.15rem;
+		line-height:1.15rem;
+		font-size:.65rem;
+		color:#b12924;
+	}
+	.upinde p span{
+		width:10rem;
+		float:left;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.upinde p em{
+		width:3.5rem;
+		float:right;
+		text-align:right;
+		font-style:normal;
+	}
+	.activity{
+		height:9.925rem;
+		position:relative;
+		background:url(/h5/images/banner.png) no-repeat center;
+		background-size:contain;
+	}
+	.activity_text{
+		height:8.3rem;
+		background:url(/h5/images/hospital.png) no-repeat center;
+		background-size:contain;
+	}
+	.activity_hospitals{
+		padding:0 .5rem;
+	}
+	.activity_hospital{
+		width:100%;
+		height:3.8rem;
+		border:1px solid #FF9E9F;
+		border-radius:.3rem;
+		margin-bottom:.65rem;
+		background:#fff;
+	}
+	.activity_hospital dt{
+		float:left;
+		width:4rem;
+		height:100%;
+		background:url(/h5/images/sadasdas.png) no-repeat center;
+		background-size:2rem;
+		border-right:1px solid #FF9E9F;
+	}
+	.activity_hospital dd{
+		float:right;
+		height:3.8rem;
+	}
+	.activity_hospital dd div{
+		padding:0 .5rem;
+		margin:.5rem 0;
+		overflow:hidden;
+		height:2.8rem;
+	}
+	.activity_hospital dd div h4{
+		font-size:.7rem;
+		font-weight:normal;
+		color:#464747;
+		padding-bottom:.3rem;
+	}
+	.activity_hospital dd div p{
+		font-size:.625rem;
+		color:#888989;
+		line-height:.75rem;
+	}
+	.activity_flow img{
+		display:block;
+		width:100%;
+	}
+	.activity_prizes{
+		margin-bottom:1.7rem;
+		padding:0 .65rem;
+	}
+	.activity_prize{
+		width:50%;
+		height:4.9rem;
+		float:left;
+		margin:0 auto;
+		background:url(/h5/images/hb.png) no-repeat center;
+		background-size:contain;
+		padding-top:.5rem;
+		margin-bottom:.3rem;
+	}
+	.activity_prize_pic{
+		height:1.5rem;
+		margin:0 auto;
+		background:#f00;
+		margin-top:.35rem;
+	}
+	.activity_prize h4{
+		width: 100%;
+	    text-align: center;
+	    font-size: .55rem;
+	    padding-top: .15rem;
+	    color:#E54D26;
+	}
+	.activity_prize h6{
+		width:100%; 
+		text-align:center;
+		color:#fff;
+		margin-top:.5rem;
+		font-size:.6rem;
+	}
+	.activity_btn{
+		position:fixed;
+		left:0;
+		bottom:0;
+		z-index:2;
+		height:3.1rem;
+		width:100%;
+	}
+	.activity_btn_bg{
+		position:absolute;
+		left:0;
+		height:100%;
+		top:0;
+		width:100%;
+		background:#E07374;
+		opacity:.9;
+		z-index:8;
+	}
+	.activity_btn span{
+		position:absolute;
+		left:50%;
+		top:50%;
+		width:6rem;
+		height:1.6rem;
+		display:block;
+		margin:0 auto;
+		margin-top:-1.2rem;
+		margin-left:-3rem;
+		line-height:1.6rem;
+		text-align:center;
+		background:#fff;
+		color:#c2191d;
+		z-index:9;
+		font-size:.8rem;
+		border-radius:.3rem;
+    	box-shadow: 1px 1px #c2191d;
+	}
+	.activity_btn p{
+		text-align: center;
+	    color: #FFF;
+	    z-index: 10000023;
+	    position: absolute;
+	    width: 100%;
+	    bottom: .2rem;
+	    font-weight:bold;
+	}
+	.activity_btn p a{
+		color:#fff;
+		text-decoration:none;
+	}
+	.clear{
+	    clear: both;
+	    font-size: 1px;
+	    height: 0;
+	    visibility: hidden;
+	    line-height: 0;
+	}
+	.activity_show_style li{
+		list-style:none;
+	}
+	.activity_show_style li.answer{
+		padding-bottom:10px;
+	}
+	.bombbox{
+		position:fixed;
+		width:100%;
+		height:100%;
+		left:0;
+		top:0;
+		z-index:3;
+		display:none;
+	}
+	.bombboxbg{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background:#000;
+		opacity:0.5;
+		z-index:5;
+	}
+	.bombbox_content{
+		position:absolute;
+		left:50%;
+		top:50%;
+		z-index:9;
+		color:#fff;
+		background:#fff;
+		text-align:center;
+		line-height:1rem;
+		padding:.5rem;
+		font-size:.8rem;
+		border-radius:.3rem;
+		width:10rem;
+		height:6.5rem;
+		margin-left:-5.5rem;
+		margin-top:-3.75rem;
+	}
+	.bombbox_content p{
+		color:#333;
+		text-align:center;
+		font-size: .75rem;
+		padding-top:.5rem;
+	}
+	.bombbox_content a{
+		text-decoration: none;
+	    padding: .25rem .7rem;
+	    display: block;
+	    float: left;
+	    background: #fc5a9c;
+	    margin-left:3rem;
+	    color: #fff;
+	    font-size: .65rem;
+	    border-radius: .3rem;
+	    margin-top: .5rem;
+	}
+	.bombbox_content a.alerthide{
+		background:#BFBFBF;
+		margin-left:.775rem;
+	}
+	.answer a{
+		text-decoration:none;
+		color:#FF797A;
+		padding-left: .2rem;
+		display:block;
+	}
+
+	.activity_text a{
+		width:4.125rem;
+		height:1.55rem;
+		display:block;
+		float:left;
+		font-size:.75rem;
+		background:#fff;
+		color:#FF797A;
+		line-height:1.55rem;
+		text-align:center;
+		text-decoration:none;
+		border-radius:.2rem;
+		margin-right:1.25rem;
+		margin-top:1.36rem;
+	}
+	.activity_text a:first-child{
+		margin-left:.5rem;
+	}
+	.activity_text a:last-child{
+		margin-right:0rem;
+	}
+	.introduce{
+		padding:.7rem .5rem;
+		font-size:.625rem;
+		line-height:.825rem;
+		color:#FF797A;
+	}
+	.activity_show_text dl {
+	    display: table;
+	}
+	.activity_show_text dl dt {
+	    float: left;
+	    width: 3.2rem;
+	    height: 3.45rem;
+	    border: 1px solid #e5e5e5;
+	}
+	.activity_show_text dl dd {
+	    float: left;
+	}
+	.activity_show dl dd h5 {
+	    font-size: .6rem;
+	    line-height: 1rem;
+	    padding-top: .5rem;
+	    padding-left: .5rem;
+	    width: initial;
+	    white-space: inherit;
+	    color:#000;
+	}
+	.activity_show dl dd h6 {
+	    font-size: .55rem;
+	    line-height: 1rem;
+	    padding-left: .5rem;
+	    text-align: left;
+	    padding-top: 0.3rem;
+	    color:#FF797A;
+	    font-weight:normal;
+	}
+	.activity_show dl dt img{
+	    display: block;
+	    width: 100%;
+	}
+	</style>
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		
+		function sizeHtml() {
+			var size = window.innerWidth / 16;
+			size = size > 40 ? 40 : size;
+			document.getElementsByTagName("html")[0].style.fontSize = size
+					+ "px";
+		}
+		sizeHtml();
+		window.onresize = function() {
+			sizeHtml();
+		}
+		$(function() {
+			var url = window.location.search;
+			//alert(url);
+			/* var x = new XMLHttpRequest();
+			  x.open("GET", document.location,false);
+			  x.send(null) ;
+			  var a=x.getAllResponseHeaders(); */
+			var hei = $(".activity_show div").height();
+			$(".activity_show span").click(function() {
+				if ($(this).hasClass("active") != true) {
+					$(this).addClass("active");
+					$(this).parent().find("div").height("inherit");
+				} else {
+					$(this).removeClass("active");
+					$(this).parent().find("div").height(hei);
+				}
+			})
+			$.ajax({
+				url : "/activity/getPrizeList",
+				dataType : "json",
+				type : "GET",
+				success : function(data) {
+					var str = "";
+					for ( var i in data.prize) {
+						str += "<p><span>" + data.prize[i].name + "</span><em>"
+								+ data.prize[i].time + "</em></p>";
+					}
+					$(".upinde>div").empty();
+					$(".upinde>div").append(str);
+				}
+			})
+			$
+					.ajax({
+						url : "/search/getActivityHospital",
+						dataType : "json",
+						type : "GET",
+						data : "limit=10&skip=0&types=2",
+						success : function(data) {
+							var str = "";
+							for ( var i in data) {
+								str += "<dl class='activity_hospital'><dt style='background: url("
+										+ data[i].icon
+										+ ") no-repeat center;background-size: 2.5rem;'></dt><dd><div><h4>"
+										+ data[i].name
+										+ "</h4><p>"
+										+ data[i].tip + "</p></div></dd></dl>";
+							}
+							$(".activity_hospitals").empty();
+							$(".activity_hospitals").append(str);
+
+							var dl = $(".activity_hospital").width();
+							var dt = $(".activity_hospital dt").width();
+							$(".activity_hospital dd").width(dl - dt - 3);
+						}
+					})
+			$.ajax({
+						url : "/activity/getAllPrize",
+						dataType : "json",
+						type : "GET",
+						data : "limit=10&skip=0",
+						success : function(data) {
+							var str = "";
+							for ( var i in data.prize) {
+								str += "<div class='activity_prize'><div class='activity_prize_pic'style='background: url("
+										+ data.prize[i].prizepic
+										+ ") no-repeat center;background-size: 1.5rem;'></div><h4>"
+										+ data.prize[i].prizename
+										+ "</h4><h6>"
+										+ data.prize[i].supplier
+										+ "</h6></div>";
+							}
+							$(".activity_prizes").empty();
+							$(".activity_prizes").append(str);
+						}
+					})
+			var timer = setInterval(function() {
+				$(".upinde div").animate({
+					marginTop : "-20px"
+				}, function() {
+					$(".upinde div p:eq(0)").appendTo($(".upinde div"));
+					$(".upinde div").css({
+						"marginTop" : 0
+					})
+				})
+			}, 2000);
+			$(".alerthide").click(function() {
+				$(".bombbox").hide();
+			})
+			$(".bombboxbg").click(function() {
+				$(".bombbox").hide();
+			})
+
+		})
+		function url() {
+			var u = navigator.userAgent;
+			if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+				
+				//alert(typeof(app.isLogin));
+				if (typeof(app)  != "undefined" && typeof (app.isLogin) == "function") {
+					var url = app.isLogin();
+					var mobile = "";
+					var openid = "";
+					var indexcont = url.indexOf("&");
+					if (indexcont == 0 && url.length == 1) {
+						mobile = "";
+						openid = "";
+					} else if (indexcont == 0 && url.length > 1) {
+						mobile = "";
+						openid = url.substring(indexcont + 1);
+					} else if (indexcont > 0 && url.length == indexcont + 1) {
+						mobile = url.substring(0, indexcont);
+						openid = "";
+					} else {
+						openid = url.substring(0, indexcont);
+						mobile = url.substring(indexcont + 1);
+					}
+					window.location.href = "/h5/apph5/ivfform.html?mobile="
+							+ mobile + "&openid=" + openid;
+				} else {
+					$(".bombbox").show();
+				}
+				return true;
+			} else if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+				var url = window.location.search;
+				var versionnum = url.indexOf("version=");
+				//var version=url.substring(versionnum+8);
+				if (versionnum <= 0) {
+					$(".bombbox").show();
+				} else {
+					window.location.href = "/h5/apph5/ivfform.html" + url;
+				}
+				return false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="activity">
+			<div class="upinde">
+				<div>
+				</div>
+			</div>
+		</div>
+		<div class="introduce">
+			<p>因高额费用放弃试管婴儿，是很多家庭的痛。2016年，趣孕获得蓝驰创投6000万人民币A轮注资，为了让更多的患者得到科学治疗，趣孕拿出1000万，联合全国多家顶级生殖中心推出“免费做试管”的活动，为符合条件的夫妻提供免费做试管的机会。所有报名参与的患者，不管是否获得免费机会，我们都将随机赠予价值10~10000元的礼品，100%有礼。</p>
+		</div>
+		<div class="activity_text">
+			<a href="#activity_flow">活动流程</a>
+			<a href="#activity_sxbz">筛选标准</a>
+			<a href="#activity_hdtk">活动条款</a>
+		</div>
+		<div class="activity_hospitals">
+		</div>
+		<div class="activity_flow" id="activity_flow">
+			<img src="/h5/images/flow.png">
+		</div>
+		<div class="nav">
+			<a href="#a"></a>
+		</div>
+		<div class="activity_prizes">
+			
+		</div>
+		
+		<div class="clear"></div>
+		<div class="activity_rule" id="activity_sxbz" style="margin-top:1.4rem;">
+			<div class="activity_show">
+				<h4>筛选标准</h4>
+				<div>
+					<h5>入选标准：</h5>
+					<li>双方年龄均在20-44岁之间（包括20和44岁）；</li>
+					<li>双方均符合国家生育政策，且已办理相关证件；</li>
+					<li>医院诊断为不孕症，需要医学支持；</li>
+					<li>女方有有效卵子。</li>
+					<h5>排除标准：</h5>
+					<div>
+						<li>需要医学干预的严重的全身性疾病、内分泌或代谢异常；</li>
+						<li>使用过化疗药物（治疗妊娠期疾病除外）或放疗药物；</li>
+						<li>因卵巢，乳腺，肾上腺，垂体或下丘脑肿瘤或生殖系统畸形，不适于妊娠；</li>
+						<li>基于上述病史回顾和术前检查，存在辅助生殖技术或妊娠的禁忌症。</li>
+					</div>
+				</div>
+				<span></span>
+			</div>
+		</div>
+		<div class="activity_rule" id="activity_hdtk">
+			<div class="activity_show">
+				<h4>活动条款</h4>
+				<div>
+					<li>本活动主办方上海家好科技有限公司（以下简称“家好科技”），仅为符合本活动规则的参与者提供试管婴儿医疗服务费用或礼品，非试管婴儿医疗服务提供方。</li>
+					<li>本活动参与者应具有完全民事行为能力，应确保其根据活动规则向家好科技及试管婴儿医疗服务提供方提供的所有个人信息包括但不限于年龄、身体健康状况、既往病史、孕产史等所有个人信息及做出的所有承诺均为真实、有效。若参与者提供虚假信息或隐瞒真实情况及对于主办方筛选合格参与者至关重要的信息，一经发现，家好科技有权取消报名者参与本活动的资格，并有权要求参与者返还家好科技已提供的所有服务费用、礼品等。</li>
+					<li>家好科技在本次活动中为入选参与者承担的费用仅限于活动参与者参加试管婴儿服务的医疗费用，不包括为参加本次活动所支出的交通、通讯等其他相关支出。</li>
+					<li>活动参与者提供的个人信息，家好科技承诺承担保密义务，非为本次活动或除法律法规要求披露的情形外，不会透露给任何第三方。但所有活动参与者同时授权家好科技在删除可识别用户身份的关键信息如姓名、年龄、工作单位、身份证号码后，将参与者有关医学信息采集进入家好科技医疗辅助数据库，用于相关医疗辅助软件的开发和研究。</li>
+					<li>最终入选获得家好科技试管婴儿医疗服务全部或部分费用的活动参与者由家好科技与医疗服务提供方根据活动参与者提供的信息随机抽取。活动参与者承诺不对评选过程以及结果提出异议与核查要求。</li>
+					<li>活动参与者在接受试管婴儿医疗服务期间及之后，一切医疗风险、责任由参与者与试管婴儿医疗提供方承担，与家好科技无关。若参与者因接受试管婴儿医疗服务而导致任何人身伤害或财产损失，与家好科技无关，家好科技不承担任何责任。</li>
+					<li>获得家好科技提供全部或部分医疗费用的活动参与者，应确保将家好科技提供的全部费用用于自身试管婴儿医疗服务，家好科技有权核实参与者费用使用状况，包括但不限于要求参与者提供试管婴儿治疗费用单据等。</li>
+					<li>获得家好科技提供全部或部分医疗费用的活动参与者在接受试管婴儿医疗服务期间非因医疗服务提供方的原因主动退出的，家好科技有权要求参与者退还全部费用。</li>
+					<li>获得家好科技提供全部医疗服务费用的活动参与者，如成功分娩新生儿，授权家好科技使用参与者的个人信息、肖像用于宣传本次活动，并承诺不就家好科技使用该等信息向家好科技收取任何费用。</li>
+					<li>获得家好科技提供部分医疗服务费用的活动参与者，授权家好科技在活动过程中披露参与者姓名用于宣传或信息发布。并不就家好科技使用该等信息向家好科技收取任何费用。</li>
+					<li>在法律允许的范围内家好科技保留对本活动的最终解释权。</li>
+				</div>
+				<span></span>
+			</div>
+		</div>
+		<div class="activity_rule">
+			<div class="activity_show activity_show_style">
+				<h4>常见问题</h4>
+				<div>
+					<li>问：这个活动的报名时间是？</li>
+					<li class="answer">答：活动报名截止时间是2016年5月30日</li>
+					<li>问：你们这个活动有地域限制吗？</li>
+					<li class="answer">答：没有，这个是全国性的活动，只要符合条件都可以</li>
+					<li>问：填写完信息提交后，就算报名成功了吗？</li>
+					<li class="answer">答：是的</li>
+					<li>问：这次活动有多少个名额？</li>
+					<li class="answer">答：名额不限，需要符合医院的医学筛选标准</li>
+					<li>问：你们怎么筛选最终名额</li>
+					<li class="answer">答：会按照医院严格的医学标准进行筛选</li>
+					<li>问：我怎么知道我是不是获得免费做试管的名额</li>
+					<li class="answer">答：报名结束后，我们会按照条件统一筛选，如果您符合条件，会有工作人员通过趣孕app和您联系，请确保您能收到信息</li>
+					<li>问：点击报名后，为什么参加不了活动？</li>
+					<li class="answer">答：参加本活动需要您先升级到最新版本（v1.0），请按照相关提示升级</li>
+					<li>问：我获得了礼品，怎么领取呢？</li>
+					<li class="answer">答：礼品领取和使用方法和兑换码信息会以短信的方式发送给您，同时点击下面链接也可查看礼品领取详情
+					<a href="http://dwz.cn/2ZKTSE">药给力叶酸代金券:http://dwz.cn/2ZKTSE</a>
+					<a href="http://dwz.cn/2ZKUz3">阿姨来了代金券:http://dwz.cn/2ZKUz3</a>
+					<a href="http://dwz.cn/2ZKSoe">母婴之家待产包:http://dwz.cn/2ZKSoe</a>
+					<a href="http://dwz.cn/2ZKOha">360你财富代金券:http://dwz.cn/2ZKOha</a></li>
+					<li class="answer">答：请在在消息－消息列表中找到小趣，将您的手机号发给小趣</li>
+					<li>问：所有礼品都是免费获得吗？</li>
+					<li class="answer">答：是的</li>
+					<li>问：我参加了活动，但是没有获得免费试管的名额，那我还能获得其他服务吗？</li>
+					<li class="answer">答：我们还有免费咨询、预约挂号等服务，你都可以免费获得，同时我们会经常举办一些线上、线下的服务，请持续关注我们</li>
+					<li>问：有问题怎么联系你们呢？</li>
+					<li class="answer">答：您可以在消息－消息列表中找到小趣，直接和小趣联系</li>
+				</div>
+				<span></span>
+			</div>
+		</div>
+
+		<div class="activity_rule">
+			<div class="activity_show">
+				<h4>媒体报道</h4>
+				<div class="activity_show_text">
+					<a href="http://jiankang.163.com/16/0405/16/BJTCJ8F60038002N.html" target="_blank">
+					<dl>
+						<dt>
+							<img src="/h5/images/logo13.png">
+						</dt>
+						<dd style="width: 274px;">
+							<h5>趣孕APP推出“免费做试管婴儿”服务</h5>
+							<h6>点击查看全文</h6>
+						</dd>
+					</dl>
+				</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="activity_rule">
+			<div class="activity_show">
+				<h4>关于趣孕</h4>
+				<div class="activity_show_text">
+					<p style="padding-bottom:.5rem;">趣孕是面向难孕难育群体的一站式备孕服务平台，旨在通过医患服务、患患服务、患者自我服务，以及大数据分析，为用户提供精准的不孕不育治疗方案，来提高辅助生殖的成功率。趣孕目前在iOS、Android两大手机操作系统上线，用户在应用市场搜索“趣孕”即可下载使用。 </p>
+					<p>趣孕成立于2014年3月。分别于2014年4月获得500万人民币天使投资；于2015年6月获得华泽资本3000万人民币pre-A轮投资。于2016年2月获得蓝驰创投6000万元人民币A轮投资。</p>
+				</div>
+			</div>
+		</div>
+		<div class="activity_rule">
+					<div class="activity_show">
+						<h4>联系我们</h4>
+						<div class="activity_show_text">
+							<li>官方微信： jiahao-me （加好友时请注明：免费做试管）</li>
+							<li>加官方微信后趣孕工作人员会把大家拉进群，有任何问题大家可以在群里咨询、交流</li>
+						</div>
+					</div>
+				</div>
+		<div class="activity_btn">
+			<div class="activity_btn_bg"></div>
+			<span onclick='url()'>我要报名</span>
+			<p><a href="http://quyun.jiahao.me/downloadapp/msite10000000000237">所有报名用户，100%赠送礼品</a></p>
+		</div>
+
+		<div class="bombbox">
+			<div class="bombboxbg"></div>
+			<div class="bombbox_content">
+				<p>
+					请升级到趣孕新版本<br/>再参与此活动<br/>(安卓用户请先到应用商店升级到最新版再参与)
+				</p>
+				<a href="http://quyun.jiahao.me/downloadapp/msite10000000000237">立即升级</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

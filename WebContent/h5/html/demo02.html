@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8"	src="../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="../resource/layer/layer.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		myscroll=new iScroll("wrapper");
+		
+		
+
+		//实际开发过程中，请勿如此调用
+		$("#fb1").click(function(){
+			layer.open({
+		        type: 2,
+		        title: '产品对比',
+		        shadeClose: false, //点击遮罩关闭层
+		        area : ['600px' , '350px'],
+		        content: 'demo02_1.html'
+		    });
+		});
+		
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-175;
+		$("#Cleft").height(_ch);
+		$("#Cright").height(_ch).width(_cw);
+		$("#CrightCon").height(_ch-42);
+		$("#CrightCon .QHCon").height(_ch-100);
+		$("#CrightCon .QHCon .bQ").width(($("#CrightCon .QHCon").width()/3-12));
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../themes/hbbank/images/logo_top.png" />
+		</p>
+		<div class="duibi" style="display: none;/*若无用处，请整个duibi标签*/">
+			<ul class="DBxinxi">
+				<li><p>易方达股票增强型易方达股票增强型强型易方达股票增强型</p>
+					<a href="#"><img src="../themes/hbbank/images/close.png" width="16" height="16" /></a></li>
+				<li><p>易方达股票增强型易方达股票增强型强型易方达股票增强型</p>
+					<a href="#"><img src="../themes/hbbank/images/close.png" width="16" height="16" /></a></li>
+				<li><p>易方达股票增强型易方达股票增强型强型易方达股票增强型</p>
+					<a href="#"><img src="../themes/hbbank/images/close.png" width="16" height="16" /></a></li>
+			</ul>
+			<a class="dBbtn" href="#"><img src="../themes/hbbank/images/duibi.png" width="95"
+				height="32" /></a>
+		</div>
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>基金产品</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a> <a href="#"><img
+					src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+			</div>
+			<div class="search">
+				<p class="searchP1">
+					<input name="" type="text" /><a href="#"><img
+						src="../themes/hbbank/images/chanxun.png" /></a>
+				</p>
+				<a class="searcha1" href="#"><img src="../themes/hbbank/images/gaojicxun.png" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="Cleft" id="Cleft">
+		<ul>
+			<li><a class="Cleft_a1 " href="#">理财产品</a></li>
+			<li class="CleftClick"><a class="Cleft_a2" href="#">基金产品</a></li>
+			<li><a class="Cleft_a3" href="#">存贷款</a></li>
+			<li><a class="Cleft_a4" href="#">贵金属产品</a></li>
+			<li><a class="Cleft_a5" href="#">保险产品</a></li>
+		</ul>
+
+	</div>
+	<div class="Cright" id="Cright">
+		<div class="CrightCon" id="CrightCon">
+			<div id="fb1" class="floatBt"><b>比</b><span>3</span></div>
+			<div class="qiehuan">
+				<a class="qhSelected" href="#">精选基金产品套餐</a>
+				<a href="#">股票型基金套餐</a>
+				<a href="#">债券型基金套餐</a>
+				<a href="#">混合型基金套餐</a>
+				<a href="#">货币型基金套餐</a>
+				<p class=" both"></p>
+			</div>
+			<div class="QHCon" id="wrapper">
+			<div id="scroller">
+				<div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">						
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="cl"></div>
+				</div>
+				<div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="cl"></div>
+				</div>
+				<div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="cl"></div>
+				</div>
+				<div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达股票期权增强达股票期权增强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="bQ">
+					<div class="bQL1">
+						<p class="bQL1_sp">
+							<span></span> <span></span> <span></span> <span></span>
+						</p>
+						<p class="bQL1Con">1,1674元</p>
+					</div>
+					<div class="bQL2">
+						<p class="bQL2P1">易方达股票期权增强易方达强</p>
+						<p class="bQL2P2">000001</p>
+					</div>
+					<div class="bQL3">
+						<span class="bsbc1">基金</span><p class="bQL2P3">对比＋</p>
+					</div>
+				</div>
+				<div class="cl"></div>
+				</div>
+			</div>
+			<p class=" both"></p>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

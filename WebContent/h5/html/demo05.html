@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-388;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(354);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>创建转介线索</span>
+				</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2" id="btmRight2">
+	  <h1>转介信息<a href="#" class="bt01">确定</a>
+				</h1>
+	   <div class="xinxi">
+					<p>
+						<span>*</span>客户姓名：</p>
+					<input name="" type="text" />
+				</div>
+	    <div class="xinxi">
+					<p>
+						<span>*</span>转介人：</p>
+					<input name="" type="text" />
+				</div>
+	     <div class="xinxi">
+					<p>
+						<span>*</span>转介人工号：</p>
+					<input name="" type="text" />
+				</div>
+	      <div class="xinxi">
+					<p>
+						<span>*</span>被转介人：</p>
+					<div class="xinxibt">王石（00001）</div>
+					<button class="xinxibt2">选择被销售人</button>
+				</div>
+	      <div class="xinxi">
+					<p>有效证件类型：</p>
+					<input name="" type="text" />
+				</div>
+	      <div class="xinxi">
+					<p>有效证件号：</p>
+					<input name="" type="text" />
+				</div>
+	      <div class="xinxi">
+					<p>卡号：</p>
+					<input name="" type="text" />
+				</div>
+	      <div class="xinxi">
+					<p>备注：</p>
+					<textarea class="xinxitxtarea" name="" cols="" rows=""></textarea>
+				</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>意向产品</h1>
+	       <div class="chanpin">
+	          <a href="#" class="yxcpMenu ymBg1"><div class="ymIco1"></div><span>基金</span></a>
+	          <a href="#" class="yxcpMenu ymBg2"><div class="ymIco2"></div><span>个贷</span></a>
+	          <a href="#" class="yxcpMenu ymBg3"><div class="ymIco3"></div><span>存贷宝</span></a>
+	          <a href="#" class="yxcpMenu ymBg4"><div class="ymIco4"></div><span>贵金属</span></a>
+	          <a href="#" class="yxcpMenu ymBg5 ymSelected"><div class="ymIco5"></div><span>信福年华卡</span></a>
+	          <a href="#" class="yxcpMenu ymBg6"><div class="ymIco6"></div><span>理财</span></a>
+	          <a href="#" class="yxcpMenu ymBg7"><div class="ymIco7"></div><span>信用卡</span></a>
+	          <a href="#" class="yxcpMenu ymBg8"><div class="ymIco8"></div><span>网上银行</span></a>
+	          <a href="#" class="yxcpMenu ymBg1"><div class="ymIco9"></div><span>AA产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg2"><div class="ymIco10"></div><span>BB产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg3"><div class="ymIco11"></div><span>CC产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg4"><div class="ymIco12"></div><span>DD产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg5"><div class="ymIco13"></div><span>EE产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg6"><div class="ymIco14"></div><span>FF产品</span></a>
+	          <a href="#" class="yxcpMenu ymBg7"><div class="ymIco15"></div><span>GG产品</span></a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>

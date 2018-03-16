@@ -1,0 +1,428 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Amaze UI Admin index Examples</title>
+		<meta name="description" content="这是一个 index 页面">
+		<meta name="keywords" content="index">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="assets/i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+		<link rel="stylesheet" href="assets/css/admin.css">
+		<link rel="stylesheet" href="assets/css/admin_custom.css" />
+		<link rel="stylesheet" href="assets/css/editor.css" />
+		<link rel="stylesheet" href="assets/js/popmodal/popModal.css" />
+	</head>
+
+	<body>
+		<style>
+			.pd8 {
+				padding: 0.7rem;
+			}
+			
+			@media only screen and (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			@media (min-width: 1330px) {
+				.show1 {
+					display: none;
+				}
+			}
+			
+			.am-nav-pills>li+li {
+				margin-left: 0px !important;
+			}
+			
+			.am-topbar,
+			.am-topbar a {
+				color: #ddd;
+			}
+			
+			.headerbg {
+				border-color: #50627f !important;
+			}
+			
+			body {
+				font-size: 1.4em;
+			}
+			
+			.admin-sidebar-list li a {
+				padding-left: 15px;
+			}
+			
+			.admin-sidebar {
+				width: 245px;
+			}
+			/*.tabspad {
+				
+				padding: 1.6rem;
+				padding-left: 0px !important;
+				padding-right: 0px !important;				
+			}*/
+			
+			.am-tabs-nav {
+				padding: 0px 20px;
+				background: url(assets/images/default/noise.white.png);
+			}
+			
+			.headermenu span {
+				display: block;
+				padding-bottom: 8px;
+			}
+			
+			.am-tabs-bd {
+				border: 1px solid #CCCCCC;
+			}
+			
+			.am-nav-tabs>li.am-active>a,
+			.am-nav-tabs>li.am-active>a:focus,
+			.am-nav-tabs>li.am-active>a:hover {
+				border: none;
+				border-bottom: 3px solid salmon;
+			}
+			
+			.am-tabs-bd {
+				overflow: inherit
+			}
+			
+			.popModal {
+				max-width: 470px;
+			}
+
+		</style>
+		<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<!-- content start -->
+		<div class="admin-content">
+
+			<!--<div class="pageheader">
+					<h1 class="pagetitle">编辑公众号</h1>
+					<span class="pagedesc">Add</span>
+
+				</div>-->
+
+			<form class="am-form">
+				<fieldset>
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							规则名称
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="wxname" name="wxname" />
+						</div>
+						<div class="am-hide-sm-only am-u-md-3"></div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							类型
+						</div>
+						<div class="am-u-sm-12 am-u-md-7 am-u-end col-end">
+							<div class="">
+								
+									
+								<span class="am-radio-inline">
+									<input type="radio" name="wxradio" required checked> 包含</span>
+								<span class="am-radio-inline">
+									<input type="radio" name="wxradio"required> 等于</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							关键词
+						</div>
+						<div class="am-u-sm-12 am-u-md-7">
+							<input type="text" class="am-form-field am-radius am-input-sm" type="text" placeholder="输入用户名（至少 3 个字符）" required id="wxnum" name="wxnum" />
+						</div>
+						<div class="am-hide-sm-only am-u-md-3"></div>
+					</div>
+
+					<div class="am-g am-margin-top am-form-group">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">
+							AppID（公众号）
+						</div>
+						<div class="am-u-sm-12 am-u-md-9">
+							<div class="am-tabs tabspad" data-am-tabs="">
+								<ul class="am-tabs-nav am-nav am-nav-tabs tabsbg">
+									<li class="am-active"><a href="#tab1"><span class="am-icon-puzzle-piece am-icon-fw"></span>文字</a></li>
+									<li><a href="#tab2"><span class="am-icon-puzzle-piece am-icon-fw"></span>网址</a></li>
+									<li><a href="#tab3"><span class="am-icon-puzzle-piece am-icon-fw"></span>图片</a></li>
+
+									<li><a href="#tab4"><span class="am-icon-puzzle-piece am-icon-fw"></span>图文</a></li>
+								</ul>
+
+								<div class="am-tabs-bd am-margin-top-sm" style="touch-action: pan-y; -webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+									<div class="am-tab-panel am-fade am-in am-active" id="tab1" style="height: 415px;">
+
+										<div style="  color: #000;  background-color:#fff ; border-radius: 5px 5px 5px 5px; ">
+
+											<div class="modalcon">
+
+												<div class="modal-header"><a class="close" data-dismiss="modal">×</a>
+													<h3 class="title">新建文字回复</h3></div>
+												<div class="modal-body">
+													<div class="js-editor-region">
+														<div class="simple-editor">
+															<div class="tab-content">
+																<div class="tab-pane active" id="editor-text">
+																	<div class="inputer vbox">
+																		<div class="inputer-area vbox">
+																			<textarea maxlength="600" class="js-inputer-txta transparent-txta" cols="30" rows="1" placeholder="" id="textbox"></textarea>
+																		</div>
+																		<div class="inputer-actions">
+																			<ul class="simple-editor-nav">
+																				<li>
+																					<div data-popover-name="emoticon" class="js-editor-popover inputer-action inputer-action-emoticon"><a href="javascript:;"><i class="ico-simple-editor ico-editor-emoticon"></i> <span>表情</span></a>
+																						<div class="popover bottom fade in">
+																							<div class="arrow"></div>
+																							<div class="js-region-emoticon popover-content"></div>
+																						</div>
+																					</div>
+																				</li>
+																				<li>
+																					<div data-popover-name="hyperlink" class="js-editor-popover inputer-action inputer-action-hyperlink"><a href="javascript:;"><i class="ico-simple-editor ico-editor-hyperlink"></i> <span></span></a>
+
+																						<div class="popover bottom fade in">
+																							<div class="arrow"></div>
+																							<div class="js-region-hyperlink popover-content">
+																								<div class="hyperlink">
+																									<input class="js-txt input-large txt" type="text" placeholder="http://">
+																									<button type="submit" class="js-btn-ok btn btn-primary">确定</button>
+																								</div>
+																							</div>
+																						</div>
+
+																					</div>
+																				</li>
+																			</ul>
+																			<div class="word-counter"><span>大约还可输入<i class="js-word-counter">600</i>字</span></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="js-btn-ok btn btn-primary" data-loading-text="保存中..." id="savetext">保存</button>
+													<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="am-tab-panel am-fade" id="tab2">
+										<div style=" color: #000;  background-color:#fff ; border-radius: 5px 5px 5px 5px; ">
+
+											<div class="modalcon">
+
+												<div class="modal-header"><a class="close" data-dismiss="modal">×</a>
+													<h3 class="title">新建网址</h3></div>
+												<div class="modal-body">
+													<textarea class="" style="width: 100%;" rows="2" placeholder="" id="urlbox"></textarea>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="js-btn-ok btn btn-primary" data-loading-text="保存中..." id="saveurl">保存</button>
+													
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="am-tab-panel am-fade" id="tab3">
+										<div class="am-g">
+											<div class="am-u-sm-8 am-u-md-4 am-u-sm-centered am-u-md-centered">
+												<button type="button" class="am-btn am-btn-primary am-btn-block" onclick="EditModal(event,'layer-pic.html','新增图片','60%')">媒体素材库</button>
+											</div>
+										</div>
+
+									</div>
+									<div class="am-tab-panel am-fade" id="tab4">
+										<div class="am-g">
+											<div class="am-u-sm-8 am-u-md-4 am-u-sm-centered am-u-md-centered">
+												<button type="button" class="am-btn am-btn-primary am-btn-block" onclick="EditModal(event,'layer-tw.html','新增图文','60%')">媒体素材库</button>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="am-u-sm-12 am-u-md-1"></div>
+					</div>
+
+					<div class="am-g am-margin-top">
+						<div class="am-u-sm-12 am-u-md-2 am-md-text-right">&nbsp;</div>
+						<div class="am-u-sm-12 am-u-md-10">
+							<button class="am-btn  am-btn-success" type="submit">提交</button>
+						</div>
+					</div>
+			</form>
+
+		</div>
+		<!-- content end -->
+
+		<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<script src="assets/js/jquery.min.js"></script>
+		<!--<![endif]-->
+		<script src="assets/js/amazeui.min.js"></script>
+		<script type="text/javascript" src="assets/js/layer.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="assets/js/localization/messages_zh.js"></script>
+		<script type="text/javascript" src="assets/js/popModal.min.js"></script>
+		<script src="assets/js/app.js"></script>
+		<script>
+			$.validator.setDefaults({
+				submitHandler: function() {
+					alert("提交成功")
+					form.submit();
+					e.preventDefault();
+				}
+			});
+			$().ready(function() {
+				// 在键盘按下并释放及提交后验证提交表单
+				$(".am-form").validate({
+					rules: {
+						wxname: {
+							required: true,
+							minlength: 2
+						},
+						wxid: {
+							required: true,
+							minlength: 5
+						},
+						wxnum: {
+							required: true,
+							minlength: 5
+						},
+						appid: {
+							required: true,
+							minlength: 5
+						},
+						appsecret: {
+							required: true,
+							minlength: 5
+						}
+					},
+					messages: {
+						wxname: "请输入您的规则名称",
+						wxid: "请输入公众号原始ID",
+						wxnum: {
+							required: "请输入关键词",
+							minlength: "用户名必需由两个字母组成"
+						},
+						wxradio: {
+							required: "请输入AppSecret",
+
+						}
+					}
+				});
+			});
+
+			$(document).on("click", "#savetext", function() {
+				var inputval = $(this).parent(".modal-footer").prev(".modal-body").find("textarea").val()
+				if (inputval != "") {
+					$("#tab1").find(".modal-body").empty()
+					$("#tab1").find(".modal-footer").empty()
+					var Textarea = "<div class=\"am-g am-margin-top am-form-group\"><div class=\"am-u-sm-12 am-u-md-7 am-md-text-center\" style=\"line-height:28px\"  id=\"textcon\">" + inputval + "<\/div><\/div>";
+					var editbutton = "<button type=\"button\" class=\"js-btn-ok btn btn-primary\" data-loading-text=\"保存中...\" id=\"edittext\">编辑</button>"
+					$("#tab1").find(".modal-body").html(Textarea)
+					$("#tab1").find(".modal-footer").html(editbutton)
+				}
+			})
+			$(document).on("click", "#edittext", function() {
+				var textcon = $("#textcon").text()
+				$("#tab1").find(".modal-body").empty()
+				$("#tab1").find(".modal-footer").empty()
+				var editarea = "<div class=\"js-editor-region\"><div class=\"simple-editor\"><div class=\"tab-content\"><div class=\"tab-pane active\" id=\"editor-text\"><div class=\"inputer vbox\"><div class=\"inputer-area vbox\"><textarea maxlength=\"600\" class=\"js-inputer-txta transparent-txta\" cols=\"30\" rows=\"1\" placeholder=\"\" id=\"textbox\"><\/textarea><\/div><div class=\"inputer-actions\"><ul class=\"simple-editor-nav\"><li><div data-popover-name=\"emoticon\" class=\"js-editor-popover inputer-action inputer-action-emoticon\"><a href=\"javascript:;\"><i class=\"ico-simple-editor ico-editor-emoticon\"><\/i> <span>表情<\/span><\/a><div class=\"popover bottom fade in\"><div class=\"arrow\"><\/div><div class=\"js-region-emoticon popover-content\"><\/div><\/div><\/div><\/li><li><div data-popover-name=\"hyperlink\" class=\"js-editor-popover inputer-action inputer-action-hyperlink\"><a href=\"javascript:;\"><i class=\"ico-simple-editor ico-editor-hyperlink\"><\/i> <span><\/span><\/a><div class=\"popover bottom fade in\"><div class=\"arrow\"><\/div><div class=\"js-region-hyperlink popover-content\"><div class=\"hyperlink\"><input class=\"js-txt input-large txt\" type=\"text\" placeholder=\"http://\"> <button type=\"submit\" class=\"js-btn-ok btn btn-primary\">确定<\/button><\/div><\/div><\/div><\/div><\/li><\/ul><div class=\"word-counter\"><span>大约还可输入<i class=\"js-word-counter\">600<\/i>字<\/span><\/div><\/div><\/div><\/div><\/div><\/div><\/div>";
+				var savebutton = "<button type=\"button\" class=\"js-btn-ok btn btn-primary\" data-loading-text=\"保存中...\" id=\"savetext\">保存<\/button> <button type=\"button\" class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">取消<\/button>";
+				$("#tab1").find(".modal-body").html(editarea)
+				$("#tab1").find("#textbox").val(textcon)
+				$("#tab1").find(".modal-footer").html(savebutton)
+			})
+			
+			
+			$(document).on("click", "#saveurl", function() {
+				var inputval = $(this).parent(".modal-footer").prev(".modal-body").find("textarea").val()
+				if (inputval != "") {
+					$("#tab2").find(".modal-body").empty()
+					$("#tab2").find(".modal-footer").empty()
+					var Textarea = "<div class=\"am-g am-margin-top am-form-group\"><div class=\"am-u-sm-12 am-u-md-7 am-md-text-center\" style=\"line-height:28px\"  id=\"textcon\">http://" + inputval + "<\/div><\/div>";
+					var editbutton = "<button type=\"button\" class=\"js-btn-ok btn btn-primary\" data-loading-text=\"保存中...\" id=\"editurl\">编辑</button>"
+					$("#tab2").find(".modal-body").html(Textarea)
+					$("#tab2").find(".modal-footer").html(editbutton)
+				}
+			})
+			$(document).on("click", "#editurl", function() {
+				var textcon = $("#textcon").text()
+				$("#tab2").find(".modal-body").empty()
+				$("#tab2").find(".modal-footer").empty()
+				var editarea ="<textarea class=\"\" style=\"width: 100%;\" rows=\"2\" placeholder=\"\" id=\"urlbox\"></textarea>"
+				var savebutton = "<button type=\"button\" class=\"js-btn-ok btn btn-primary\" data-loading-text=\"保存中...\" id=\"saveurl\">保存<\/button> <button type=\"button\" class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">取消<\/button>";
+				$("#tab2").find(".modal-body").html(editarea)
+				$("#tab2").find("#urlbox").val(textcon)
+				$("#tab2").find(".modal-footer").html(savebutton)
+			})			
+			
+			
+			var emtioncon = "<div class=\"emoticon\"><ul class=\"emoticon-list\"><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/01.png\" alt=\"微笑\" title=\"微笑\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/02.png\" alt=\"撇嘴\" title=\"撇嘴\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/03.png\" alt=\"色\" title=\"色\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/04.png\" alt=\"发呆\" title=\"发呆\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/05.png\" alt=\"得意\" title=\"得意\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/06.png\" alt=\"流泪\" title=\"流泪\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/07.png\" alt=\"害羞\" title=\"害羞\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/08.png\" alt=\"闭嘴\" title=\"闭嘴\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/09.png\" alt=\"睡\" title=\"睡\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/10.png\" alt=\"大哭\" title=\"大哭\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/11.png\" alt=\"尴尬\" title=\"尴尬\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/12.png\" alt=\"发怒\" title=\"发怒\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/13.png\" alt=\"调皮\" title=\"调皮\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/14.png\" alt=\"呲牙\" title=\"呲牙\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/15.png\" alt=\"惊讶\" title=\"惊讶\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/16.png\" alt=\"难过\" title=\"难过\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/17.png\" alt=\"酷\" title=\"酷\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/18.png\" alt=\"冷汗\" title=\"冷汗\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/19.png\" alt=\"抓狂\" title=\"抓狂\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/20.png\" alt=\"吐\" title=\"吐\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/21.png\" alt=\"偷笑\" title=\"偷笑\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/22.png\" alt=\"愉快\" title=\"愉快\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/23.png\" alt=\"白眼\" title=\"白眼\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/24.png\" alt=\"傲慢\" title=\"傲慢\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/25.png\" alt=\"饥饿\" title=\"饥饿\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/26.png\" alt=\"困\" title=\"困\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/27.png\" alt=\"惊恐\" title=\"惊恐\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/28.png\" alt=\"流汗\" title=\"流汗\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/29.png\" alt=\"憨笑\" title=\"憨笑\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/30.png\" alt=\"悠闲\" title=\"悠闲\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/31.png\" alt=\"奋斗\" title=\"奋斗\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/32.png\" alt=\"咒骂\" title=\"咒骂\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/33.png\" alt=\"疑问\" title=\"疑问\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/34.png\" alt=\"嘘\" title=\"嘘\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/35.png\" alt=\"晕\" title=\"晕\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/36.png\" alt=\"疯了\" title=\"疯了\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/37.png\" alt=\"衰\" title=\"衰\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/38.png\" alt=\"骷髅\" title=\"骷髅\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/39.png\" alt=\"敲打\" title=\"敲打\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/40.png\" alt=\"再见\" title=\"再见\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/41.png\" alt=\"擦汗\" title=\"擦汗\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/42.png\" alt=\"抠鼻\" title=\"抠鼻\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/43.png\" alt=\"鼓掌\" title=\"鼓掌\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/44.png\" alt=\"糗大了\" title=\"糗大了\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/45.png\" alt=\"坏笑\" title=\"坏笑\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/46.png\" alt=\"左哼哼\" title=\"左哼哼\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/47.png\" alt=\"右哼哼\" title=\"右哼哼\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/48.png\" alt=\"哈欠\" title=\"哈欠\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/49.png\" alt=\"鄙视\" title=\"鄙视\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/50.png\" alt=\"委屈\" title=\"委屈\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/51.png\" alt=\"快哭了\" title=\"快哭了\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/52.png\" alt=\"阴险\" title=\"阴险\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/53.png\" alt=\"亲亲\" title=\"亲亲\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/54.png\" alt=\"吓\" title=\"吓\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/55.png\" alt=\"可怜\" title=\"可怜\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/56.png\" alt=\"菜刀\" title=\"菜刀\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/57.png\" alt=\"西瓜\" title=\"西瓜\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/58.png\" alt=\"啤酒\" title=\"啤酒\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/59.png\" alt=\"篮球\" title=\"篮球\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/60.png\" alt=\"乒乓\" title=\"乒乓\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/61.png\" alt=\"咖啡\" title=\"咖啡\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/62.png\" alt=\"饭\" title=\"饭\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/63.png\" alt=\"猪头\" title=\"猪头\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/64.png\" alt=\"玫瑰\" title=\"玫瑰\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/65.png\" alt=\"凋谢\" title=\"凋谢\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/66.png\" alt=\"嘴唇\" title=\"嘴唇\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/67.png\" alt=\"爱心\" title=\"爱心\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/68.png\" alt=\"心碎\" title=\"心碎\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/69.png\" alt=\"蛋糕\" title=\"蛋糕\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/70.png\" alt=\"闪电\" title=\"闪电\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/71.png\" alt=\"炸弹\" title=\"炸弹\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/72.png\" alt=\"刀\" title=\"刀\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/73.png\" alt=\"足球\" title=\"足球\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/74.png\" alt=\"瓢虫\" title=\"瓢虫\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/75.png\" alt=\"便便\" title=\"便便\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/76.png\" alt=\"月亮\" title=\"月亮\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/77.png\" alt=\"太阳\" title=\"太阳\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/78.png\" alt=\"礼物\" title=\"礼物\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/79.png\" alt=\"拥抱\" title=\"拥抱\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/80.png\" alt=\"强\" title=\"强\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/81.png\" alt=\"弱\" title=\"弱\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/82.png\" alt=\"握手\" title=\"握手\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/83.png\" alt=\"胜利\" title=\"胜利\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/84.png\" alt=\"抱拳\" title=\"抱拳\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/85.png\" alt=\"勾引\" title=\"勾引\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/86.png\" alt=\"拳头\" title=\"拳头\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/87.png\" alt=\"差劲\" title=\"差劲\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/88.png\" alt=\"爱你\" title=\"爱你\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/89.png\" alt=\"NO\" title=\"NO\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/90.png\" alt=\"OK\" title=\"OK\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/91.png\" alt=\"爱情\" title=\"爱情\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/92.png\" alt=\"飞吻\" title=\"飞吻\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/93.png\" alt=\"跳跳\" title=\"跳跳\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/94.png\" alt=\"发抖\" title=\"发抖\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/95.png\" alt=\"怄火\" title=\"怄火\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/96.png\" alt=\"转圈\" title=\"转圈\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/97.png\" alt=\"磕头\" title=\"磕头\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/98.png\" alt=\"回头\" title=\"回头\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/99.png\" alt=\"跳绳\" title=\"跳绳\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/100.png\" alt=\"投降\" title=\"投降\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/101.png\" alt=\"激动\" title=\"激动\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/102.png\" alt=\"乱舞\" title=\"乱舞\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/103.png\" alt=\"献吻\" title=\"献吻\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/104.png\" alt=\"左太极\" title=\"左太极\"><\/li><li><img src=\"https://b.yzcdn.cn/v2/image/emoticons/105.png\" alt=\"右太极\" title=\"右太极\"><\/li><\/ul><\/div>";
+			$(document).on("click", ".inputer-action-emoticon", function() {
+				$(this).popModal({
+					html: emtioncon,
+					placement: 'bottomCenter',
+					showCloseBut: true
+				});
+			})
+			$(document).on("click", ".emoticon-list>li", function() {
+				var emtiontitle = $(this).find("img").attr("alt")
+					//				alert(emtiontitle)
+				var inputval = $("#tab1").find("#textbox").val()
+				$("#tab1").find("#textbox").val(inputval + "[" + emtiontitle + "]")
+			})
+			$(".tabsbg li").click(function(){
+				$(".tabsbg li").removeAttr("name")
+				$(this).attr("name","active")
+			})
+
+			function EditModal(event, Url, title) {
+				//alert(title)
+				if (event.srcElement || event.target) {
+					layer.open({
+						type: 2,
+						shade: 0.3,
+						title: title, //标题
+						area: ['80%', '70%'],
+						content: Url //iframe
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

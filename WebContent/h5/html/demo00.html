@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="../themes/hbbank/css/swiper.css" rel="stylesheet" type="text/css" />
+	<link href="../themes/hbbank/css/photoswipe.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="application/javascript" src="../resource/swiper.min.js"></script>
+	<script type="text/javascript" src="../resource/photoSwiper/klass.min.js"></script>
+	<script type="text/javascript" src="../resource/photoSwiper/code.photoswipe-3.0.5.1.min.js"></script>
+</head>
+<script type="text/javascript">
+		var  getUrlParamByParName = function(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r!=null) return unescape(r[2]); return null;
+		};
+		(function(window, Util, PhotoSwipe){
+			document.addEventListener('DOMContentLoaded', function(){
+				options = {
+					captionAndToolbarFlipPosition:true,
+					autoStartSlideshow:true,
+					slideshowDelay:2000,
+					getImageCaption: function(el){
+						var captionText, captionEl;
+						// Get the caption from the alt tag
+						if (el.nodeName === "A"){
+							childEl=el.childNodes[1];
+							captionText = childEl.getAttribute('alt'); 
+						}
+						var i, j, childEl;
+						for (i=0, j=el.childNodes.length; i<j; i++){
+							childEl = el.childNodes[i];
+							if (el.childNodes[i].nodeName === "A"){
+								captionText = childEl.getAttribute('alt'); 
+							}
+						}
+						// Return a DOM element with custom styling
+						captionEl = document.createElement('div');
+						captionEl.appendChild(document.createTextNode(captionText));
+						return captionEl;
+					},
+					getToolbar: function(){
+						return '<div class="ps-toolbar-close" style="padding-top: 12px;">关闭</div><div class="ps-toolbar-previous" style="padding-top: 12px;">前一张</div><div class="ps-toolbar-next" style="padding-top: 12px;">后一张</div>';
+					}
+				},
+				instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+				if(getUrlParamByParName("pageFlag") == 'timer') {
+					instance.show(0);
+				}
+			}, false);
+		}(window, window.Code.Util, window.Code.PhotoSwipe));
+		
+	</script>
+<body class="indexBody">
+	<div class="idxLogo"></div>
+	<div class="indexBot"><div id="loginBt"></div></div>
+	<!--产品展示 sta  说明：产品缩略图尺寸，可前往 hbbank/css/main.css中【 /*产品展示*/】下修改 .prdBox 与 .prdBox .swiper-slide的width/height-->
+    <div class="prdBox">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+				<div id="Gallery" class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/a.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/a.jpg" alt="产品A" /></a>
+				</div>
+			</div>
+            <div id="Gallery" class="swiper-slide">
+				<div class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/b.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/b.jpg" alt="产品B" /></a>
+				</div>
+			</div>
+            <div id="Gallery" class="swiper-slide">
+				<div class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/c.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/c.jpg" alt="产品C" /></a>
+				</div>
+			</div>
+            <div id="Gallery" class="swiper-slide">
+				<div class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/d.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/d.jpg" alt="产品D" /></a>
+				</div>
+			</div>
+            <div id="Gallery" class="swiper-slide">
+				<div class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/e.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/e.jpg" alt="产品E" /></a>
+				</div>
+			</div>
+            <div id="Gallery" class="swiper-slide">
+				<div class="imMenuR " onclick="">
+					<a href="../themes/hbbank/images/f.jpg">							
+					<img class="imMenuI" src="../themes/hbbank/images/f.jpg" alt="产品F" /></a>
+				</div>
+			</div>
+        </div>
+    </div>    
+	<!--产品展示 end-->
+	<script type="text/javascript">
+	var swiper = new Swiper('.prdBox', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: false,
+        slidesPerView: 5,
+        mode:'carousel',
+        loop: true, 
+        loopAdditionalSlides:1,
+        loopedSlides:6,
+        centeredSlides:true,
+        coverflow: {
+            rotate: 50,
+            stretch: 3,
+            depth: 100,
+            modifier: 0.4,
+            slideShadows : false
+        }
+    });
+	</script>
+</body>
+</html>

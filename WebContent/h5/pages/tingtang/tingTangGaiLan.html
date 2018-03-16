@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.pieRenderer.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="tingTangGaiLan.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#btRm").show();
+			}else{
+				$("#btRm").hide();
+			} 
+			
+			setUI();
+			$("#gaojichaxun").bind("click",function() { 
+				var index = layer.open({
+			        type: 2,
+			        title: '高级查询',
+			        shadeClose: false, //点击遮罩关闭层
+			        area : ['550px' , '350px'],
+			        content: 'gaoJiChaXunWindow.html',
+			        btn: '查询',
+			        yes: function(index){
+			        	var loading = layer.msg('查询中...', {icon: 16});
+			        	var cardId = layer.getChildFrame("#cardId",index).val();
+			        	var name = layer.getChildFrame("#name",index).val();
+			        	var shenfenzhenghao = layer.getChildFrame("#shenfenzhenghao",index).val();
+			        	var phone = layer.getChildFrame("#phone",index).val();
+			        	var msg = '';
+			        	
+			        	
+			        	if(cardId == '' && name == '' && shenfenzhenghao == '' && phone == ''){
+			        		layer.close(loading);
+							mesUtil.alert('请输入查询条件!');
+							return;
+						}
+			        	
+						var reg1 = /^[0-9]*$/;
+						if(cardId != ''){
+							if(reg1.test(cardId) == false){
+								msg += '请输入数字!\n';
+							}			
+						}
+			        	
+						var reg2 = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+						if(shenfenzhenghao != ''){
+							if(reg2.test(shenfenzhenghao) === false){  
+								msg += '请输入正确的身份证号!\n';  
+						    }  
+						}
+
+						var reg3 = /^((13|15|18|14|17)[0-9]{9})$/;
+						if(phone != ''){
+							if(reg3.test(phone) == false){
+								msg += '请输入正确的手机号码!';
+							}
+						}
+			        	
+						if(msg != ''){
+							layer.close(loading);
+							mesUtil.alert(msg);
+							layer.getChildFrame("#cardId",index).focus();
+							return;
+						}
+			        	
+			        	$.ajax({
+							type : "GET",
+							url : basePath+'tingTangGaiLanAction!gaoJiChaXun.json',
+							cache: false, 
+							async: false,
+							data: {"cardId":jiaMi(cardId),"name":jiaMi(name),"shenfenzhenghao":jiaMi(shenfenzhenghao),"phone":jiaMi(phone),"token":jiaMi(crmToken)},
+							dataType : "json",
+							success : function(response){
+								var isOnly = response.isOnly;
+								if(isOnly == false){
+									layer.close(loading);
+									mesUtil.alert("查询结果不唯一");
+									return;
+								}
+								if(isOnly == "none"){
+									layer.close(loading);
+									mesUtil.alert("没有查询结果");
+									return;
+								}
+								layer.close(loading);
+								$("#btmLeft2").text('');
+								
+								var li = '<h1>厅堂队列'
+									+'<div class="hTools">'
+									//+'<input id="queneNum1" type="text" placeholder="输入排队号" />'
+									+'<input id="search1" class="bt01" value="查询" type="button"/>'
+									+'<input id="refresh1" class="bt01" value="刷新" type="button"/>'
+									+'</div>'
+									+'</h1>';
+								roleCode = response.roleCode;
+								zhuanJieRenID = response.zhuanJieRenID;
+								zhuanJieRenName = response.zhuanJieRenName;
+								for(var i=0;i<response.queue.data.length;i++){
+									var aResult = response.queue.data[i];
+									var cust_id = "\'"+aResult.CUST_ID+"\'";
+									var core_id = "\'"+aResult.CORE_ID+"\'";
+									var queuenum = "\'"+aResult.QUEUENUM+"\'";
+									if(aResult.GUISHU == '1'){	//归属于当前客户经理
+										li = li + '<div class="khdlBox khdlCk">';
+									}else{
+										li = li + '<div class="khdlBox">';
+									}
+									li = li +'<div class="khdlCon">'
+								  			+'<div class="khdlcLeft"></div><div class="khdlcRight"></div>'
+								  			
+								  			+'<div class="khdlcCenter" onclick="goToCustDetailPage('+cust_id+','+core_id+','+queuenum+')">'
+								  			+'<div class="khdlInfo">';
+									if(aResult.SEX == '02'){
+										li = li +'<div class="khdlPic khWom">'+aResult.CUST_NAME+'</div>';
+									}else{
+										li = li +'<div class="khdlPic khMan">'+aResult.CUST_NAME+'</div>';
+									}
+									li = li + '<div class="khInfo">'
+									+'<span>';
+									if(aResult.BIRTHDAY == '1'){
+										li = li +'<img class="markIco" src="../../themes/hbbank/images/mark_01.png" />';
+									}
+									if(aResult.VIP=='1'){
+										li = li +'<img class="markIco" src="../../themes/hbbank/images/mark_04.png" />';
+									}
+									if(aResult.FIXED=='1'){
+										li = li +'<img class="markIco" src="../../themes/hbbank/images/mark_02.png" />';
+									}
+									if(aResult.MARKE=='1'){	//营销活动提醒--旗子
+										li = li +'<img class="markIco" src="../../themes/hbbank/images/mark_03.png" />';
+									}
+									
+									
+									li = li + '</span>'
+									+'<span class="dlDark">等待：<b>'+aResult.WAITMINUTES+'</b>min</span>'
+									+'<span class="dlDark">排队号：<b>'+aResult.QUEUENUM+'</b></span>'
+									+'<span>办理业务：'+aResult.BUSINESSTYPE_ORA+'</span>'
+									+'</div>'
+									+'</div>'
+									+'<div class="khdlDj">'+aResult.VAS_LEVEL_ORA
+									+'<div class="dldjIco1"></div>'
+									+'<div class="dldjIco2"></div>'
+									+'</div>'
+									+'</div>'
+									
+									+'</div>'
+									+'</div>';
+								}
+							   $("#btmLeft2").append($(li));
+							   $(".hidden").hide();
+							   start = start + limit;
+							   
+							   $("#search1").bind("click",function() {
+								   layer.confirm('<input style="width:190px;  font-size:20px; "  id="quene_num" type="text" />',
+											{
+											title:'请输入排队号:'		    
+											},
+											function(index){
+												var str = $("#quene_num").val();
+												if(str == ''){
+													mesUtil.alert('请输入排队号');
+												}else{
+													var url1 = basePath+'tingTangGaiLanAction!getQuene.json?queneNum='+str;
+													$("#btmLeft2").text('');
+													loadData(url1);
+													layer.close(index);
+													//回显查询条件
+//													$("#queneNum1").val(str);
+												}
+												
+											});
+							   });
+							   
+							   
+							   $("#refresh1").attr("disabled",false);
+							   
+							   $("#refresh1").bind("click",function() { 
+								   
+								   var url2 = basePath+'tingTangGaiLanAction!getQuene.json';
+								   $("#btmLeft2").text('');
+								   loadData(url2);
+
+								   time(document.getElementById("refresh1"),document.getElementById("search1"));
+								   
+							   });
+					           layer.close(index); //一般设定yes回调，必须进行手工关闭
+								
+							},
+							error:function(){
+								layer.close(loading);
+								mesUtil.alert('高级查询失败!');
+							}
+						});
+			            
+			        }		
+			    });
+				
+			});
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			var url = basePath+'tingTangGaiLanAction!getQuene.json';
+			loadData(url);
+			drawChart1();
+			drawChart2();
+			drawChart3();
+		});
+	</script>
+	
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-22).width((_cw-34)/2);
+		$("#btmLeft2").height(_ch-22).width((_cw-34)/2);
+		$("#btmRight2 .khdlChart").height((_ch-22)/3);
+		$("#btmRight2 .dlChartBox").height((_ch-22)/3-40);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"  id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>厅堂概览</span>
+		</p>
+	   <div class="zDhRight">
+	     <a href="#" id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+		 <a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+	   </div>
+	   
+	   <div class="search">
+			<a class="searcha1" id="gaojichaxun" href="#"><img src="../../themes/hbbank/images/gaojicxun.png" /></a>
+		</div>
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2" id="btmRight2">
+		  <div class="khdlChart">
+		  <h1>队列分布</h1>
+		  <div class="dlChartBox" id="chart1" style="width:100%"></div>
+		  </div>
+		  <div class="khdlChart">
+		  <h1>业务分布</h1>
+		  <div class="dlChartBox" id="chart2"></div>
+		  </div>
+		  <div class="khdlChart">
+		  <h1>等待时间</h1>
+		  <div class="dlChartBox" id="chart3"></div>
+		  </div>	  
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2"></div>
+	</div>
+</body>
+</html>

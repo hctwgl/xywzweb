@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测一测你的孕育指数</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="/h5/js/jquery-1.7.2.min.js?$!module.module('webmobile').build"></script>
+	<script type="text/javascript">
+		/*屏幕比例值*/
+		function sizeHtml(){
+			var size = window.innerWidth/16;
+			size = size>40?40:size;
+			document.getElementsByTagName("html")[0].style.fontSize=size+"px";
+		}
+		sizeHtml();
+		window.onresize=function(){
+			sizeHtml();
+		}
+	</script>
+	<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	.clear{
+		clear:both;
+		font-size:1px;
+		height:0;
+		visibility:hidden;
+		line-height:0;
+	}
+	input{
+		outline: none;
+	}
+	input:focus{
+		outline: none;
+	}
+	.wrap form>span{
+		padding:0 .625rem;
+		height:3.1rem;
+		display:block;
+	}
+	.wrap form>span a{
+		background:#fff;
+		width:100%;
+		height:2.05rem;
+		text-align:center;
+		line-height:2.05rem;
+		display:block;
+		border-radius:.3rem;
+		margin:0 auto;
+		margin-top:.525rem;
+		font-size:.8rem;
+		color:#FFF;
+		background:#FFA3A3;
+	}
+	.wrap form>span .enroll_btn{
+		background:#FA66A1;
+	}
+	.wrap{
+		padding:.5rem;
+	}
+	.mobile_enroll{
+		padding:.8rem .5rem;
+		background:#FD8BBA;
+		color:#fff;
+		font-size:.65rem;
+		line-height:.9rem;
+	}
+	.wrap form>div{
+		padding:0 .2rem; 
+	}
+	.wrap form h3{
+		padding:0 .625rem;
+		font-size:.8rem;
+		line-height:.8rem;
+		font-weight:normal;
+		margin-left:-.3rem;
+		/* padding-bottom:.9rem; */
+		padding-top: .5rem;
+	}
+	.wrap form h3:first-child{
+		padding-top:0;
+	}
+	.wrap form>div h4{
+		font-size:.675rem;
+		line-height:.675rem;
+		font-weight:normal;
+		padding-bottom:.5rem;
+		color:#333;
+	}
+	.wrap form h4:before{
+		content: "";
+	    width: .8rem;
+	    height: .8rem;
+	    background: #FC5A9C;
+	    display: block;
+	    margin-left: -1.3rem;
+	    float: left;
+	    border-radius: 1rem;
+	}
+	.wrap form h4 i{
+		color:#585858;
+		font-style:normal;
+	}
+	.wrap form h4.title{
+		line-height:1.2rem;
+	}
+	.wrap form div{
+		font-size:.675rem;
+		line-height:.675rem;
+		font-weight:normal;
+		margin-bottom:.5rem;
+		position:relative;
+	}
+	.wrap form>div{
+		padding-top:.5rem;
+	    border-radius:.3rem;
+	    border:1px dashed transparent;
+	    color:#666;
+	}
+	.wrap form>div.active{
+		border:1px dashed #f00;
+	}
+	.wrap form div>div{
+		padding-bottom:0;
+		display:table;
+	}
+	.wrap form div.div_form_text>div{
+		width:100%;
+	}
+	.wrap form div input[type=radio]{
+		margin-right:.3rem;
+	}
+	.wrap form div i{
+		font-style:normal;
+	}
+	.wrap form div>span,.wrap form div>span>span{
+		height:1.5rem;
+		border:1px solid #ddd;
+		border-radius:.3rem;
+		display:block;
+		padding-left:.5rem;
+		padding-right:.5rem;
+	}
+	.wrap form div.iphone span:first-child{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.stature{
+    	padding-right: 1.525rem;
+	}
+	.wrap form div input[type=text]{
+		height:1.5rem;
+		border:none;
+		width:100%;
+		font-size:.8rem;
+		color:#505050;
+	}
+	.wrap form div.iphone span:last-child{
+		padding:0;
+		border-color: transparent;
+	}
+	.wrap form div.iphone span:last-child input[type=text]{
+		width:7rem;
+		float:left;
+		border:1px solid #323232;
+		border-radius:.3rem;
+		padding:0 .5rem;
+	}
+	.wrap form div.iphone span:last-child a.active{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #FF6666;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		background:#FF6666;
+		border-radius:.3rem;
+		text-align:center;
+	}
+	.wrap form div.iphone span:last-child a{
+		width:5rem;
+		float:right;
+		height:1.5rem;
+		border:1px solid #cecece;
+		display:block;
+		line-height:1.5rem;
+		color:#FFf;
+		border-radius:.3rem;
+		text-align:center;
+		background:#cecece;
+	}
+	.wrap form div span.city{
+		padding:0;
+		border:1px solid transparent;
+	}
+	.wrap form div.radios input{
+		margin-bottom:.5rem;
+	}
+	.wrap form div span.city span{
+		width:6rem;
+		float:right;
+		padding:0;
+		padding-left:.5rem;
+	}
+	.wrap form div span.city span:first-child{
+		float:left;
+	}
+	.wrap form div span.city span input[type=text]{
+		border-radius:.3rem;
+		width:5rem;
+	}
+	.wrap form div em{
+		position: absolute;
+	    right: 1px;
+	    top: 1px;
+	    height: 1.5rem;
+	    width: 1.5rem;
+	    text-align: center;
+	    display: block;
+	    line-height: 1.5rem;
+	    font-style: normal;
+	}
+	.wrap form>div div div{
+		display: block;
+    	float: left;
+    	font-weight:normal;
+    	margin-bottom:.5rem;
+    	/* width:50%;         
+    	height:.8rem;*/
+    	line-height:1rem;
+	}
+	.wrap form>div div.radio div{
+		margin-bottom:0;
+	}
+	.wrap form>div div div span{
+		width:.7rem;
+		height:.9rem;
+		display:block;
+		background:url(/h5/images/radio.png) no-repeat center;
+		background-size:contain;
+		float:left;
+		margin-right:.25rem;
+		padding:0;
+		border:none;
+		border-radius: 0;
+	}
+	.wrap form>div div div span.active{
+		background:url(/h5/images/radios.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div span{
+		background:url(/h5/images/checkbox.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div.checkbox div.active>span{  
+		background:url(/h5/images/checkboxs.png) no-repeat center;
+		background-size:contain;
+	}
+	.wrap form>div div div i{
+		float:left;
+	}
+	.wrap form>p{
+		font-size: .6rem;
+	    color: #FF6666;
+	    padding-top: .5rem;
+	}
+	.bombbox{
+		position:fixed;
+		width:100%;
+		height:100%;
+		left:0;
+		top:0;
+		z-index:3;
+		display:none;
+	}
+	.bombboxbg{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background:#000;
+		opacity:0;
+		z-index:5;
+	}
+	.bombbox_content{
+		position:absolute;
+		left:50%;
+		top:50%;
+		z-index:9;
+		color:#fff;
+		background:#000;
+		text-align:center;
+		line-height:1rem;
+		padding:.5rem;
+		font-size:.8rem;
+		border-radius:.3rem;
+	}
+	.wrap form .hosphospital h4{
+		line-height:1.1rem;
+	}
+	.wrap form>div.hosphospital div div{
+		width:100%;
+	}
+	/* .wrap form>div.hosphospital div div:last-child{
+		height:1.8rem;
+	} */
+	.wrap form>div.hosphospital>div input[type=text]{
+		  border: 1px solid #323232;
+    	border-radius: .3rem;
+    	width: 90%;
+    	padding-left:12px;
+	}
+	.wrap form>div>div{
+		margin-bottom:.5rem;
+	}
+	.wrap form>div>div.choice{
+		margin-bottom:0;
+	}
+	.wrap form>div>div>label{
+		float:left;
+		line-height:1.6rem;
+	}
+	.wrap form>div>div>span{
+		float:right;
+		width:8.5rem;
+	}
+	.choice,.checkbox{
+		width:100%;
+	}
+	.choice>div,.checkbox>div{
+		margin-right:.8rem;
+	}
+	.choice>label,.checkbox label{
+    	height: 1.5rem;
+    	display:block;
+    	margin-right:.5rem;
+	}
+	.wrap form>div p{
+		line-height:1.2rem;
+		padding-bottom:.5rem;
+		font-size: .675rem;
+	}
+	/* .checkbox_left{
+		margin-left:2.5rem;
+	} */
+	.wrap form .choice .checkbox_text{
+		border:1px solid #ddd;
+		border-radius: .3rem;
+		width:100%;
+		visibility: hidden;
+		margin-top:.5rem;
+		height:1.5rem;
+	}
+	.wrap form .choice .checkbox_text input[type=text]{
+		padding:0 5%;    
+		width: 90%;
+		border-radius: .3rem;
+		height:1.4rem;
+		display:block;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+		
+		/*
+		wx.config({
+			debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId: '$appid', // 必填，公众号的唯一标识
+			timestamp: $timestamp, // 必填，生成签名的时间戳
+			nonceStr: '$noncestr', // 必填，生成签名的随机串
+			signature: '$signature',// 必填，签名，见附录1
+			jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});
+		wx.ready(function () {
+			
+			wx.onMenuShareAppMessage({
+			    title: 'title', // 分享标题
+			    desc: 'desc', // 分享描述
+			    link: 'http://test.jiahao.me/questionnaire/test', // 分享链接
+			    imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg', // 分享图标
+			    success: function () { 
+			        // 用户确认分享后执行的回调函数
+			    },
+			    cancel: function () { 
+			        // 用户取消分享后执行的回调函数
+			    }
+			});
+		});
+		wx.error(function (res) {
+			//alert(res.errMsg);
+		});*/
+
+		
+		/*http://test.jiahao.me/h5/apph5/ivf.html?account=18701388320&version=0.9.1
+		var url=window.location.search;
+		var index=url.indexOf("=");
+		var lastindex=url.indexOf("&");
+		var account=url.substring(index+1,lastindex);
+		/*if(url.indexOf("version")>0){
+			openid=url.substr(indexlast+4,indexlastcont-(indexlast+4))
+		}*/
+		/*单选*/		
+		
+		$(".wrap form>div div.choice div").click(function(){
+			if($(this).hasClass("content")){
+				$(".checkbox_text").css("visibility","visible");
+			}
+			if($(this).hasClass("nocontent")){
+				$(".checkbox_text").css("visibility","hidden");
+				$(".checkbox_text input").val("");
+			}
+			$(this).find("span").addClass("active");
+			$(this).find("span").attr("dataval","val");
+			$(this).siblings().find("span").removeClass("active");
+			$(this).siblings().find("span").attr("dataval","");
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		/*多选*/
+		$(".wrap form>div div.checkbox div").click(function()  {
+			if($(this).hasClass("selects")){
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).siblings().removeClass("active");
+					$(this).siblings().find("span").attr("dataval","");
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+			}else{
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).find("span").attr("dataval","");
+				}else{
+					$(this).addClass("active");
+					$(this).find("span").attr("dataval","val");
+				}
+				$(this).parent().find("div.selects").removeClass("active");
+				$(this).parent().find("div.selects span").attr("dataval","");
+			}
+			$(this).parents("div.active").find("p").remove();
+			$(this).parents("div.active").removeClass("active");
+		})
+		$(".div_form.div_form_text input[type=text]").blur(function(){
+			var val=$(this).val();
+			var regMob = /^\d+$/;
+			var yearregMob = /^[12]\d{3}$/;
+			if(val!=""){
+				if($(this).attr("name")=="mbirthday"||$(this).attr("name")=="wbirthday"){
+					if(yearregMob.test(val)){
+						$(this).parent().attr("dataval","val");
+						$(this).parents("div.active").find("p").remove();
+						$(this).parents("div.active").removeClass("active");
+					}else{
+						Hide("请输入正确年份");
+						$(this).val("");
+					}
+				}else{
+					if(regMob.test(val)){
+						$(this).parent().attr("dataval","val");
+						$(this).parents("div.active").find("p").remove();
+						$(this).parents("div.active").removeClass("active");
+					}else{
+						Hide("请输入数字");
+					}
+				}
+			}else{
+				$(this).parent().attr("dataval","");
+			}
+		});
+		function Hide(str){
+			$(".bombbox_content p").html(strb );
+			$(".bombbox").show();
+			var height=$(".bombbox_content").height();
+			var width=$(".bombbox_content").width();
+			$(".bombbox_content").css({"marginTop":-(height/2)+"px","marginLeft":-(width/2)+"px"})
+			setTimeout(function(){$(".bombbox").hide()},1500)
+		}
+		$(".wrap form>span").on("click",".enroll_btn",function(){
+			$("#enroll_btn").removeClass("enroll_btn");
+			$("#enroll_btn").html("提交中...");
+			var json={};
+			var arrs=[];
+			var numarr=[];
+			for(var i=0;i<$(".wrap form>div").length;i++){
+				$(".wrap form>div").eq(i).attr("id",i);
+				var jsons={};
+				var arr=[];
+				var val="";
+				var vals="";
+				var name="";
+				var fiestdiv=$(".wrap form>div").eq(i);
+				var div=$(".wrap form>div").eq(i).find("div");
+				$(".wrap form>div").eq(i).attr("id",i);
+				if(div.hasClass("choice")||div.hasClass("checkbox")){
+					if(div.hasClass("choice")){
+						var choicediv=fiestdiv.find(".choice");
+						for(var a=0;a<choicediv.length;a++){
+							var spanlen=choicediv.eq(a).find("span").length;
+							var name=choicediv.eq(a).find("span").attr("name");
+							if(choicediv.eq(a).find("span").hasClass("active")){
+								for(var l=0;l<spanlen;l++){
+									var clas=choicediv.eq(a).find("span").eq(l).attr("class");
+									var dataname=choicediv.eq(a).find("span").eq(l).attr("dataname");
+									if(clas=="active"){
+										var dataIndex=choicediv.eq(a).find("span").eq(l).attr("dataIndex");
+										if(dataname=="wother"){
+											var val=$(".checkbox_text input").val();
+											if(val!=""){
+												arr.push(dataIndex);
+												arr.push(val);
+									 			jsons.name=name;
+												jsons.value=arr;
+												arrs[i]=jsons;
+											}else{
+												numarr.push(i);
+											}
+										}else{
+											arr.push(dataIndex);
+											jsons.name=name;
+											jsons.value=arr;
+											arrs[i]=jsons;
+										}
+									}
+								}
+							}else{
+								numarr.push(i);
+							}
+						}
+					}else if(div.hasClass("checkbox")){
+						var checkboxdiv=fiestdiv.find(".checkbox");
+						for(var a=0;a<checkboxdiv.length;a++){
+							var spanlen=checkboxdiv.eq(a).find(">div.active").length;
+							var name=checkboxdiv.eq(a).find("span").attr("name");
+							for(var l=0;l<spanlen;l++){
+								var dataIndex=checkboxdiv.eq(a).find(">div.active").eq(l).find("span").attr("dataIndex");
+									arr.push(dataIndex);
+									jsons.name=name;
+									jsons.value=arr;
+									arrs[i]=jsons;
+							}
+							if(arr.length<=0){
+								numarr.push(i);
+							}
+						}
+					}		
+				}else{
+					var inp=$(".wrap form>div").eq(i).find("input");
+					for(var j=0;j<inp.length;j++){
+						var val=inp.eq(j).val();
+						var name=inp.eq(0).attr("name");
+						if(val!=undefined&&val!="undefined"&&val!=""){
+							arr.push(val);
+							jsons.name=name;
+							jsons.value=arr;
+							arrs[i]=jsons;
+						}else{
+							numarr.push(i);
+						}
+					}
+				}
+			}	
+			json.list=JSON.stringify(arrs);
+			json.account =  $("input[name='account']").val();
+			console.log(json);
+			if(numarr.length>0){
+				var num=numarr[0];
+				$("#enroll_btn").attr("href","#"+num);
+				for(var i=0;i<numarr.length;i++){
+					var html="<p>此题为必填题</p>";
+					$(".wrap form>div").eq(numarr[i]).find("p").remove();
+					$(".wrap form>div").eq(numarr[i]).append(html);
+					$(".wrap form>div").eq(numarr[i]).addClass("active");
+				}
+				$("#enroll_btn").addClass("enroll_btn");
+				$("#enroll_btn").html("提交");
+			}else{
+				$.ajax({
+					url:"/questionnaire/submit",
+					data:json,
+					dataType : "json",
+					type:"POST",
+					success:function(data){
+						$("#enroll_btn").attr("href","javascript:;");
+						if(data.state==200){
+							var str="提交成功"; 
+							window.location.href="/h5/apph5/resultpage.html?id="+data.id;
+						}else{
+							var str="提交失败";
+							Hide(str);
+							$("#enroll_btn").addClass("enroll_btn");
+							$("#enroll_btn").html("提交");
+						}
+					}
+				})
+			}		 
+
+		})
+						
+		function goapps(iphone,code,mobile,openid,id){
+			var u = navigator.userAgent;
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+					if(mobile==""&&openid==""){
+						app.loginByVCode(iphone,code);
+					}	
+					window.location.href="/h5/apph5/resultpage.html?id="+id;
+		     return true;  
+			} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+		    	if(mobile==""&&openid==""){
+						toApp.login(iphone,code);
+					}	
+					window.location.href="/h5/apph5/resultpage.html?id="+id;
+		     return false;  
+		         }  
+		}
+		function Hide(str){
+			$(".bombbox_content p").html(str);
+			$(".bombbox").show();
+			var height=$(".bombbox_content").height();
+			var width=$(".bombbox_content").width();
+			$(".bombbox_content").css({"marginTop":-(height/2)+"px","marginLeft":-(width/2)+"px"})
+			setTimeout(function(){$(".bombbox").hide()},1500)
+		}
+	})
+	</script>
+</head>
+<body>
+	<div class="mobile_enroll">
+		<p>
+			我国的不孕不育率在12%–15%，累计到目前，我国适龄妇女有6000万人不孕不育。生育能力评估是对育龄夫妇的病史、职业、饮食、居住环境、女性排卵情况、输卵管卵巢功能和精液情况等进行系统评估。生育能力评估对能否怀孕、优孕、优生、优育有重要意义！快来测测你的孕育指数有多高～
+		</p>
+	</div>
+	<div class="wrap">
+		<form>
+			<input name="account" type="hidden" value="$!account" />
+			<div class="div_form div_form_text">
+				<h4>您的出生年份?</h4>
+				<div>
+					<label>男方出生年份</label>
+					<span>
+						<input name="mbirthday" type="text"/>
+					</span>
+				</div>
+				<div>
+					<label>女方出生年份</label>
+					<span>
+						<input name="wbirthday" type="text"/>
+					</span>
+				</div>
+			</div>
+			<div class="div_form div_form_text">
+				<h4>您的身高体重?</h4>
+				<div>
+					<label>男方身高(cm)</label>
+					<span>
+						<input name="mheight" type="text" />
+					</span>
+				</div>
+				<div>
+					<label>男方体重(kg)</label>
+					<span>
+						<input name="mweight" type="text" />
+					</span>
+				</div>
+
+				<div class="radio">
+					<label>女方身高(cm)</label>
+					<span>
+						<input name="wheight" type="text" />
+					</span>
+				</div>
+				<div class="radio">
+					<label>女方体重(kg)</label>
+					<span>
+						<input name="wweight" type="text" />
+					</span>
+				</div>
+			</div>
+			<!-- <div class="div_form">
+			<h4>工作时间</h4>
+			<div class=" choice">
+				<div>
+					<span name="worktime" dataIndex="1"></span> <i>每周一人或双方都要因工作而出差</i>
+				</div>
+				<div>
+					<span name="worktime" dataIndex="2"></span> <i>工作时间不一致</i>
+				</div>
+				<div>
+					<span name="worktime" dataIndex="3"></span>
+					<i>工作时间一致</i>
+				</div>
+			</div>
+		</div>
+		-->
+		<div class="div_form">
+			<h4>您目前的生活或工作中会感觉有压力吗?</h4>
+			<div>
+				<div class="choice">
+					<label>男方:</label>
+					<div>
+						<span name="mpressure" dataIndex="1"></span>
+						<i>压力很大</i>
+					</div>
+					<div>
+						<span name="mpressure" dataIndex="2"></span>
+						<i>压力较小</i>
+					</div>
+				</div>
+				<div class="choice">
+					<label>女方:</label>
+					<div>
+						<span name="wpressure" dataIndex="3"></span>
+						<i>压力很大</i>
+					</div>
+					<div>
+						<span name="wpressure" dataIndex="4"></span>
+						<i>压力较小</i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>您和爱人的性生活频率怎样？</h4>
+			<div class="choice">
+				<div>
+					<span name="sexcount" dataIndex="1"></span>
+					<i>每周0～1次</i>
+				</div>
+				<div>
+					<span name="sexcount" dataIndex="2"></span>
+					<i>每周2～3次</i>
+				</div>
+				<div>
+					<span name="sexcount" dataIndex="3"></span>
+					<i>每周4次或以上</i>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>您的生殖器（睾丸）有受过损伤吗?</h4>
+			<div class="choice">
+				<div>
+					<span name="testicles" dataIndex="1"></span>
+					<i>以前损伤过</i>
+				</div>
+				<div>
+					<span name="testicles" dataIndex="2"></span>
+					<i>没有损伤过</i>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>您曾经得过性传播疾病吗?</h4>
+			<div class="choice">
+				<div>
+					<span name="std" dataIndex="1"></span>
+					<i>得过</i>
+				</div>
+				<div>
+					<span name="std" dataIndex="2"></span>
+					<i>没有得过</i>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>平常您和爱人吸烟吗?(可多选)</h4>
+			<div class="checkbox">
+				<div>
+					<span name="smoking" dataIndex="1"></span>
+					<i>男方吸烟</i>
+				</div>
+				<div>
+					<span name="smoking" dataIndex="2"></span>
+					<i>女方吸烟</i>
+				</div>
+				<div class="selects">
+					<span name="smoking" dataIndex="3"></span>
+					<i>均不吸烟</i>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>您和爱人平常饮酒吗?(可多选)</h4>
+			<div class="checkbox">
+				<div>
+					<span name="drugsAlcohol" dataIndex="1"></span>
+					<i>男方经常饮酒过度</i>
+				</div>
+				<div>
+					<span name="drugsAlcohol" dataIndex="2"></span>
+					<i>女方经常饮酒过度</i>
+				</div>
+				<div class="checkbox_left selects">
+					<span name="drugsAlcohol" dataIndex="3"></span>
+					<i>以上情况均无</i>
+				</div>
+			</div>
+		</div>
+		<div class="div_form">
+			<h4>其它</h4>
+			<p>子宫内膜炎会引起不孕症，男人经常暴露在高温和高热环境中会影响精子的数量和质量</p>
+			<div>
+				<div class="checkbox">
+					<label>男方:(可多选)</label>
+					<div>
+						<span name="mothers" dataIndex="1"></span>
+						<i>暴露在高热中</i>
+					</div>
+					<div class="checkbox_left">
+						<span name="mothers" dataIndex="2"></span>
+						<i>睾丸静脉曲张</i>
+					</div>
+					<div class="checkbox_left selects" style="margin-bottom:0;">
+						<span name="mothers" dataIndex="3"></span>
+						<i>以上情况均无</i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="div_form checkbox_form" style="padding-top:0;">
+			<div style="margin-bottom:0;">
+				<div class="choice" style="margin-bottom:0;">
+					<label>女方:</label>
+					<div class="nocontent">
+						<span name="wothers" dataIndex="4"></span>
+						<i>无影响生育的情况</i>
+					</div>
+					<div class="content" style="margin-bottom:0;margin-right:0;">
+						<span name="wothers" dataname="wother" dataIndex="5"></span>
+						<i>已知的可能影响生育的情况</i>
+						<div class="checkbox_text">
+							<input type="text" placeholder="如有: 请填写"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<span>
+			<a class="enroll_btn" id="enroll_btn" href="javascript:;">提交</a>
+		</span>
+	</form>
+	<div class="bombbox">
+		<div class="bombboxbg"></div>
+		<div class="bombbox_content">
+			<p>请输入数字</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

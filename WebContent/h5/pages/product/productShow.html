@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="../../themes/hbbank/css/swiper.css" rel="stylesheet" type="text/css" />
+	<link href="../../themes/hbbank/css/photoswipe.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../../resource/jquery.min.js"></script>
+		<script type="application/javascript" src="../../resource/swiper.min.js"></script>
+	<script type="text/javascript" src="../../resource/photoSwiper/klass.min.js"></script>
+	<script type="text/javascript" src="../../resource/photoSwiper/code.photoswipe-3.0.5.1.min.js"></script>
+		<script type="text/javascript" src="../../pages/common/common.js"></script>
+		<script type="text/javascript" src="../../pages/common/com.yucheng.mobile.dbUtils.js"></script>	 
+	</head>
+
+<script type="text/javascript">
+function goTodetail(prdtype,prdid) {
+	//alert("产品类别:"+prdtype+",产品代码:"+prdid);
+	if(prdtype=="2010000000"){ //封闭式理财
+		goPage('./MfProduct2Detail.html?flag=5&id='+prdid);
+	}else if(prdtype=="2020000000"){    //开放式理财
+		goPage('./MfProductDetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="4010000000"||prdtype=="4020000000"||prdtype=="4030000000"){   //基金
+		goPage('./funddetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="4040000000"){   //货币式基金
+		goPage('./fundhuobidetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="1000000000"){    //存款
+		goPage('./depsLiab2ProductDetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="7010000000"||prdtype=="7020000000"){    //贷款
+		goPage('./depsLiab1ProductDetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="6010100000"||prdtype=="6010200000"){      //贵金属
+		goPage('./goldProductDetail.html?flag=5&id='+prdid);
+	}else if(prdtype=="5010000000"||prdtype=="5020000000"){      //保险
+		goPage('./lnsuProductDetail.html?flag=5&id='+prdid);
+	}else{
+		//mesUtil.alert("该产品无法显示产品详情!请联系管理员!");
+	}
+}
+</script>
+
+<script type="text/javascript">
+var  getUrlParamByParName = function(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r!=null) return unescape(r[2]); return null;
+};
+
+$(document).ready(function() {
+	document.addEventListener('deviceready', onDeviceready, false);
+});
+
+
+
+
+
+		function onDeviceready() {
+			
+			 setUI();
+		
+		}
+	
+
+		function setUI(){
+			//返回按钮                                                                                                                                                                                                                         
+			$("#goHomeBtn").bind("click",function() {                                                                                                                                                                                          
+				goPage('../../index.html');                                                                                                                                                                                                      
+			});      
+			var el = document.getElementById('productzs');
+			var li = [];
+
+
+			var sql = "select PRODUCT_NAME,PIC_ADDR,PRODUCT_ID,PRODUCT_TYPE,CONTACT_ID from OCRM_F_PD_PICLIB_MAINTENANCE where ISSUCSYNC=1 and STATUS=1 and TYPE=1 and PRODUCT_SHOW=1 order by RECORD_ID ";
+			query(crmApp,sql,function(res){
+				var data = res.rows;
+				if(data != null && data.length > 0){
+					for (var i = 0; i < data.length; i++) {
+						var info = data.item(i).CONTACT_ID+"|"+data.item(i).PRODUCT_TYPE;
+						var div = '<div class="swiper-slide"><div id="Gallery" class="imMenuR " onclick="">'
+							+ '	<a href="'+data.item(i).PIC_ADDR+'">'
+							//+ '<img class="imMenuI" src="'+data.item(i).PIC_ADDR+'"  alt="'+data.item(i).PRODUCT_NAME+'"  /></a></div></div>'
+							+ '<img class="imMenuI" src="'+data.item(i).PIC_ADDR+'"  alt="'+info+'"  /></a></div></div>'
+							;
+							li.push(div);
+				
+					}
+					
+					swiper.appendSlide(li);
+			}
+			
+
+				(function(window, Util, PhotoSwipe){			
+					 options = {
+								captionAndToolbarFlipPosition:true,
+								autoStartSlideshow:true,
+								slideshowDelay:4000,
+								getImageCaption: function(el){
+									var captionText, captionEl;
+									// Get the caption from the alt tag
+									if (el.nodeName === "A"){
+										childEl=el.childNodes[1];
+										//captionText = '';
+									//	captionText = childEl.getAttribute('alt'); 
+									}
+									var i, j, childEl;
+									for (i=0, j=el.childNodes.length; i<j; i++){
+										childEl = el.childNodes[i];
+										if (el.childNodes[i].nodeName === "A"){
+											//captionText = '';
+											captionText = childEl.getAttribute('alt'); 
+										}
+									}
+									// Return a DOM element with custom styling
+									captionText = childEl.getAttribute('alt'); 
+									var vararr={};
+									vararr = captionText.split("|");
+									var id = vararr[0];
+									var type = vararr[1];
+									//var id = "1691209";
+									//var type = "2010000000";
+									
+									captionEl = document.createElement('div');
+									//captionEl.appendChild(document.createTextNode(captionText));
+									captionEl.appendChild(document.createTextNode("产品详情"));
+									
+									captionEl.onclick=function(){
+								        goTodetail(type,id);
+								    }
+									
+									return captionEl;
+								},
+								getToolbar: function(){
+									return '<div class="ps-toolbar-close" style="padding-top: 12px; display=block;">关闭</div><div class="ps-toolbar-previous" style="padding-top: 12px; display=block;">前一张</div><div class="ps-toolbar-next" style="padding-top: 12px; display=block;">后一张</div>';
+								}
+							},
+							instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+							if(getUrlParamByParName("pageFlag") == 'timer') {
+								instance.show(0);
+							}
+				}(window, window.Code.Util, window.Code.PhotoSwipe));	
+				
+		});
+
+
+		};
+		
+	</script>
+
+<body class="indexBody">                                                                              
+	<div class="idxLogo"></div>                                                                         
+	<div class="indexBot"></div>                                                                        
+		<div class="indexBt">	                                                                            
+                                                                                                      
+	<div class="zDhRight">                                                                              
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>              
+			</div>                                                                                          
+	</div>		
+  <div class="indexBot"><div id="loginBt"></div></div>
+<!--产品展示 sta  说明：产品缩略图尺寸，可前往 hbbank/css/main.css中【 /*产品展示*/】下修改 .prdBox 与 .prdBox .swiper-slide的width/height-->
+    <div class="prdBox">
+        <div class="swiper-wrapper" id="productzs">
+        </div>
+    </div>    
+	<!--产品展示 end-->
+		<script type="text/javascript">
+		var swiper = new Swiper('.prdBox', {
+	        effect: 'coverflow',
+	        grabCursor: false,
+	        centeredSlides: false,
+	        slidesPerView: 5,
+	        mode:'carousel',
+	        loop: true, 
+	        loopAdditionalSlides:1,
+	        loopedSlides:6,
+	        freeMode : true,
+	        freeModeMomentumBounce : true,
+	        freeModeMomentumBounceRatio : 1,
+	        freeModeMomentumRatio : 0.5,
+	        freeModeMomentum : true,
+	        resistance : true,
+	        resistanceRatio : 0.9,
+	        speed: 400,
+	        coverflow: {
+	            rotate: 50,
+	            stretch: 3,
+	            depth: 100,
+	            modifier: 0.4,
+	            slideShadows : false
+	        }
+	    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- 
+   功能描述：客户接触
+   作者 ：
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>客户关系管理系统</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../themes/blue/main.css"/>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.barRenderer.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.pointLabels.min.js"></script>
+		<script src="../../resource/jquery.json-2.4.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="myPerformance.js"></script>		
+		<script type="text/javascript">
+		$(document).ready(function() {	
+			myPMAShow(0);
+		});			
+		</script>
+		<style type="text/css">
+		.icgHeader div, .icgRow div{width: 18%;}
+		</style>
+	</head>
+	<body>
+		<div class="chartContainer">
+		    <div id="barChart0" class="myChart"></div>
+		    <div id="barChart1" class="myChart"></div>
+		    <div id="barChart2" class="myChart"></div>
+		    <div id="barChart3" class="myChart"></div>
+		    <div id="barChart4" class="myChart"></div>
+		    <div id="barChart5" class="myChart"></div>
+	    </div>
+		<div class="boxContainer">
+			<div class="bcContent">
+				<ul class="icGrid" id = "pmaListDivId">
+					
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

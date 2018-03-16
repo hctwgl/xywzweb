@@ -1,0 +1,81 @@
+<!-- 
+   功能描述：待办工作信息查询
+   作者 ：wangwan1@yuchengtech.com
+   时间 ：2014-11-15
+   版本 ：v1.0.0
+ -->
+ <!DOCTYPE html>
+<html>
+<title>待办工作</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="workToDo.js"></script>
+<header>
+	<div class="top_header"> 
+	<h1>待办工作</h1></div>
+			<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			$.ui.animateHeaders  = false;
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+                 document.addEventListener('deviceready', onDeviceready, false);
+            });
+			$.ui.ready(function() {
+				var workToDoPanel = PageBarFactory.get(config);
+				workToDoPanel.queryFun();
+				$("#filterButton").click(function(){
+					workToDoPanel.queryFun();
+					setFilter();
+				});
+				//菜单初始化
+				$("#menuButton").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+			});
+			function onDeviceready() {
+            	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+            	}
+                $.ui.launch();
+            }
+		</script>
+</header>
+<body>
+<div id="afui" class="ycskin">
+	<div  id="content">
+		<div id="workToDoPanel" class="panel" data-header="headerui" data-footer='none'>
+		<header id="headerui">
+			<a id="menuButton" class="menuButton" style="float: left;"></a> 
+				<h1>待办工作</h1>
+		</header>
+		<div>
+			<ul class="list" id="workToDoInfo_list">
+			</ul>
+		</div>				
+		</div>
+	</div>
+	</div>
+	<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+</body>
+</html>

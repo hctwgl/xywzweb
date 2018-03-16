@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>检查项目详情</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript">
+		function sizeHtml() {
+			var size = window.innerWidth / 16;
+			size = size > 40 ? 40 : size;
+			document.getElementsByTagName("html")[0].style.fontSize = size
+					+ "px";
+		}
+		sizeHtml();
+		window.onresize = function() {
+			sizeHtml();
+		}
+	</script>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	.wrap{
+		background:#F3F3F3;
+		padding:.5rem 0;
+	}
+
+	.item_doc{
+		padding:0 .5rem;
+		background:#fff;
+	}
+	.item_doc dl dd p{
+		font-weight:normal;
+		font-size:.55rem;
+		color:#888;
+		padding-left:.7rem;
+		padding-top:.5rem;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.item_doc a{
+		padding:.75rem 0;
+		display:block;
+	}
+	.item_doc dl{
+		width:100%;
+		display:table;
+		background:url(/h5/images/btn_next.png) no-repeat right center;
+		background-size:.375rem .675rem;
+	}
+	.item_doc dl dt{
+		width:2.9rem;
+		height:2.9rem;
+		float:left;
+		background:url($!{item.doctor_obj.urlIcon}) no-repeat;
+		background-size:contain;
+		border:1px solid #e6e6e6;
+		border-radius:1.5rem;
+	}
+	.item_doc dl dd{
+		float:left;
+		width:11.5rem;
+	}
+	.item_doc dl dd h3{
+		font-weight:normal;
+		font-size:.7rem;
+		color:#333;
+		padding-left:.7rem;
+		padding-top:.45rem;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+	}
+	.item_doc dl dd h3 i{
+		font-style:normal;
+		font-size:.55rem;
+		padding-left:.2rem;
+		color:#888;
+		
+	}
+	.serve_detail{
+		background:#fff;
+		padding:0 .5rem;
+		margin-top:.5rem;
+		overflow: auto;
+		padding-bottom:.5rem;
+	}
+	.serve_detail h2{
+		font-size:.75rem;
+		font-weight:normal;
+		color:#333;
+		padding:.5rem 0;
+		border-bottom:1px solid #f6f6f6;
+	}
+	.serve_detail p,.serve_detail span{
+		font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+		/*white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;*/
+	}
+	.serve_detail h1,.serve_detail h2,.serve_detail h3,.serve_detail h4,.serve_detail h5,.serve_detail h6{
+	font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+		font-weight:normal;
+	}
+
+	.serve_detail>h2{
+		color:#333;
+		font-size:.7rem;
+	}
+	.serve_detail li{
+		list-style:none;
+		font-size:.6rem;
+		color:#888;
+		line-height:1.05rem;
+	}
+	
+	.serve_detail strong{
+		font-weight:normal;
+	}
+	.serve_detail img{
+	     display:block;
+	     width:100%;
+	}
+	.serve_process{
+		background:#fff;
+		padding:0 .5rem;
+		margin-top:.5rem;
+	}
+	.serve_process h2{
+		font-size:.75rem;
+		font-weight:normal;
+		color:#333;
+		padding:.5rem 0;
+		border-bottom:1px solid #f6f6f6;
+	}
+	.serve_detail_cont{
+	    padding: .5rem 0;
+	    font-size: .6rem;
+	    line-height: 1.05rem;
+	    color: #888;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="item_doc">
+			<a href='javascript:;' onclick="doctorinfo('$!{item.doctorid}');return false;">
+				<dl>
+					<dt></dt>
+					<dd>
+						<h3>$!item.doctor_obj.name<i>$!item.doctor_obj.techtitle</i></h3>
+						<p>$!item.site_obj.siteconfig_obj.abbreviation</p>
+					</dd>
+				</dl>
+			</a>
+		</div>
+		#foreach($l in $item.h5)
+		<div class="serve_detail">
+			<h2>$l.title</h2>
+			<div class="serve_detail_cont">
+			$htmlUtil.htmlspecialchars($l.content)
+			</div>
+		</div>
+		#end
+	</div>
+	<script>
+		function doctorinfo(doctorid){
+			var u = navigator.userAgent;
+			if(u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+				//app.hospitalDetail(siteid);
+				app.expert(doctorid);
+			} else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {   
+				//app.hospitalInfo(siteid);
+				app.doctorDetail(doctorid);
+		    } 
+		}
+	</script>
+</body>
+</html>

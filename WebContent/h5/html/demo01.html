@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>河北银行</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8"	src="../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		myscroll=new iScroll("wrapper1");
+		myscroll1=new iScroll("wrapper2");
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-175;
+		$("#Cleft").height(_ch);
+		$("#Cright").height(_ch).width(_cw);
+		$("#jrtuijian").height(_ch-42).width(_cw/3);
+		$("#jrtuijian>.tuiJCon").height(_ch-102);
+		var _jrxw=(_cw/3)*2-74;
+		$("#jrrexiao").height(_ch-42).width(_jrxw);
+		$("#jrrexiao>.reXCon").height(_ch-102);
+		$("#jrrexiao>.reXCon .bQ").width((_jrxw/2)-10);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+<body>
+	<div class="top">
+		<p class="logo">
+			<img src="../themes/hbbank/images/logo_top.png" />
+		</p>
+		<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>金融超市</span>
+			</p>
+
+			<div class="zDhRight">
+				<a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a> <a
+					href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+			</div>
+
+		</div>
+	</div>
+	<div class="topLine">
+		<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+	</div>
+	<div class="Cleft" id="Cleft">
+		<ul>
+			<li><a class="Cleft_a1" href="#">理财产品</a></li>
+			<li><a class="Cleft_a2" href="#">基金产品</a></li>
+			<li><a class="Cleft_a3" href="#">存贷款</a></li>
+			<li><a class="Cleft_a4" href="#">贵金属产品</a></li>
+			<li><a class="Cleft_a5" href="#">保险产品</a></li>
+		</ul>
+
+	</div>
+	<div class="Cright" id="Cright">
+		<div class="jrtuijian" id="jrtuijian">
+			<h1>推荐产品</h1>
+			<div class="tuiJCon" id="wrapper1">
+			<div id="scroller1">
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc1">基金</b></span>
+				</div>
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+				</div>
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc1">基金</b></span>
+				</div>
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc3">保险</b></span>
+				</div>
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc4">贵金属</b></span>
+				</div>
+				<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+				</div>
+				
+				
+				
+				
+				
+			</div>
+			</div>
+		</div>
+		<div class="jrrexiao" id="jrrexiao">
+			<h1>热销产品</h1>
+			<div class="reXCon" id="wrapper2">
+			<div id="scroller2">
+				<div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc1">基金</b></span>
+					</div>
+					<div class="cl"></div>
+				</div>				
+				<div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc4">贵金属</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="cl"></div>
+				</div><div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc1">基金</b></span>
+					</div>
+					<div class="cl"></div>
+				</div>				
+				<div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc4">贵金属</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="cl"></div>
+				</div><div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc1">基金</b></span>
+					</div>
+					<div class="cl"></div>
+				</div>				
+				<div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc4">贵金属</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="cl"></div>
+				</div><div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc1">基金</b></span>
+					</div>
+					<div class="cl"></div>
+				</div>				
+				<div>
+					<div class="bQ">
+						<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票期权增强期权</h1>
+						<b>00393843</b>
+						<span><b class="bsbc4">贵金属</b></span>
+					</div>
+					<div class="bQ">
+							<h1><img alt="hot" src="../themes/hbbank/images/pic_43.png">易方达股票权增权增期权增强期权</h1>
+							<b>00393843</b>
+							<span><b class="bsbc2">贷款</b></span>
+					</div>
+					<div class="cl"></div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

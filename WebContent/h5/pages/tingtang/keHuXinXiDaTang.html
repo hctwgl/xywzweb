@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	
+	<link rel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/jquerymobile/jquery.mobile.custom.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.pieRenderer.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.barRenderer.min.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+		
+	<script type="text/javascript" charset="utf-8" src="../../resource/jqplot/jqplot.logAxisRenderer.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../resource/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../../resource/jqplot/jqplot.cursor.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../resource/jqplot/jqplot.highlighter.min.js"></script>
+    
+   	<script type="text/javascript" charset="utf-8"	src="keHuXinXiDaTang.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function () {
+			//var authUser = $._APP.getUserInfo();
+			//if(authUser.userId){
+			if(isOnline){
+				$("#btRm").show();
+			}else{
+				$("#btRm").hide();
+			} 
+			setUI();
+			$("#goHomeBtn").bind("click",function() { 
+				goPage('../../index.html');
+			});
+			$("#backBtn").bind("click",function() { 
+				goPage('./tingTangGaiLan.html');
+			});
+			
+			var sHerf = window.location.href;
+			var id = getParamFromUrl(sHerf,"id");
+			var zhuanJieRenID = getParamFromUrl(sHerf,"zhuanJieRenID");
+			var zhuanJieRenName = getParamFromUrl(sHerf,"zhuanJieRenName");
+			var queuenum = getParamFromUrl(sHerf,"queuenum");
+			var url = basePath+'custViewBaseInfoQueryAction!getBaseInfo.json?&start='+start+'&limit='+limit+'&id='+id+'&queuenum='+queuenum;
+			loadData(url,queuenum,id,zhuanJieRenID,zhuanJieRenName);
+			drawChart1(id);
+			drawChart2(id);
+			
+		});
+	</script>
+    
+    
+    
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$(".khxinxi").height(_ch-44).width((_cw-74)/2);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+<body>
+<div class="top">
+  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png"/></p>
+
+<div class="zDh">
+   <p class="zDhLeft"><a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>客户信息</span></p>
+   
+   <div class="zDhRight">
+     <a href="#" id="goHomeBtn"><img src="../../themes/hbbank/images/zhuye.png" /></a>
+     <a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+	 <a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+   </div>
+   
+</div>
+</div>
+<div class="topLine"><img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" /></div>
+<div class="botm" id="botm">
+   
+  <div class="khxinxi" id="jiBenXinXi"></div> 
+  <div class="khxinxi">
+ 	<h1>产品配比图</h1>
+    <div class="zcgl" id="ziChanGuanLi"></div>
+    <h1>总资产时点趋势图(最近6个月)</h1>
+    <div class="zcgl" id="ziChanQuShi"></div>
+  </div> 
+
+</div>
+</body>
+</html>

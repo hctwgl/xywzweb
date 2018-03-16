@@ -1,0 +1,86 @@
+<!-- 
+   功能描述：存款业务趋势图
+   作者 ：
+   时间 ：
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>总资产时点趋势图(最近6个月)</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link href="../../resource/jqplot/css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.highlighter.min.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="../../resource/jqplot/jqplot.cursor.min.js"></script>
+		
+		<script type="text/javascript">
+		    
+			$(document).ready(function() {
+				$.jqplot.config.enablePlugins = true;
+				var basePath1 = parent.document.getElementById("basePath").value;
+				var custId1 = parent.document.getElementById("custId").value;
+				drawChart1(basePath1,custId1);
+			});
+			function drawChart1(basePath1,custId1){
+				var s2;
+				$.ajax({
+					url : basePath1 + 'custViewBaseInfoQueryAction!getLastRollSixMonth.json?custId='+custId1,
+					type : "GET",
+					async : false,
+					cache: false, 
+					dataType : "json",
+					success : function(response){
+						s2 = response.data;
+					},
+					error:function(a,b,c){
+						//alert('信息提醒数据加载失败...','提示');
+						
+					}
+				});
+				var minval = s2[0][0];
+				var maxval = s2[5][0];
+				$.jqplot('lastRollSixMonthChart',[s2],{
+				       title: '总资产时点趋势图(最近6个月)',
+				       gridPadding:{right:35},
+				       axes: {
+				           xaxis: {
+				               renderer: $.jqplot.DateAxisRenderer,
+				               tickOptions:{formatString:'%Y/%m'},
+				               min:minval,
+				               max:maxval,
+				               tickInterval:'1 month'
+				               //numberTicks: 6
+				           },
+				           yaxis: {
+				               tickOptions: {
+				                   formatString: '%.0f'
+				               }
+				           }
+				       },
+				       highlighter: {
+				           sizeAdjust: 10,
+				           tooltipLocation: 'n',
+				           useAxesFormatters: false,
+				           formatString: 'Hello %s dayglow %d'
+				       },
+				       cursor: {
+				           show: true,
+				           zoom: false
+				       }
+				   });
+			}
+		</script>
+	</head>
+	<body>
+        <div id="lastRollSixMonthChart" style="margin-top:20px; margin-left:20px; width:450px; height:260px;"></div>
+	</body>
+</html>

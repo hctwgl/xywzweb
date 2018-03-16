@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" charset="utf-8" src="../resource/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width();
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-22).width((_cw-34)/2);
+		$("#btmLeft2").height(_ch-22).width((_cw-34)/2);
+		$("#btmRight2 .khdlChart").height((_ch-22)/3);
+		$("#btmRight2 .dlChartBox").height((_ch-22)/3-40);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+	   <p class="zDhLeft">
+					<a href="#"><img src="../themes/hbbank/images/fanhui.png" /></a><span>厅堂概览</span>
+		</p>
+	   
+	   <div class="zDhRight">
+	     <a href="#"><img src="../themes/hbbank/images/zhuye.png" /></a>
+	     <a href="#"><img src="../themes/hbbank/images/gerenzhongxin.png" /></a>
+	   </div>
+	   
+	</div>
+	</div>
+		<div class="topLine">
+			<img src="../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2" id="btmRight2">
+		  <div class="khdlChart">
+		  <h1>队列分布</h1>
+		  <div class="dlChartBox">
+		  	<img src="../themes/hbbank/images/dl_chart1.png" />
+		  </div>
+		  </div>
+		  <div class="khdlChart">
+		  <h1>业务分布</h1>
+		  <div class="dlChartBox">
+		  	<img src="../themes/hbbank/images/dl_chart2.png" />
+		  </div>
+		  </div>
+		  <div class="khdlChart">
+		  <h1>等待时间</h1>
+		  <div class="dlChartBox">
+		  	<img src="../themes/hbbank/images/dl_chart3.png" />
+		  </div>
+		  </div>	  
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	  		<h1>客户队列
+	  		<div class="hTools">
+	  			<input type="text" placeholder="输入客户姓名" />
+		  		<a href="#" class="bt01">查询</a>
+		  		<a href="#" class="bt01">刷新</a>
+	  		</div>
+	  		</h1>
+	  		<!-- 客户队列 list sta -->
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khWom">张女士</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+								<img class="markIco" src="../themes/hbbank/images/mark_01.png" />
+								<img class="markIco" src="../themes/hbbank/images/mark_04.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">普通客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<!-- 客户队列 list end -->
+	  		<div class="khdlBox khdlCk">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khMan">陈先生</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+								<img class="markIco" src="../themes/hbbank/images/mark_02.png" />
+								<img class="markIco" src="../themes/hbbank/images/mark_03.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">白金客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khWom">张女士</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+								<img class="markIco" src="../themes/hbbank/images/mark_01.png" />
+								<img class="markIco" src="../themes/hbbank/images/mark_04.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">普通客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khMan">陈先生</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+									<img class="markIco" src="../themes/hbbank/images/mark_03.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">白金客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khWom">张女士</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+									<img class="markIco" src="../themes/hbbank/images/mark_04.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">普通客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khMan">陈先生</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+									<img class="markIco" src="../themes/hbbank/images/mark_01.png" />
+									<img class="markIco" src="../themes/hbbank/images/mark_03.png" />
+									<img class="markIco" src="../themes/hbbank/images/mark_04.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">白金客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		<div class="khdlBox">
+	  			<div class="khdlCon">
+		  			<div class="khdlcLeft"></div><div class="khdlcRight"></div>
+		  			<div class="khdlcCenter">
+		  				<div class="khdlInfo">
+		  					<div class="khdlPic khWom">张女士</div>
+		  					<div class="khInfo">
+		  						<!-- <a href="javascript:void(0);">插队</a> -->
+		  						<span>
+									<img class="markIco" src="../themes/hbbank/images/mark_04.png" />
+								</span>
+		  						<span class="dlDark">等待：<b>5</b>min</span>
+		  						<span class="dlDark">排号：<b>A156</b></span>
+		  						<span>办理业务：理财业务</span>
+		  					</div>
+		  				</div>
+		  				<div class="khdlDj">普通客户
+		  					<div class="dldjIco1"></div>
+		  					<div class="dldjIco2"></div>
+		  				</div>
+		  			</div>
+	  			</div>
+	  		</div>
+	  		
+	  </div>
+	</div>
+</body>
+</html>

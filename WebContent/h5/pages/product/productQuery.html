@@ -1,0 +1,221 @@
+<!-- 
+   功能描述：产品查询
+   作者 ：luoyad
+   时间 ：2014-11-18
+   版本 ：v1.0.0
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>客户关系管理系统</title>
+		<meta name="keywords" content="客户关系管理系统,CRM" />
+		<meta name="description" content="客户关系管理系统,CRM" />
+		<meta name="Author" content="YuchengTech" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript" charset="utf-8" src="../../pages/common/includes.js"/>
+		<script type="text/javascript" charset="utf-8"	src="resource/ui/transitions/slideRight.js"></script>
+		<script type="text/javascript" charset="utf-8"	src="productQuery.js"></script>
+        
+        <style>
+		 .radioInputClass{
+			width: 95%;font-size: 16px;
+		 } 
+		 .filterPanel{display:none; 
+		 position: absolute;
+		 top:20px;
+		 left:20px; 
+		 z-index:1000; 
+		 width: 260px;
+		 height: 380px;
+		 padding-top:5px;
+		 padding-bottom:5px; 
+		 background-color: #fdfeff;
+		 border-radius:5px;
+		 box-shadow:0px 1px 8px #474d50;
+		 }
+		 
+		 .filterPanel .fcContent{padding-left: 160px;}
+
+		</style>
+		<script type="text/javascript">
+			$.ui.openLinksNewTab = false;
+			$.ui.splitview 		 = false;
+			//$.ui.slideSideMenu   = false;
+			$.ui.animateHeaders  = false;
+	
+			$.ui.autoLaunch  = false;
+			if(devModel) {
+				$.ui.autoLaunch  = true;
+			}
+			$(document).ready(function() {
+	                document.addEventListener('deviceready', onDeviceready, false);
+	                //$.ui.launch();
+	        });
+	    
+	        function onDeviceready() {
+	        	if(!devModel) {
+	                if(crmApp.device.platform == 'IOS' || crmApp.device.platform == 'iOS') {
+	                    $("body").addClass("iospad");
+	                } else {
+	                    $("body").addClass("androidpad");
+	                }
+	        	}
+	            $.ui.launch();
+	        }
+	        
+			$.ui.ready(function() {
+				var productQuery = PageBarFactory.get(config);
+				productQuery.queryFun();
+
+				$("#searchPanelButton").click(function(){
+
+					var rateLess = $("#filterProdYieldRateLess").val();
+					var rateLargest = $("#filterProdYieldRateLargest").val();
+					if(rateLess != null && rateLess != "undefined" && $.trim(rateLess) != '') {
+						if(!checkNum(rateLess)){
+							 mesUtil.alert("请输入合法的最低年化收益率(可含一到两位小数)");
+							 return ;
+						}
+					}
+					if(rateLargest != null && rateLargest != "undefined" && $.trim(rateLargest) != '') {
+                        if(!checkNum(rateLargest)){
+                        	mesUtil.alert("请输入合法的最高年化收益率(可含一到两位小数)");
+                        	return ;
+						}
+					}
+					
+                    var url = queryConfigUrl();
+                    productQuery.queryFun(url);
+
+				});
+				
+				$("#filterButton").click(function(){
+					//TODO 按实际拼装查询条件
+					var rateLess = $("#filterProdYieldRateLess").val();
+					var rateLargest = $("#filterProdYieldRateLargest").val();
+					if(rateLess != null && rateLess != "undefined" && $.trim(rateLess) != '') {
+						if(!checkNum(rateLess)){
+							 mesUtil.alert("请输入合法的最低年化收益率(可含一到两位小数)");
+							 return ;
+						}
+					}
+					if(rateLargest != null && rateLargest != "undefined" && $.trim(rateLargest) != '') {
+                        if(!checkNum(rateLargest)){
+                        	mesUtil.alert("请输入合法的最高年化收益率(可含一到两位小数)");
+                        	return ;
+						}
+					}
+					var url = queryConfigUrl();
+					productQuery.queryFun(url);
+					//关闭过滤窗口
+					setFilter();
+				});
+				
+				//菜单初始化
+				$("#menuBtn").click(function(){
+					af.ui.toggleSideMenu();
+				});
+				mobileApp.menuInit();
+				
+			});
+			
+			function queryConfigUrl(){
+				
+				
+				var keyW = $("#searchField").val();
+				var prodType = $("#filterProdType").val();
+				var rateLess = $("#filterProdYieldRateLess").val();
+				var rateLargest = $("#filterProdYieldRateLargest").val();
+				
+				var condition = {};
+
+				if(keyW != null && keyW != "undefined") {
+					condition.keyW = keyW;
+				}
+
+				if(prodType != null && prodType != "undefined") {
+					condition.prodType = prodType;
+				}
+				if(rateLess != null && rateLess != "undefined") {
+					condition.rateLess = rateLess;
+				}
+				if(rateLargest != null && rateLargest != "undefined") {
+					condition.rateLargest = rateLargest;
+				}
+				
+				var url = basePath + 'productQueryAction.json?condition='+$.toJSON(condition);
+				
+				return url;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="afui" class="ycskin">
+			<header id="headerui">
+				<div class="top_header"> 
+					<a id="menuBtn" class="menuButton" style="float: left;"></a> 
+					<h1>产品查询</h1>
+				</div>
+			</header>
+			<div id="content">
+				<div id="productQueryPanel" class="panel" data-header="headerui" data-footer='none'>
+				<div class="toolsBar">
+					<div class="tbLeft">
+						<input type="text" id="searchField" class="txtSearch" placeholder="请输入关键字…"/>
+						<a class="btSearch icon-search" id="searchPanelButton">查询</a>
+					</div>
+					<div class="tbRight">
+						<a class="txtBt icon-filter" onclick='setFilter(this)'>筛选</a>
+
+					</div>
+				</div>
+				
+				<div>
+					<ul class="list" id="productQuery_list"></ul>
+				</div>				
+				</div>
+			</div>
+			<!-- 筛选面板 --start -->
+		<div class="filterPanel"  style="width: 400px;">
+			<div class="arrow-up"></div>
+			<div class="formContent">
+				<div class="formCell">
+					<label style="width:160px;">产品分类：</label>
+					<div class="fcContent">
+						<input id="filterProdType" name="text1" placeholder="产品分类编号" type="text">
+					</div>
+				</div>
+				<div class="formCell">
+					<label style="width:160px;">最低年化收益率：</label>
+					<div class="fcContent">
+						<input id="filterProdYieldRateLess" name="text1" placeholder="最低年化收益率" type="text">
+					</div>
+				</div>
+				<div class="formCell">
+					<label  style="width:160px;">最高年化收益率：</label>
+					<div class="fcContent">
+						<input id="filterProdYieldRateLargest" name="filterContent"  placeholder="最高年化收益率" type="text">
+					</div>
+				</div>
+
+				<div class="fpToolsBar">
+					<a class="txtBt icon-reply" onclick='setFilter()'>取消</a>
+					<a class="txtBt icon-checkmark" id="filterButton" >确定</a>
+				</div>
+			</div>	
+		</div>
+			<!-- 筛选面板 --end -->
+		</div>
+		<nav class="mainNav">
+			<div id="userInfo">
+				<div id="userPhoto"></div>
+				<div id="userName">欢迎您<br/>张三(大堂经理)</div>
+			</div>
+			<ul class="list" id="appMenuList"></ul>
+		</nav>
+	</body>
+</html>

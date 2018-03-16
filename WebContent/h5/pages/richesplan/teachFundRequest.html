@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>河北银行</title>
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="../../themes/hbbank/css/main.css" rel="stylesheet" type="text/css" />
+	<link hrel="stylesheet" type="text/css" href="../../themes/hbbank/css/main.css" />
+	<link hrel="stylesheet" type="text/css" href="../../resource/iscroll/scrollbar.css">
+	<script type="text/javascript" src="../../resource/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/iscroll/iscroll.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../../resource/Calendar/jquery-1.8.2.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8"	src="../calculator/CheckDataFunction.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../calculator/Calendar.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../calculator/CalcDeposit.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../calculator/a1.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="../calculator/GetRate.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="teachFundRequest.js"></script>
+	<script type="text/javascript" src="../../pages/common/common.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+		//var authUser = $._APP.getUserInfo();
+		//if(authUser.userId){
+		if(isOnline){
+			$("#btRm").show();
+		}else{
+			$("#btRm").hide();
+		} 
+		$("#goHomeBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+		$("#backBtn").bind("click",function() { 
+			goPage('../../index.html');
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	$(function(){
+		setUI();
+		setRightMenu();
+		callPeople();
+	});
+	function setUI(){
+		var _ch=$(window).height()-121;
+		var _cw=$(window).width()-386;
+		$("#botm").height(_ch);
+		$("#btmRight2").height(_ch-24).width(_cw);
+		$("#btmLeft2").height(_ch-24).width(352);
+	};
+	$(window).resize(function(){
+		setUI();
+	});
+	</script>
+	<script type="text/javascript">
+	 //判断只能输入数字
+	function checkNumber(value) {
+		 var rule = /^[0-9]*[1-9][0-9]*$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	//只能输入数字和小数
+	function checkNumAndFloat(value) {
+		var rule = /^\d+(\.\d+)?$/;//正则表达式在/与/之间
+	    if(!rule.test(value)) {
+	    	return false;
+	    }
+		 return true;
+	}
+	
+	function check()
+	  {
+		if (!checkNumber(document.getElementById("lastAge").value)) {
+			alert("请在几年后上学输入正数");
+			return false;
+		}
+		if (!checkNumber(document.getElementById("educateYear").value)) {
+			alert("请在教育年限输入正数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("eduJinOut").value)) {
+			alert("请在教育金年支出输入正数");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("yujitouziRatio").value)) {
+			alert("请输入合法预计投资报酬率,如1或1.0");
+			return false;
+		}
+		if (!checkNumAndFloat(document.getElementById("tonghuopengzhangRatio").value)) {
+			alert("请输入合法通货膨胀率,如1或1.0");
+			return false;
+		}
+		if (document.getElementById("yujitouziRatio").value <= document.getElementById("tonghuopengzhangRatio").value) {
+			alert("预计投资报酬率不能小于等于通货膨胀率");
+			return false;
+		}
+		
+ 	    return true;
+	  }
+	function calcu()
+	  {
+	    if (check()==false) return false;
+	    calc();
+	    document.getElementById("lastAge").value = document.getElementById("lastAge").value*1;
+		document.getElementById("educateYear").value = document.getElementById("educateYear").value*1;
+		document.getElementById("eduJinOut").value = document.getElementById("eduJinOut").value*1;
+		document.getElementById("yujitouziRatio").value = document.getElementById("yujitouziRatio").value*1;
+		document.getElementById("tonghuopengzhangRatio").value = document.getElementById("tonghuopengzhangRatio").value*1;
+       
+	     return false;
+	  }
+	function reset(){
+		document.getElementById("lastAge").value = null;
+		document.getElementById("educateYear").value = null;
+		document.getElementById("eduJinOut").value = null;
+		document.getElementById("yujitouziRatio").value = '5';
+		document.getElementById("tonghuopengzhangRatio").value = null;
+		return true;
+	}
+	</script>
+</head>
+
+
+<body>
+	<div class="top">
+	  <p class="logo"><img src="../../themes/hbbank/images/logo_top.png" /></p>
+	
+	<div class="zDh">
+			<p class="zDhLeft">
+				<a href="#" id="backBtn"><img src="../../themes/hbbank/images/fanhui.png" /></a><span>财富规划</span>
+			</p>
+
+			<div class="zDhRight">
+				<a id="goHomeBtn" href="#"><img src="../../themes/hbbank/images/zhuye.png"/></a>
+				<a href="#" id="btRm"><img src="../../themes/hbbank/images/gerenzhongxin.png" /></a>
+				<a href="#" id="callBtn"><img src="../../themes/hbbank/images/hujiao.png"/></a>
+			</div>
+		</div>
+	</div>
+		<div class="topLine">
+			<img src="../../themes/hbbank/images/zhanwei.png" width="100%" height="2" />
+		</div>
+	<div class="botm" id="botm">   
+	  <div class="btmRight2 btmJSQ" id="btmRight2">
+	  <h1>教育基金需求规划</h1>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>几年后上学(年)：</p>
+				<input name="lastAge" id="lastAge" type="number" onkeyup="javascript:yearCheck('lastAge')" onafterpaste="javascript:yearCheck('lastAge')" />
+		</div>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>教育年限(年)：</p>
+				<input name="educateYear" id="educateYear" type="number" class="txtnum" onkeyup="javascript:yearCheck('educateYear')" onafterpaste="javascript:yearCheck('educateYear')" />
+		</div>
+	   <div class="xinxi" style="font-size:16px;">
+				<p><span>*</span>教育金年支出(元)：</p>
+				<input name="eduJinOut" id="eduJinOut" type="number" class="txtnum" onkeyup="javascript:lengthCheck('eduJinOut')" onafterpaste="javascript:lengthCheck('eduJinOut')" />
+		</div>
+		<div class="xinxi" style="font-size:15px;">
+			<p><span>*</span>预计投资报酬率(%)：</p>
+			<input name="yujitouziRatio" id="yujitouziRatio" value="5" type="number" class="txtnum" onkeyup="javascript:ratioCheck('yujitouziRatio')" onafterpaste="javascript:ratioCheck('yujitouziRatio')" />
+		</div>
+		<div class="xinxi" style="font-size:16px;">
+			<p><span>*</span>通货膨胀率(%)：</p>
+			<input name="tonghuopengzhangRatio" id="tonghuopengzhangRatio" type="number" class="txtnum" onkeyup="javascript:ratioCheck('tonghuopengzhangRatio')" onafterpaste="javascript:ratioCheck('tonghuopengzhangRatio')" />
+		</div>
+		<div class="btBox">
+			<input id="bt1" type="button" value="开始计算" onclick="return calcu()" />
+			<input id="bt2" type="button" value="重新计算" onclick="return reset()" />
+		</div>
+	  <h1>计算结果</h1>
+      <div class="xinxi" style="font-size:16px;">
+			<p>大学单笔投资(元)：</p>
+			<input name="restSingleMoney" id="restSingleMoney" value="计算得出" disabled readonly type="text" />
+		</div>
+      <div class="xinxi" style="font-size:16px;">
+			<p>定期定额投资(元)：</p>
+			<input name="restFixedMoney" id="restFixedMoney" value="计算得出" disabled readonly type="text" />
+		</div>
+	  </div>
+	  <div class="btmLeft2" id="btmLeft2">
+	    <h1>财富规划</h1>
+	       <div class="jsqBox">
+	          <a href="retireRequest.html" class="jsqMenu jm1">退休需求规划</a>
+	          <a href="teachFundRequest.html" class="jsqMenu jm2" >教育基金需求规划</a>
+	          <a href="baozhangRequest.html" class="jsqMenu jm3">保障需求规划</a>
+	          <a href="investmentPlan.html" class="jsqMenu jm4">投资规划</a>
+	       </div>
+	       
+	       
+	  </div>
+	</div>
+</body>
+</html>
